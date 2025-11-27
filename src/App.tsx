@@ -11,6 +11,11 @@ import EvidenceLab from "./pages/EvidenceLab";
 import SelfAssessment from "./pages/SelfAssessment";
 import Resources from "./pages/Resources";
 import AboutContact from "./pages/AboutContact";
+import CaseStudies from "./pages/CaseStudies";
+import AuditSimulator from "./pages/AuditSimulator";
+import ReadinessPlan from "./pages/ReadinessPlan";
+import FinalExam from "./pages/FinalExam";
+import Certificate from "./pages/Certificate";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +35,11 @@ const App = () => (
           <Route path="/self-assessment" element={<SelfAssessment />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/about" element={<AboutContact />} />
+          <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/audit-simulator" element={<AuditSimulator />} />
+          <Route path="/readiness-plan" element={<ReadinessPlan />} />
+          <Route path="/final-exam" element={<FinalExam />} />
+          <Route path="/certificate" element={<Certificate />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
