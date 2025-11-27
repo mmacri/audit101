@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/collapsible";
 import { ModuleRecap } from "@/components/ModuleRecap";
 import { SpacedReviewQuiz } from "@/components/SpacedReviewQuiz";
+import { RoleModuleCallout } from "@/components/RoleModuleCallout";
 import { ESPPSPDiagram } from "@/components/diagrams/ESPPSPDiagram";
 import { PatchManagementDiagram } from "@/components/diagrams/PatchManagementDiagram";
 import { IncidentResponseDiagram } from "@/components/diagrams/IncidentResponseDiagram";
@@ -792,6 +793,9 @@ export default function Modules() {
                             ))}
                           </ul>
                         </div>
+
+                        {/* Role-Specific Callout */}
+                        <RoleModuleCallout moduleId={module.id} />
 
                         {/* Content Sections */}
                         <div className="space-y-6">
