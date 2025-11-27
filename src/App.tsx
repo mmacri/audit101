@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import LearningPath from "./pages/LearningPath";
 import Modules from "./pages/Modules";
 import RoleTraining from "./pages/RoleTraining";
+import RoleTrainingDetail from "./pages/RoleTrainingDetail";
 import EvidenceLab from "./pages/EvidenceLab";
 import SelfAssessment from "./pages/SelfAssessment";
 import Resources from "./pages/Resources";
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/learning-path" element={<LearningPath />} />
           <Route path="/modules" element={<Modules />} />
           <Route path="/role-training" element={<RoleTraining />} />
+          <Route path="/role-training/:roleId" element={<RoleTrainingDetail />} />
           <Route path="/evidence-lab" element={<EvidenceLab />} />
           <Route path="/self-assessment" element={<SelfAssessment />} />
           <Route path="/resources" element={<Resources />} />

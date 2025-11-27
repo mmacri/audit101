@@ -12,8 +12,11 @@ import {
   CheckSquare,
   Clock,
   Lightbulb,
-  MessageSquare
+  MessageSquare,
+  ArrowRight
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useUserPreferences, roleLabels, UserRole } from "@/hooks/useUserPreferences";
 
 interface RoleData {
   id: string;
@@ -263,6 +266,18 @@ const roles: RoleData[] = [
 export default function RoleTraining() {
   const [activeRole, setActiveRole] = useState(roles[0].id);
   const currentRole = roles.find(r => r.id === activeRole) || roles[0];
+  const { preferences } = useUserPreferences();
+
+  // Map role IDs to UserRole type for linking
+  const roleIdToUserRole: Record<string, UserRole> = {
+    'compliance-manager': 'compliance',
+    'it-ot-engineer': 'it-ot',
+    'physical-security': 'physical-security',
+    'hr-training': 'hr-training',
+    'leadership': 'leadership',
+  };
+
+  const userRoleId = roleIdToUserRole[currentRole.id] || 'other';
 
   return (
     <Layout>
@@ -311,9 +326,15 @@ export default function RoleTraining() {
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
                 <currentRole.icon className="h-7 w-7 text-primary" />
               </div>
-              <div>
+              <div className="flex-1">
                 <h2 className="text-2xl font-bold text-navy mb-2">{currentRole.title}</h2>
-                <p className="text-muted-foreground">{currentRole.description}</p>
+                <p className="text-muted-foreground mb-4">{currentRole.description}</p>
+                <Button asChild>
+                  <Link to={`/role-training/${userRoleId}`}>
+                    View Full Training Plan
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
               </div>
             </div>
 
