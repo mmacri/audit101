@@ -8,11 +8,12 @@ const navItems = [
   { label: "Home", href: "/" },
   { label: "Learning Path", href: "/learning-path" },
   { label: "Modules", href: "/modules" },
-  { label: "Role-Based Training", href: "/role-training" },
+  { label: "Role Training", href: "/role-training" },
   { label: "Evidence Lab", href: "/evidence-lab" },
+  { label: "Case Studies", href: "/case-studies" },
   { label: "Self-Assessment", href: "/self-assessment" },
   { label: "Resources", href: "/resources" },
-  { label: "About & Contact", href: "/about" },
+  { label: "Final Exam", href: "/final-exam" },
 ];
 
 export function Navbar() {
