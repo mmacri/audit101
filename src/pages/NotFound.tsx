@@ -22,7 +22,7 @@ export default function NotFound() {
               </Link>
             </Button>
             <Button asChild variant="outline">
-              <Link to="/nerc-cip-101">
+              <Link to="/get-started">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Start Learning
               </Link>

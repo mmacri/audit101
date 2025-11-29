@@ -22,33 +22,33 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Quick Links */}
+          {/* Training */}
           <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
+            <h4 className="font-semibold mb-4">Training</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/nerc-cip-101" className="text-navy-foreground/70 hover:text-white transition-colors">
-                  NERC CIP 101
+                <Link to="/get-started" className="text-navy-foreground/70 hover:text-white transition-colors">
+                  Get Started
                 </Link>
               </li>
               <li>
-                <Link to="/audit-journey" className="text-navy-foreground/70 hover:text-white transition-colors">
-                  Audit Journey
+                <Link to="/modules" className="text-navy-foreground/70 hover:text-white transition-colors">
+                  All Modules
                 </Link>
               </li>
               <li>
                 <Link to="/role-training" className="text-navy-foreground/70 hover:text-white transition-colors">
-                  Role-Based Training
+                  Role Training Plans
                 </Link>
               </li>
               <li>
                 <Link to="/soft-skills" className="text-navy-foreground/70 hover:text-white transition-colors">
-                  Auditor Etiquette
+                  Soft Skills & Etiquette
                 </Link>
               </li>
               <li>
-                <Link to="/self-assessment" className="text-navy-foreground/70 hover:text-white transition-colors">
-                  Self-Assessment
+                <Link to="/final-exam" className="text-navy-foreground/70 hover:text-white transition-colors">
+                  Final Exam & Certificate
                 </Link>
               </li>
             </ul>
@@ -74,13 +74,13 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/manager-guide" className="text-navy-foreground/70 hover:text-white transition-colors">
-                  Manager Guide
+                <Link to="/rsaw-tutorial" className="text-navy-foreground/70 hover:text-white transition-colors">
+                  RSAW Tutorial
                 </Link>
               </li>
               <li>
-                <Link to="/resources#glossary" className="text-navy-foreground/70 hover:text-white transition-colors">
-                  Glossary
+                <Link to="/manager-guide" className="text-navy-foreground/70 hover:text-white transition-colors">
+                  Manager Guide
                 </Link>
               </li>
             </ul>
