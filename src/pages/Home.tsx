@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { OnboardingModal } from "@/components/OnboardingModal";
 import { QuickResourcesPanel } from "@/components/QuickResourcesPanel";
-import { useUserPreferences } from "@/hooks/useUserPreferences";
+import { useUserPreferences, UserRole } from "@/hooks/useUserPreferences";
 import { 
   BookOpen, 
   FolderSearch, 
@@ -80,9 +80,23 @@ export default function Home() {
     }
   }, [isLoaded, preferences.onboardingComplete]);
 
-  const handleOnboardingComplete = () => {
+  // Map UserRole to role training page slugs
+  const roleToSlug: Record<UserRole, string> = {
+    'compliance': 'compliance',
+    'it-ot': 'it-ot',
+    'physical-security': 'physical-security',
+    'hr-training': 'hr-training',
+    'leadership': 'leadership',
+    'other': 'compliance',
+  };
+
+  const handleOnboardingComplete = (selectedRole?: UserRole) => {
     setShowOnboarding(false);
-    navigate('/learning-path');
+    if (selectedRole) {
+      navigate(`/role-training/${roleToSlug[selectedRole]}`);
+    } else {
+      navigate('/role-training');
+    }
   };
 
   return (
