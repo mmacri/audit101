@@ -170,6 +170,59 @@ const keyPrinciples = [
   }
 ];
 
+const entranceExitMeetings = {
+  entrance: {
+    title: "Entrance Meeting Best Practices",
+    description: "The entrance meeting sets the tone for the entire audit. Be prepared, professional, and welcoming.",
+    tips: [
+      "Have the CIP Senior Manager or delegate open the meeting",
+      "Provide a brief company overview and CIP program summary",
+      "Introduce key SMEs and their areas of responsibility",
+      "Review the audit schedule and logistics",
+      "Clarify communication protocols (single point of contact preferred)",
+      "Confirm evidence submission process and response timeframes",
+      "Address any questions about facility access or safety requirements"
+    ],
+    donts: [
+      "Don't make excuses about program gaps before questions are asked",
+      "Don't promise things you can't deliver",
+      "Don't overwhelm auditors with unnecessary detail"
+    ]
+  },
+  exit: {
+    title: "Exit Meeting Best Practices",
+    description: "The exit meeting provides preliminary findings. Stay professional even if findings are unexpected.",
+    tips: [
+      "Thank the audit team for their professionalism",
+      "Take detailed notes on all preliminary findings",
+      "Ask clarifying questions about any findings you don't understand",
+      "Request specific evidence or documentation that led to findings",
+      "Discuss timeline for formal report and response window",
+      "Identify any opportunities for immediate clarification",
+      "Debrief your team immediately after auditors leave"
+    ],
+    donts: [
+      "Don't argue with findings in the exit meeting",
+      "Don't commit to mitigation approaches on the spot",
+      "Don't express frustration or disappointment visibly"
+    ]
+  }
+};
+
+const interviewChecklist = [
+  { id: "review-rsaw", text: "Review RSAW requirements for your area before the interview", category: "Before" },
+  { id: "gather-evidence", text: "Have relevant evidence readily accessible (digital or physical)", category: "Before" },
+  { id: "know-procedures", text: "Know where your documented procedures are located", category: "Before" },
+  { id: "identify-backup", text: "Identify backup SME in case questions exceed your expertise", category: "Before" },
+  { id: "bring-notes", text: "Bring a notepad to write down questions for follow-up", category: "During" },
+  { id: "listen-fully", text: "Listen to the complete question before responding", category: "During" },
+  { id: "pause-think", text: "Pause and think before answering—silence is acceptable", category: "During" },
+  { id: "reference-evidence", text: "Reference specific evidence when possible", category: "During" },
+  { id: "document-questions", text: "Document any questions you couldn't answer immediately", category: "After" },
+  { id: "follow-up", text: "Provide promised follow-up information within agreed timeframe", category: "After" },
+  { id: "debrief", text: "Debrief with your compliance team about interview topics", category: "After" }
+];
+
 export default function SoftSkillsTraining() {
   const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -387,22 +440,112 @@ export default function SoftSkillsTraining() {
         </div>
       </section>
 
-      {/* Video Placeholder */}
+      {/* Entrance/Exit Meetings */}
       <section className="py-12 md:py-16 bg-background">
         <div className="container">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-navy mb-8 text-center">Video Demonstrations</h2>
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl font-bold text-navy mb-8 text-center">Entrance & Exit Meetings</h2>
             
-            <Card className="bg-muted/50">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <Play className="h-8 w-8 text-primary" />
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Entrance Meeting */}
+              <Card>
+                <CardHeader className="bg-primary/10">
+                  <CardTitle className="flex items-center gap-2">
+                    <Users className="h-5 w-5 text-primary" />
+                    {entranceExitMeetings.entrance.title}
+                  </CardTitle>
+                  <CardDescription>{entranceExitMeetings.entrance.description}</CardDescription>
+                </CardHeader>
+                <CardContent className="p-6">
+                  <div className="mb-4">
+                    <h4 className="font-semibold text-navy mb-2 flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-success" /> Do
+                    </h4>
+                    <ul className="space-y-1">
+                      {entranceExitMeetings.entrance.tips.map((tip, i) => (
+                        <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
+                          <span className="text-success">•</span>{tip}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-navy mb-2 flex items-center gap-2">
+                      <XCircle className="h-4 w-4 text-destructive" /> Don't
+                    </h4>
+                    <ul className="space-y-1">
+                      {entranceExitMeetings.entrance.donts.map((dont, i) => (
+                        <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
+                          <span className="text-destructive">•</span>{dont}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Exit Meeting */}
+              <Card>
+                <CardHeader className="bg-success/10">
+                  <CardTitle className="flex items-center gap-2">
+                    <Users className="h-5 w-5 text-success" />
+                    {entranceExitMeetings.exit.title}
+                  </CardTitle>
+                  <CardDescription>{entranceExitMeetings.exit.description}</CardDescription>
+                </CardHeader>
+                <CardContent className="p-6">
+                  <div className="mb-4">
+                    <h4 className="font-semibold text-navy mb-2 flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-success" /> Do
+                    </h4>
+                    <ul className="space-y-1">
+                      {entranceExitMeetings.exit.tips.map((tip, i) => (
+                        <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
+                          <span className="text-success">•</span>{tip}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-navy mb-2 flex items-center gap-2">
+                      <XCircle className="h-4 w-4 text-destructive" /> Don't
+                    </h4>
+                    <ul className="space-y-1">
+                      {entranceExitMeetings.exit.donts.map((dont, i) => (
+                        <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
+                          <span className="text-destructive">•</span>{dont}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Interview Checklist */}
+            <Card className="mt-8">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <ClipboardCheck className="h-5 w-5 text-primary" />
+                  SME Interview Checklist
+                </CardTitle>
+                <CardDescription>Use this checklist before, during, and after audit interviews</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid md:grid-cols-3 gap-6">
+                  {["Before", "During", "After"].map((category) => (
+                    <div key={category}>
+                      <h4 className="font-semibold text-navy mb-3 text-sm uppercase tracking-wide">{category}</h4>
+                      <ul className="space-y-2">
+                        {interviewChecklist.filter(item => item.category === category).map((item) => (
+                          <li key={item.id} className="text-sm text-muted-foreground flex items-start gap-2">
+                            <span className="text-primary">☐</span>{item.text}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                 </div>
-                <h3 className="text-xl font-semibold text-navy mb-2">Coming Soon</h3>
-                <p className="text-muted-foreground max-w-md mx-auto">
-                  We're developing video demonstrations showing mock audit interviews with 
-                  real-world scenarios. Check back for updates.
-                </p>
               </CardContent>
             </Card>
           </div>

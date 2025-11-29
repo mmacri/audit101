@@ -10,7 +10,9 @@ import {
   BookOpen,
   Table,
   AlertTriangle,
-  Calendar
+  Calendar,
+  Usb,
+  Shield
 } from "lucide-react";
 import {
   generateEvidenceInventory,
@@ -26,6 +28,12 @@ import {
   generatePatchTrackerExcel,
   generateAccessReviewExcel,
 } from "@/utils/excelTemplates";
+import {
+  generateTCAChecklist,
+  generateTCAChecklistExcel,
+  generateSupplyChainQuestionnaire,
+  generateCIP014RiskAssessment,
+} from "@/utils/tcaTemplates";
 
 interface Template {
   icon: typeof FileSpreadsheet;
@@ -91,6 +99,31 @@ const templates: Template[] = [
     fields: ["Review Period", "System/Application", "Access List Reviewed", "Reviewer Name", "Date", "Discrepancies Found", "Corrective Actions", "Approver Signature"],
     generatePdf: generateAccessReviewForm,
     generateExcel: generateAccessReviewExcel,
+  },
+  {
+    icon: Usb,
+    title: "TCA Management Checklist",
+    description: "Checklist for Transient Cyber Assets (USB drives, maintenance laptops) with connection log template.",
+    format: "PDF or Excel",
+    sections: ["USB Drive Checklist", "Laptop Checklist", "Vendor Equipment", "TCA Connection Log", "TCA Inventory"],
+    generatePdf: generateTCAChecklist,
+    generateExcel: generateTCAChecklistExcel,
+  },
+  {
+    icon: Shield,
+    title: "Supply Chain Risk Questionnaire",
+    description: "CIP-013-2 vendor assessment questionnaire for EACMS/PACS procurement.",
+    format: "PDF",
+    fields: ["Vendor Security Assessment", "Remote Access Controls", "EACMS/PACS Evaluation", "Risk Summary"],
+    generatePdf: generateSupplyChainQuestionnaire,
+  },
+  {
+    icon: Shield,
+    title: "CIP-014 Risk Assessment Template",
+    description: "Physical security risk assessment for transmission stations with threat/vulnerability analysis.",
+    format: "PDF",
+    fields: ["Facility Information", "CIP-006 vs CIP-014 Distinction", "Threat Assessment", "Vulnerability Analysis", "Third-Party Review"],
+    generatePdf: generateCIP014RiskAssessment,
   }
 ];
 
