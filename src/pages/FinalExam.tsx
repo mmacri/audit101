@@ -23,7 +23,7 @@ interface ExamQuestion {
 }
 
 const examQuestions: ExamQuestion[] = [
-  // Foundations (1-3)
+  // Module 1: Foundations (1-2)
   {
     id: 1,
     question: "What is NERC's primary responsibility?",
@@ -40,6 +40,7 @@ const examQuestions: ExamQuestion[] = [
     explanation: "Regional Entities conduct compliance monitoring and enforcement on behalf of NERC.",
     category: "Foundations"
   },
+  // Module 2: Scope (3-4)
   {
     id: 3,
     question: "What timeframe defines whether an asset is a BES Cyber Asset?",
@@ -48,9 +49,17 @@ const examQuestions: ExamQuestion[] = [
     explanation: "The 15-minute rule determines if an asset's compromise could adversely impact BES reliability.",
     category: "Scope"
   },
-  // Governance (4-5)
   {
     id: 4,
+    question: "Which impact level requires the most extensive CIP controls?",
+    options: ["Low Impact", "Medium Impact", "High Impact", "All require the same controls"],
+    correctAnswer: 2,
+    explanation: "High Impact BES Cyber Systems require the most comprehensive set of CIP controls.",
+    category: "Scope"
+  },
+  // Module 3: Governance (5-6)
+  {
+    id: 5,
     question: "How often must CIP policies be reviewed and approved?",
     options: ["Every 6 months", "Every 12 months", "Every 15 months", "Every 24 months"],
     correctAnswer: 2,
@@ -58,16 +67,16 @@ const examQuestions: ExamQuestion[] = [
     category: "Governance"
   },
   {
-    id: 5,
+    id: 6,
     question: "Can the CIP Senior Manager delegate their overall accountability?",
     options: ["Yes, to any executive", "Yes, but only tasks not accountability", "No, accountability cannot be delegated", "Only during audits"],
-    correctAnswer: 2,
+    correctAnswer: 1,
     explanation: "Specific tasks can be delegated, but overall accountability remains with the CIP Senior Manager.",
     category: "Governance"
   },
-  // Personnel & Training (6-7)
+  // Module 4: Personnel & Training (7-8)
   {
-    id: 6,
+    id: 7,
     question: "How quickly must access be revoked after termination notification?",
     options: ["Immediately", "24 hours", "7 days", "30 days"],
     correctAnswer: 1,
@@ -75,16 +84,16 @@ const examQuestions: ExamQuestion[] = [
     category: "Personnel"
   },
   {
-    id: 7,
+    id: 8,
     question: "How far back must personnel risk assessments check criminal history?",
     options: ["3 years", "5 years", "7 years", "10 years"],
     correctAnswer: 2,
     explanation: "PRAs require a seven-year criminal history records check.",
     category: "Personnel"
   },
-  // Perimeters (8-9)
+  // Module 5: Perimeters (9-10)
   {
-    id: 8,
+    id: 9,
     question: "What is an Electronic Security Perimeter (ESP)?",
     options: ["A firewall device", "The logical border surrounding networks with BES Cyber Systems", "A physical fence", "Antivirus software"],
     correctAnswer: 1,
@@ -92,16 +101,16 @@ const examQuestions: ExamQuestion[] = [
     category: "Perimeters"
   },
   {
-    id: 9,
+    id: 10,
     question: "How must visitors be managed within a PSP?",
     options: ["They can roam freely", "They must be continuously escorted", "They only sign in", "Visitors are not allowed"],
     correctAnswer: 1,
     explanation: "Visitors must be continuously escorted by authorized personnel when in a PSP.",
     category: "Perimeters"
   },
-  // System Security (10-12)
+  // Module 6: System Security (11-12)
   {
-    id: 10,
+    id: 11,
     question: "Within how many days must security patches be assessed?",
     options: ["15 days", "30 days", "35 days", "60 days"],
     correctAnswer: 2,
@@ -109,22 +118,14 @@ const examQuestions: ExamQuestion[] = [
     category: "System Security"
   },
   {
-    id: 11,
+    id: 12,
     question: "How long must security logs be retained?",
     options: ["30 days", "60 days", "90 days", "1 year"],
     correctAnswer: 2,
     explanation: "Security logs must be retained for at least 90 calendar days.",
     category: "System Security"
   },
-  {
-    id: 12,
-    question: "What is required for ports and services on BES Cyber Systems?",
-    options: ["All ports must be open", "Only necessary ports should be enabled", "All ports closed", "No requirements"],
-    correctAnswer: 1,
-    explanation: "CIP-007 requires enabling only necessary logical network accessible ports.",
-    category: "System Security"
-  },
-  // Incident Response (13-14)
+  // Module 7: Incident Response (13-14)
   {
     id: 13,
     question: "How quickly must Reportable Cyber Security Incidents be reported to E-ISAC?",
@@ -141,7 +142,7 @@ const examQuestions: ExamQuestion[] = [
     explanation: "Plans must be tested at least once every 15 calendar months.",
     category: "Incidents"
   },
-  // Configuration Management (15-16)
+  // Module 8: Configuration Management (15-16)
   {
     id: 15,
     question: "How quickly must baseline documentation be updated after a change?",
@@ -158,7 +159,7 @@ const examQuestions: ExamQuestion[] = [
     explanation: "Active vulnerability assessments must occur at least every 15 calendar months.",
     category: "Configuration"
   },
-  // Information Protection & Supply Chain (17-18)
+  // Module 9: Information Protection & Supply Chain (17-18)
   {
     id: 17,
     question: "What is BES Cyber System Information (BCSI)?",
@@ -175,7 +176,7 @@ const examQuestions: ExamQuestion[] = [
     explanation: "Plans must address vendor incidents, vulnerabilities, software integrity, and vendor access.",
     category: "Supply Chain"
   },
-  // Audit Preparation (19-20)
+  // Module 10: Audit Preparation (19-20)
   {
     id: 19,
     question: "What is an RSAW?",
@@ -191,10 +192,48 @@ const examQuestions: ExamQuestion[] = [
     correctAnswer: 1,
     explanation: "Effective evidence is dated, shows who performed actions, and clearly demonstrates compliance.",
     category: "Audit"
+  },
+  // Module 11: CIP-012 Control Center Communications (21-22)
+  {
+    id: 21,
+    question: "What does CIP-012 primarily protect?",
+    options: ["Physical access to substations", "Real-time data transmitted between Control Centers", "Employee training records", "Vendor contracts"],
+    correctAnswer: 1,
+    explanation: "CIP-012 requires protection of real-time Assessment and monitoring data transmitted between Control Centers.",
+    category: "CIP-012"
+  },
+  {
+    id: 22,
+    question: "Which communication paths require CIP-012 protections?",
+    options: ["All internal LAN traffic", "Only email systems", "Data communication links between applicable Control Centers", "Only wireless communications"],
+    correctAnswer: 2,
+    explanation: "CIP-012 applies to communication links used for real-time data exchange between Control Centers.",
+    category: "CIP-012"
+  },
+  // Module 12: CIP-014 Physical Security (23-24)
+  {
+    id: 23,
+    question: "What type of assessment does CIP-014 require for applicable transmission stations?",
+    options: ["Financial audit", "Risk assessment including threats and vulnerabilities", "Software vulnerability scan", "Training effectiveness review"],
+    correctAnswer: 1,
+    explanation: "CIP-014 requires a risk assessment that evaluates potential threats and vulnerabilities to applicable transmission assets.",
+    category: "CIP-014"
+  },
+  {
+    id: 24,
+    question: "How does CIP-014 differ from CIP-006 PSP requirements?",
+    options: ["They are identical requirements", "CIP-014 focuses on transmission substations that could impact grid stability if damaged", "CIP-014 only applies to Control Centers", "CIP-006 is more stringent than CIP-014"],
+    correctAnswer: 1,
+    explanation: "CIP-014 specifically addresses physical security of critical transmission substations whose loss could destabilize the grid, while CIP-006 covers PSPs for BES Cyber Systems.",
+    category: "CIP-014"
   }
 ];
 
-const categories = ["Foundations", "Scope", "Governance", "Personnel", "Perimeters", "System Security", "Incidents", "Configuration", "Information Protection", "Supply Chain", "Audit"];
+const categories = [
+  "Foundations", "Scope", "Governance", "Personnel", "Perimeters", 
+  "System Security", "Incidents", "Configuration", "Information Protection", 
+  "Supply Chain", "Audit", "CIP-012", "CIP-014"
+];
 
 export default function FinalExam() {
   const [answers, setAnswers] = useState<Record<number, number>>({});
@@ -268,7 +307,8 @@ export default function FinalExam() {
                 CIP Readiness Academy Final Exam
               </h1>
               <p className="text-lg text-muted-foreground mb-8">
-                This comprehensive exam covers all 10 modules of the CIP Readiness Academy. 
+                This comprehensive exam covers all 12 modules of the CIP Readiness Academy, 
+                including CIP-012 (Control Center Communications) and CIP-014 (Physical Security of Transmission Assets).
                 You'll need to score 80% or higher to earn your completion certificate.
               </p>
               
@@ -277,15 +317,15 @@ export default function FinalExam() {
                 <ul className="space-y-2 text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-success" />
-                    20 multiple-choice questions
+                    24 multiple-choice questions covering all 12 modules
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-success" />
-                    Covers all CIP standards and audit preparation
+                    Includes CIP-012 and CIP-014 standards
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-success" />
-                    80% passing score required (16/20 correct)
+                    80% passing score required (20/24 correct)
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-success" />
@@ -331,7 +371,7 @@ export default function FinalExam() {
                 <p className="text-muted-foreground mb-4">
                   {passed 
                     ? "You've demonstrated strong knowledge of NERC CIP concepts. You can now claim your certificate!"
-                    : `You need 80% (16 correct) to pass. Review the feedback below and try again.`
+                    : `You need 80% (20 correct) to pass. Review the feedback below and try again.`
                   }
                 </p>
                 
@@ -352,7 +392,7 @@ export default function FinalExam() {
                 {/* Category Breakdown */}
                 <div className="mt-6 pt-6 border-t border-border text-left">
                   <h4 className="font-semibold text-navy mb-3 text-center">Performance by Category:</h4>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                     {Object.entries(categoryScores).filter(([_, v]) => v.total > 0).map(([cat, scores]) => (
                       <div key={cat} className={cn(
                         "text-center p-2 rounded-lg text-xs",
@@ -425,27 +465,41 @@ export default function FinalExam() {
                             )}
                           >
                             <span className={cn(
-                              "w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium",
-                              submitted && isCorrectOption && "bg-success text-success-foreground",
-                              submitted && isSelected && !isCorrectOption && "bg-destructive text-destructive-foreground",
-                              !submitted && isSelected && "bg-primary text-primary-foreground",
-                              !submitted && !isSelected && "bg-muted text-muted-foreground"
+                              "w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0",
+                              submitted ? (
+                                isCorrectOption
+                                  ? "bg-success text-success-foreground"
+                                  : isSelected
+                                    ? "bg-destructive text-destructive-foreground"
+                                    : "bg-muted-foreground/20 text-muted-foreground"
+                              ) : (
+                                isSelected
+                                  ? "bg-primary text-primary-foreground"
+                                  : "bg-muted-foreground/20 text-muted-foreground"
+                              )
                             )}>
-                              {String.fromCharCode(65 + optIndex)}
+                              {submitted && isCorrectOption ? <CheckCircle2 className="h-4 w-4" /> 
+                               : submitted && isSelected && !isCorrectOption ? <XCircle className="h-4 w-4" />
+                               : String.fromCharCode(65 + optIndex)}
                             </span>
-                            <span className="flex-1">{option}</span>
-                            {submitted && isCorrectOption && <CheckCircle2 className="h-4 w-4 text-success" />}
-                            {submitted && isSelected && !isCorrectOption && <XCircle className="h-4 w-4 text-destructive" />}
+                            {option}
                           </button>
                         );
                       })}
-                    </div>
 
-                    {submitted && (
-                      <p className="text-sm text-muted-foreground bg-muted/50 p-3 rounded-lg mt-4 ml-11">
-                        {q.explanation}
-                      </p>
-                    )}
+                      {/* Explanation after submit */}
+                      {submitted && (
+                        <div className={cn(
+                          "mt-3 p-3 rounded-lg text-sm",
+                          isCorrect ? "bg-success/5 border border-success/20" : "bg-muted"
+                        )}>
+                          <p className="text-muted-foreground">
+                            <span className="font-medium text-foreground">Explanation: </span>
+                            {q.explanation}
+                          </p>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 );
               })}
@@ -453,12 +507,25 @@ export default function FinalExam() {
 
             {/* Submit Button */}
             {!submitted && (
-              <div className="mt-8 flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">
-                  {Object.keys(answers).length} of {examQuestions.length} answered
-                </span>
-                <Button onClick={handleSubmit} disabled={!allAnswered} size="lg">
-                  Submit Exam
+              <div className="mt-8 flex items-center justify-between p-4 bg-muted/50 rounded-xl">
+                <p className="text-sm text-muted-foreground">
+                  {Object.keys(answers).length} of {examQuestions.length} questions answered
+                </p>
+                <Button 
+                  onClick={handleSubmit} 
+                  disabled={!allAnswered}
+                  size="lg"
+                >
+                  Submit Exam <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </div>
+            )}
+
+            {/* Reset Button after submission */}
+            {submitted && !passed && (
+              <div className="mt-8 text-center">
+                <Button onClick={handleReset} variant="outline" size="lg">
+                  <RotateCcw className="mr-2 h-4 w-4" /> Retake Exam
                 </Button>
               </div>
             )}

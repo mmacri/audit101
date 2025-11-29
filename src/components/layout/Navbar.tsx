@@ -22,18 +22,17 @@ interface NavGroup {
 
 const navGroups: NavGroup[] = [
   {
-    label: "Training",
+    label: "My Training",
     icon: BookOpen,
     items: [
+      { label: "My Training Plan", href: "/get-started", description: "Your personalized learning path" },
       { label: "All Modules", href: "/modules", description: "12 comprehensive training modules" },
-      { label: "Role-Based Paths", href: "/role-training", description: "Personalized learning by role" },
-      { label: "Learning Path", href: "/learning-path", description: "Track your progress" },
-      { label: "Case Studies", href: "/case-studies", description: "Real-world scenarios" },
+      { label: "Role-Based Paths", href: "/role-training", description: "Training by role" },
       { label: "Soft Skills", href: "/soft-skills", description: "Audit interview techniques" },
     ],
   },
   {
-    label: "Practice Tools",
+    label: "Practice",
     icon: Wrench,
     items: [
       { label: "Evidence Lab", href: "/evidence-lab", description: "Sample artifacts & evidence" },
@@ -58,6 +57,7 @@ const navGroups: NavGroup[] = [
     icon: Info,
     items: [
       { label: "About CIP Academy", href: "/about", description: "Mission & contact" },
+      { label: "Case Studies", href: "/case-studies", description: "Real-world scenarios" },
       { label: "Final Exam", href: "/final-exam", description: "Test your knowledge" },
       { label: "Certificate", href: "/certificate", description: "Get your completion certificate" },
     ],
