@@ -65,7 +65,7 @@ export default function Certificate() {
                 <ol className="space-y-3 text-left text-muted-foreground">
                   <li className="flex items-start gap-3">
                     <span className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold shrink-0">1</span>
-                    <span>Complete all 10 learning modules</span>
+                    <span>Complete all 12 learning modules</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold shrink-0">2</span>
@@ -73,7 +73,7 @@ export default function Certificate() {
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold shrink-0">3</span>
-                    <span>Take the Self-Assessment to identify any remaining gaps</span>
+                    <span>Review the Readiness Plan to identify any gaps</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold shrink-0">4</span>
