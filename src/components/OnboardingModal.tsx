@@ -16,7 +16,7 @@ const roleIcons: Record<UserRole, React.ElementType> = {
 
 interface OnboardingModalProps {
   open: boolean;
-  onComplete: () => void;
+  onComplete: (selectedRole?: UserRole) => void;
 }
 
 export function OnboardingModal({ open, onComplete }: OnboardingModalProps) {
@@ -28,8 +28,12 @@ export function OnboardingModal({ open, onComplete }: OnboardingModalProps) {
   const handleComplete = () => {
     if (selectedRole && selectedExperience) {
       completeOnboarding(selectedRole, selectedExperience);
-      onComplete();
+      onComplete(selectedRole);
     }
+  };
+
+  const handleSkip = () => {
+    onComplete();
   };
 
   const roles: UserRole[] = ['compliance', 'it-ot', 'physical-security', 'hr-training', 'leadership', 'other'];
@@ -110,7 +114,7 @@ export function OnboardingModal({ open, onComplete }: OnboardingModalProps) {
               Back
             </Button>
           ) : (
-            <Button variant="ghost" onClick={onComplete}>
+            <Button variant="ghost" onClick={handleSkip}>
               Skip for now
             </Button>
           )}
