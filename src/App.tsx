@@ -38,13 +38,11 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/get-started" element={<GetStarted />} />
-          <Route path="/learning-path" element={<LearningPath />} />
           <Route path="/modules" element={<Modules />} />
           <Route path="/role-training" element={<RoleTraining />} />
           <Route path="/role-training/:roleId" element={<RoleTrainingDetail />} />
           <Route path="/role-training/:roleId/certificate" element={<RoleCertificate />} />
           <Route path="/evidence-lab" element={<EvidenceLab />} />
-          <Route path="/self-assessment" element={<SelfAssessment />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/about" element={<AboutContact />} />
           <Route path="/case-studies" element={<CaseStudies />} />
@@ -59,9 +57,11 @@ const App = () => (
           <Route path="/scope-matrix" element={<ScopeMatrix />} />
           <Route path="/rsaw-tutorial" element={<RSAWTutorial />} />
           
-          {/* Redirects for removed pages */}
+          {/* Redirects for consolidated pages */}
           <Route path="/nerc-cip-101" element={<Navigate to="/modules#module-1" replace />} />
           <Route path="/audit-journey" element={<Navigate to="/modules#module-10" replace />} />
+          <Route path="/learning-path" element={<Navigate to="/get-started" replace />} />
+          <Route path="/self-assessment" element={<Navigate to="/get-started" replace />} />
           
           <Route path="*" element={<NotFound />} />
         </Routes>

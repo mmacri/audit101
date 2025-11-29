@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -25,7 +25,9 @@ import {
   ChevronRight,
   FileText,
   Download,
-  Lightbulb
+  Lightbulb,
+  ArrowLeft,
+  XCircle
 } from "lucide-react";
 
 const roleIcons: Record<UserRole, React.ElementType> = {
@@ -46,82 +48,63 @@ const roleDescriptions: Record<UserRole, string> = {
   'other': 'Explore all content to find what applies to your responsibilities.',
 };
 
-const gettingStartedSteps = [
-  {
-    id: 'role',
-    title: 'Select Your Role',
-    description: 'Choose your primary function to get personalized recommendations',
-    icon: Users,
-    completed: false,
-  },
-  {
-    id: 'assessment',
-    title: 'Take the Self-Assessment',
-    description: 'Identify your knowledge gaps and focus areas',
-    icon: ClipboardCheck,
-    path: '/self-assessment',
-    completed: false,
-  },
-  {
-    id: 'foundations',
-    title: 'Complete Foundations',
-    description: 'Start with Module 1 to build your NERC CIP knowledge base',
-    icon: BookOpen,
-    path: '/modules#module-1',
-    completed: false,
-  },
-  {
-    id: 'role-training',
-    title: 'Follow Your Role Path',
-    description: 'Work through the modules most relevant to your responsibilities',
-    icon: Target,
-    completed: false,
-  },
+// Assessment questions embedded in onboarding
+const assessmentQuestions = [
+  { id: 1, question: "Do you have a designated CIP Senior Manager with documented delegation?", category: "governance" },
+  { id: 2, question: "Can you produce a complete BES Cyber System inventory with impact ratings?", category: "governance" },
+  { id: 3, question: "Are all cyber security policies reviewed within the last 15 months?", category: "governance" },
+  { id: 4, question: "Are security patches assessed within 35 days with documented disposition?", category: "technical" },
+  { id: 5, question: "Is there evidence of monthly security log reviews?", category: "technical" },
+  { id: 6, question: "Has your incident response plan been tested within the last 15 months?", category: "technical" },
+  { id: 7, question: "Is your evidence organized by CIP requirement for easy retrieval?", category: "evidence" },
+  { id: 8, question: "Can you retrieve any piece of compliance evidence in under 5 minutes?", category: "evidence" },
+  { id: 9, question: "Have you conducted a mock audit or internal assessment this year?", category: "evidence" },
 ];
 
+const categoryModules: Record<string, number[]> = {
+  governance: [1, 2, 3],
+  technical: [5, 6, 7, 8],
+  evidence: [9, 10],
+};
+
 const quickResources = [
-  {
-    title: 'Scope & TCA Matrix',
-    description: 'Determine asset classification and TCA handling',
-    icon: FolderSearch,
-    path: '/scope-matrix',
-    badge: 'Essential',
-  },
-  {
-    title: 'Evidence Lab',
-    description: 'Sample artifacts and evidence organization',
-    icon: FileText,
-    path: '/evidence-lab',
-    badge: 'Practice',
-  },
-  {
-    title: 'Templates & Downloads',
-    description: 'Patch tracker, training matrix, checklists',
-    icon: Download,
-    path: '/resources',
-    badge: 'Tools',
-  },
-  {
-    title: 'Audit Simulator',
-    description: 'Practice responding to audit requests',
-    icon: ClipboardCheck,
-    path: '/audit-simulator',
-    badge: 'Practice',
-  },
+  { title: 'Scope & TCA Matrix', description: 'Asset classification guide', icon: FolderSearch, path: '/scope-matrix', badge: 'Essential' },
+  { title: 'Evidence Lab', description: 'Sample artifacts & evidence', icon: FileText, path: '/evidence-lab', badge: 'Practice' },
+  { title: 'Templates', description: 'Checklists & matrices', icon: Download, path: '/resources', badge: 'Tools' },
+  { title: 'Audit Simulator', description: 'Practice requests', icon: ClipboardCheck, path: '/audit-simulator', badge: 'Practice' },
 ];
 
 export default function GetStarted() {
   const navigate = useNavigate();
   const { preferences, savePreferences, isLoaded } = useUserPreferences();
-  const { isModuleComplete } = useProgress();
+  const { progress, isModuleComplete } = useProgress();
+  
   const [selectedRole, setSelectedRole] = useState<UserRole | null>(preferences.role);
   const [selectedExperience, setSelectedExperience] = useState<ExperienceLevel | null>(preferences.experience);
-  const [step, setStep] = useState<'role' | 'experience' | 'ready'>(
+  const [assessmentAnswers, setAssessmentAnswers] = useState<Record<number, boolean>>({});
+  const [showAssessmentResults, setShowAssessmentResults] = useState(false);
+  
+  // Determine current step based on saved preferences
+  const [step, setStep] = useState<'role' | 'experience' | 'assessment' | 'ready'>(
     preferences.onboardingComplete ? 'ready' : 'role'
   );
 
   const roles: UserRole[] = ['compliance', 'it-ot', 'physical-security', 'hr-training', 'leadership', 'other'];
   const experiences: ExperienceLevel[] = ['new', 'some', 'experienced'];
+
+  // Load any saved assessment from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem('cip-readiness-assessment');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        setAssessmentAnswers(parsed.answers || {});
+        if (parsed.completed) setShowAssessmentResults(true);
+      } catch (e) {
+        console.error('Failed to load assessment', e);
+      }
+    }
+  }, []);
 
   const handleRoleSelect = (role: UserRole) => {
     setSelectedRole(role);
@@ -130,27 +113,82 @@ export default function GetStarted() {
 
   const handleExperienceSelect = (exp: ExperienceLevel) => {
     setSelectedExperience(exp);
-    if (selectedRole) {
-      savePreferences({ role: selectedRole, experience: exp, onboardingComplete: true });
+    // For new users, show assessment; for experienced users, skip to ready
+    if (exp === 'experienced') {
+      if (selectedRole) {
+        savePreferences({ role: selectedRole, experience: exp, onboardingComplete: true });
+      }
+      setStep('ready');
+    } else {
+      setStep('assessment');
     }
+  };
+
+  const handleAssessmentAnswer = (questionId: number, answer: boolean) => {
+    setAssessmentAnswers(prev => ({ ...prev, [questionId]: answer }));
+  };
+
+  const handleAssessmentSubmit = () => {
+    // Save assessment results
+    localStorage.setItem('cip-readiness-assessment', JSON.stringify({
+      answers: assessmentAnswers,
+      completed: true,
+      date: new Date().toISOString()
+    }));
+    
+    // Complete onboarding
+    if (selectedRole) {
+      savePreferences({ role: selectedRole, experience: selectedExperience!, onboardingComplete: true });
+    }
+    
+    setShowAssessmentResults(true);
     setStep('ready');
   };
 
-  const getCompletedSteps = () => {
-    const completed = [];
-    if (preferences.role) completed.push('role');
-    if (isModuleComplete(1)) completed.push('foundations');
-    return completed;
+  const getWeakestCategory = () => {
+    const scores: Record<string, { yes: number; total: number }> = {
+      governance: { yes: 0, total: 0 },
+      technical: { yes: 0, total: 0 },
+      evidence: { yes: 0, total: 0 },
+    };
+    
+    assessmentQuestions.forEach(q => {
+      scores[q.category].total++;
+      if (assessmentAnswers[q.id] === true) scores[q.category].yes++;
+    });
+    
+    let weakest = 'governance';
+    let lowestPercent = 100;
+    Object.entries(scores).forEach(([cat, { yes, total }]) => {
+      const pct = total > 0 ? (yes / total) * 100 : 0;
+      if (pct < lowestPercent) {
+        lowestPercent = pct;
+        weakest = cat;
+      }
+    });
+    
+    return weakest;
   };
 
-  const completedSteps = getCompletedSteps();
-  const progressPercent = (completedSteps.length / gettingStartedSteps.length) * 100;
-
-  const getNextStep = () => {
-    if (!preferences.role) return '/self-assessment';
-    if (!isModuleComplete(1)) return '/modules#module-1';
-    return `/role-training/${preferences.role}`;
+  const getRecommendedModules = () => {
+    const weakest = getWeakestCategory();
+    return categoryModules[weakest] || [1, 2, 3];
   };
+
+  const assessmentComplete = Object.keys(assessmentAnswers).length === assessmentQuestions.length;
+  const completedModulesCount = progress.completedModules.length;
+
+  // Steps for the checklist
+  const gettingStartedSteps = [
+    { id: 'role', title: 'Select Your Role', description: 'Personalize your learning path', completed: !!preferences.role },
+    { id: 'assessment', title: 'Complete Assessment', description: 'Identify your focus areas', completed: showAssessmentResults },
+    { id: 'foundations', title: 'Complete Module 1', description: 'Build your NERC CIP foundation', completed: isModuleComplete(1), path: '/modules#module-1' },
+    { id: 'role-training', title: 'Follow Your Role Path', description: 'Complete role-specific modules', completed: completedModulesCount >= 5, path: preferences.role ? `/role-training/${preferences.role}` : '/role-training' },
+    { id: 'final-exam', title: 'Pass the Final Exam', description: 'Earn your certificate', completed: localStorage.getItem('finalExamPassed') === 'true', path: '/final-exam' },
+  ];
+
+  const completedStepsCount = gettingStartedSteps.filter(s => s.completed).length;
+  const progressPercent = (completedStepsCount / gettingStartedSteps.length) * 100;
 
   return (
     <Layout>
@@ -159,21 +197,24 @@ export default function GetStarted() {
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="h-3 w-3 mr-1" /> Getting Started
+              <Sparkles className="h-3 w-3 mr-1" /> My Training Plan
             </Badge>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy-foreground mb-4">
-              Your CIP Readiness Journey Starts Here
+              {step === 'ready' ? 'Your CIP Readiness Journey' : 'Get Started with CIP Training'}
             </h1>
             <p className="text-lg text-navy-foreground/80 mb-6">
-              Follow this guided path to build comprehensive NERC CIP knowledge tailored to your role.
+              {step === 'ready' 
+                ? 'Track your progress and continue your personalized learning path.'
+                : 'Complete a quick setup to get personalized training recommendations.'
+              }
             </p>
             
-            {/* Progress indicator */}
-            {preferences.onboardingComplete && (
+            {/* Progress indicator for ready state */}
+            {step === 'ready' && (
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 max-w-md mx-auto">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm text-navy-foreground/80">Your Progress</span>
-                  <span className="text-sm font-medium text-navy-foreground">{completedSteps.length}/{gettingStartedSteps.length} steps</span>
+                  <span className="text-sm text-navy-foreground/80">Journey Progress</span>
+                  <span className="text-sm font-medium text-navy-foreground">{completedStepsCount}/{gettingStartedSteps.length}</span>
                 </div>
                 <Progress value={progressPercent} className="h-2" />
               </div>
@@ -185,7 +226,7 @@ export default function GetStarted() {
       {/* Main Content */}
       <section className="py-12 md:py-16">
         <div className="container">
-          {/* Step 1: Role Selection (if not set) */}
+          {/* Step 1: Role Selection */}
           {step === 'role' && (
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-8">
@@ -226,6 +267,10 @@ export default function GetStarted() {
                   );
                 })}
               </div>
+              
+              <p className="text-center text-sm text-muted-foreground mt-6">
+                Don't worry—you can change this anytime from your dashboard.
+              </p>
             </div>
           )}
 
@@ -238,7 +283,7 @@ export default function GetStarted() {
                 </div>
                 <h2 className="text-2xl font-bold text-navy mb-2">Step 2: Your Experience Level</h2>
                 <p className="text-muted-foreground">
-                  This helps us suggest where to start and what to focus on.
+                  This helps us suggest where to start.
                 </p>
               </div>
               
@@ -272,18 +317,134 @@ export default function GetStarted() {
                 ))}
               </div>
 
-              <Button variant="ghost" onClick={() => setStep('role')} className="mr-2">
-                Back
+              <Button variant="ghost" onClick={() => setStep('role')}>
+                <ArrowLeft className="mr-2 h-4 w-4" /> Back
               </Button>
             </div>
           )}
 
-          {/* Step 3: Ready - Show Learning Path */}
+          {/* Step 3: Quick Assessment */}
+          {step === 'assessment' && (
+            <div className="max-w-3xl mx-auto">
+              <div className="text-center mb-8">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <ClipboardCheck className="h-6 w-6 text-primary" />
+                </div>
+                <h2 className="text-2xl font-bold text-navy mb-2">Step 3: Quick Readiness Check</h2>
+                <p className="text-muted-foreground">
+                  Answer these 9 questions to identify your focus areas. Be honest—this helps personalize your path.
+                </p>
+              </div>
+              
+              <div className="space-y-4 mb-8">
+                {assessmentQuestions.map((q, index) => (
+                  <div 
+                    key={q.id}
+                    className={cn(
+                      "bg-card rounded-xl border p-4 transition-all",
+                      assessmentAnswers[q.id] === true ? "border-success/50 bg-success/5" 
+                        : assessmentAnswers[q.id] === false ? "border-warning/50 bg-warning/5"
+                        : "border-border/50"
+                    )}
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="w-6 h-6 rounded-full bg-muted flex items-center justify-center text-xs font-bold text-muted-foreground shrink-0">
+                        {index + 1}
+                      </span>
+                      <div className="flex-1">
+                        <p className="text-foreground mb-3">{q.question}</p>
+                        <div className="flex gap-3">
+                          <button
+                            onClick={() => handleAssessmentAnswer(q.id, true)}
+                            className={cn(
+                              "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all",
+                              assessmentAnswers[q.id] === true
+                                ? "bg-success text-success-foreground"
+                                : "bg-muted hover:bg-success/20 text-muted-foreground"
+                            )}
+                          >
+                            <CheckCircle2 className="h-4 w-4" /> Yes
+                          </button>
+                          <button
+                            onClick={() => handleAssessmentAnswer(q.id, false)}
+                            className={cn(
+                              "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all",
+                              assessmentAnswers[q.id] === false
+                                ? "bg-warning text-warning-foreground"
+                                : "bg-muted hover:bg-warning/20 text-muted-foreground"
+                            )}
+                          >
+                            <XCircle className="h-4 w-4" /> No
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex items-center justify-between">
+                <Button variant="ghost" onClick={() => setStep('experience')}>
+                  <ArrowLeft className="mr-2 h-4 w-4" /> Back
+                </Button>
+                <div className="flex items-center gap-4">
+                  <span className="text-sm text-muted-foreground">
+                    {Object.keys(assessmentAnswers).length}/{assessmentQuestions.length} answered
+                  </span>
+                  <Button onClick={handleAssessmentSubmit} disabled={!assessmentComplete}>
+                    See My Plan <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+              
+              <p className="text-center text-sm text-muted-foreground mt-4">
+                <button 
+                  onClick={() => {
+                    if (selectedRole) savePreferences({ role: selectedRole, experience: selectedExperience!, onboardingComplete: true });
+                    setStep('ready');
+                  }}
+                  className="text-primary hover:underline"
+                >
+                  Skip assessment and explore all modules →
+                </button>
+              </p>
+            </div>
+          )}
+
+          {/* Ready State - Main Dashboard */}
           {step === 'ready' && (
             <div className="max-w-5xl mx-auto">
+              {/* Assessment Results Banner (if just completed) */}
+              {showAssessmentResults && Object.keys(assessmentAnswers).length > 0 && (
+                <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 mb-8">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                      <Lightbulb className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-navy mb-2">Based on Your Assessment</h3>
+                      <p className="text-sm text-muted-foreground mb-3">
+                        Your weakest area is <strong className="text-foreground">{getWeakestCategory()}</strong>. 
+                        We recommend focusing on these modules first:
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {getRecommendedModules().map(m => (
+                          <Link 
+                            key={m} 
+                            to={`/modules#module-${m}`}
+                            className="bg-primary text-primary-foreground px-3 py-1 rounded-lg text-sm hover:bg-primary/90 transition-colors"
+                          >
+                            Module {m}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* Progress Dashboard & Role Display */}
               <div className="grid lg:grid-cols-3 gap-6 mb-8">
-                {/* Progress Dashboard */}
                 <div className="lg:col-span-2">
                   <ProgressDashboard />
                 </div>
@@ -316,9 +477,16 @@ export default function GetStarted() {
                           {roleDescriptions[preferences.role]}
                         </p>
                       </div>
-                      <Button variant="outline" size="sm" onClick={() => setStep('role')} className="mt-4">
-                        Change Role
-                      </Button>
+                      <div className="flex flex-col gap-2 mt-4">
+                        <Button asChild>
+                          <Link to={`/role-training/${preferences.role}`}>
+                            View Role Training <ChevronRight className="ml-1 h-4 w-4" />
+                          </Link>
+                        </Button>
+                        <Button variant="outline" size="sm" onClick={() => setStep('role')}>
+                          Change Role
+                        </Button>
+                      </div>
                     </>
                   ) : (
                     <div className="text-center py-4">
@@ -331,61 +499,53 @@ export default function GetStarted() {
                 </div>
               </div>
 
-              {/* Getting Started Steps */}
+              {/* Journey Checklist */}
               <div className="mb-12">
                 <h2 className="text-2xl font-bold text-navy mb-6 flex items-center gap-2">
-                  <Lightbulb className="h-6 w-6 text-primary" />
-                  Your Getting Started Checklist
+                  <Target className="h-6 w-6 text-primary" />
+                  Your Learning Journey
                 </h2>
                 
-                <div className="space-y-4">
-                  {gettingStartedSteps.map((item, index) => {
-                    const isComplete = completedSteps.includes(item.id);
-                    const Icon = item.icon;
-                    const path = item.id === 'role-training' && preferences.role 
-                      ? `/role-training/${preferences.role}` 
-                      : item.path;
-                    
-                    return (
-                      <div
-                        key={item.id}
-                        className={cn(
-                          "flex items-center gap-4 p-4 rounded-xl border transition-all",
-                          isComplete 
-                            ? "bg-success/5 border-success/30" 
-                            : "bg-card border-border hover:border-primary/30 hover:shadow-sm"
-                        )}
-                      >
-                        <div className={cn(
-                          "w-10 h-10 rounded-full flex items-center justify-center shrink-0",
-                          isComplete ? "bg-success text-success-foreground" : "bg-muted text-muted-foreground"
-                        )}>
-                          {isComplete ? <CheckCircle2 className="h-5 w-5" /> : <span className="font-bold">{index + 1}</span>}
-                        </div>
-                        
-                        <div className="flex-1 min-w-0">
-                          <h3 className={cn("font-semibold", isComplete ? "text-success" : "text-navy")}>
-                            {item.title}
-                          </h3>
-                          <p className="text-sm text-muted-foreground">{item.description}</p>
-                        </div>
-                        
-                        {path && !isComplete && (
-                          <Button asChild size="sm">
-                            <Link to={path}>
-                              Start <ChevronRight className="h-4 w-4 ml-1" />
-                            </Link>
-                          </Button>
-                        )}
-                        
-                        {isComplete && (
-                          <Badge variant="outline" className="bg-success/10 text-success border-success/30">
-                            Complete
-                          </Badge>
-                        )}
+                <div className="space-y-3">
+                  {gettingStartedSteps.map((item, index) => (
+                    <div
+                      key={item.id}
+                      className={cn(
+                        "flex items-center gap-4 p-4 rounded-xl border transition-all",
+                        item.completed 
+                          ? "bg-success/5 border-success/30" 
+                          : "bg-card border-border hover:border-primary/30"
+                      )}
+                    >
+                      <div className={cn(
+                        "w-10 h-10 rounded-full flex items-center justify-center shrink-0",
+                        item.completed ? "bg-success text-success-foreground" : "bg-muted text-muted-foreground"
+                      )}>
+                        {item.completed ? <CheckCircle2 className="h-5 w-5" /> : <span className="font-bold">{index + 1}</span>}
                       </div>
-                    );
-                  })}
+                      
+                      <div className="flex-1 min-w-0">
+                        <h3 className={cn("font-semibold", item.completed ? "text-success" : "text-navy")}>
+                          {item.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground">{item.description}</p>
+                      </div>
+                      
+                      {item.path && !item.completed && (
+                        <Button asChild size="sm">
+                          <Link to={item.path}>
+                            Start <ChevronRight className="h-4 w-4 ml-1" />
+                          </Link>
+                        </Button>
+                      )}
+                      
+                      {item.completed && (
+                        <Badge variant="outline" className="bg-success/10 text-success border-success/30">
+                          Complete
+                        </Badge>
+                      )}
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -393,11 +553,8 @@ export default function GetStarted() {
               <div>
                 <h2 className="text-2xl font-bold text-navy mb-6 flex items-center gap-2">
                   <FolderSearch className="h-6 w-6 text-primary" />
-                  Key Resources
+                  Quick Access
                 </h2>
-                <p className="text-muted-foreground mb-6">
-                  These tools and references are used throughout your learning. Bookmark them for quick access.
-                </p>
                 
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   {quickResources.map((resource) => {
@@ -424,11 +581,15 @@ export default function GetStarted() {
                 </div>
               </div>
 
-              {/* CTA */}
-              <div className="mt-12 text-center">
+              {/* CTA to Explore All Modules */}
+              <div className="mt-12 text-center p-8 bg-muted/50 rounded-xl">
+                <h3 className="text-xl font-semibold text-navy mb-2">Want to explore everything?</h3>
+                <p className="text-muted-foreground mb-4">
+                  Browse all 12 modules covering every aspect of NERC CIP compliance.
+                </p>
                 <Button asChild size="lg">
-                  <Link to={getNextStep()}>
-                    Continue Your Journey <ArrowRight className="h-5 w-5 ml-2" />
+                  <Link to="/modules">
+                    Browse All Modules <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
               </div>
