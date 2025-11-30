@@ -40,6 +40,7 @@ import {
   Lightbulb,
   ChevronDown
 } from 'lucide-react';
+import { RolePhase, RoleTask } from '@/data/roleTrainingData';
 
 const roleIcons: Record<UserRole, typeof Target> = {
   compliance: Target,
@@ -96,26 +97,92 @@ export default function RoleTrainingDetail() {
       <section className="bg-gradient-to-br from-primary/5 to-accent/5 py-12 md:py-16">
         <div className="container">
           <div className="max-w-4xl mx-auto">
-            {/* Orientation Bar */}
-            <div className="bg-card/80 backdrop-blur-sm rounded-lg border border-border/50 px-4 py-3 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                  <RoleIcon className="h-4 w-4 text-primary" />
+            {/* Role Summary Bar */}
+            <div className="bg-card/80 backdrop-blur-sm rounded-lg border border-border/50 px-5 py-4 mb-6 space-y-4">
+              {/* Top row: role info and progress */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <RoleIcon className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-navy">
+                      You are working on the {rolePlan.title} path
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      Overall progress: <span className="font-semibold text-primary">{taskPercentage}%</span> complete ({completedTasks} of {totalTasks} tasks)
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm font-medium text-navy">
-                    {rolePlan.title} Path
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    {completionProgress.overall}% complete
-                  </p>
+                <div className="flex items-center gap-3 text-xs">
+                  <Link to="/modules" className="text-muted-foreground hover:text-primary transition-colors">
+                    View all modules →
+                  </Link>
                 </div>
               </div>
-              <div className="flex items-center gap-3 text-xs">
-                <Link to="/modules" className="text-muted-foreground hover:text-primary transition-colors">
-                  View all modules →
-                </Link>
-              </div>
+
+              {/* Next Suggested Step */}
+              {(() => {
+                // Find the first incomplete task
+                let nextStep: { phase: RolePhase; task: RoleTask } | null = null;
+                for (const phase of rolePlan.phases) {
+                  for (const task of phase.tasks) {
+                    if (!roleProgress.tasksCompleted.includes(task.id)) {
+                      nextStep = { phase, task };
+                      break;
+                    }
+                  }
+                  if (nextStep) break;
+                }
+
+                if (!nextStep) {
+                  return (
+                    <div className="bg-success/10 rounded-lg px-4 py-3 border border-success/30">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-success mt-0.5 shrink-0" />
+                        <div>
+                          <p className="text-sm font-medium text-success">All steps complete!</p>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            Review your achievements, confirm your readiness, and{' '}
+                            <Link to={`/role-training/${role}/certificate`} className="text-primary hover:underline">
+                              generate your certificate
+                            </Link>.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+
+                const phaseIndex = rolePlan.phases.findIndex(p => p.id === nextStep!.phase.id);
+                
+                return (
+                  <div className="bg-primary/5 rounded-lg px-4 py-3 border border-primary/20">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
+                        {phaseIndex + 1}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-muted-foreground">Next suggested step</p>
+                        <p className="text-sm font-medium text-navy truncate">{nextStep.task.label}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">{nextStep.phase.name}</p>
+                      </div>
+                      <a 
+                        href={`#phase-${nextStep.phase.id}`}
+                        className="text-xs text-primary hover:underline shrink-0"
+                      >
+                        Jump to step →
+                      </a>
+                    </div>
+                  </div>
+                );
+              })()}
+
+              {/* Tip */}
+              <p className="text-xs text-muted-foreground flex items-center gap-1.5">
+                <Lightbulb className="h-3.5 w-3.5 text-warning" />
+                <span>TIP: Use this page as your main checklist for getting CIP audit-ready in your role.</span>
+              </p>
             </div>
 
             <div className="flex items-start gap-4 mb-6">
@@ -305,7 +372,7 @@ export default function RoleTrainingDetail() {
               <TabsContent value="plan" className="space-y-6">
                 {/* Phased Training Plan */}
                 {rolePlan.phases.map((phase, index) => (
-                  <div key={phase.id} className="bg-card rounded-xl border border-border/50 overflow-hidden">
+                  <div key={phase.id} id={`phase-${phase.id}`} className="bg-card rounded-xl border border-border/50 overflow-hidden scroll-mt-24">
                     <div className="bg-muted/50 px-6 py-4 border-b border-border/50">
                       <div className="flex items-center gap-3">
                         <span className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">

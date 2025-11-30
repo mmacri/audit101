@@ -1132,17 +1132,33 @@ export default function Modules() {
             </PageIntro>
             
             {/* Role-specific banner */}
-            {preferences.role && (
+            {preferences.role ? (
               <div className="bg-primary/5 border border-primary/20 rounded-lg px-4 py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <p className="text-sm text-muted-foreground">
-                  Modules are currently annotated for the <span className="font-medium text-foreground">{roleTrainingPlans[preferences.role]?.title}</span> role.
-                </p>
-                <Link 
-                  to={`/role-training/${preferences.role}`}
-                  className="text-sm text-primary hover:underline whitespace-nowrap"
-                >
-                  Go to My Role Training →
-                </Link>
+                <div className="flex items-center gap-2">
+                  <Target className="h-4 w-4 text-primary shrink-0" />
+                  <p className="text-sm text-muted-foreground">
+                    You're on the <span className="font-medium text-foreground">{roleTrainingPlans[preferences.role]?.title}</span> path. Use this page as your module library. Your main checklist is on your Role Training page.
+                  </p>
+                </div>
+                <Button asChild size="sm" variant="outline" className="shrink-0">
+                  <Link to={`/role-training/${preferences.role}`}>
+                    Go to My Role Training →
+                  </Link>
+                </Button>
+              </div>
+            ) : (
+              <div className="bg-muted/50 border border-border rounded-lg px-4 py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-2">
+                  <Lightbulb className="h-4 w-4 text-warning shrink-0" />
+                  <p className="text-sm text-muted-foreground">
+                    Select your role to see which modules are required or recommended for you.
+                  </p>
+                </div>
+                <Button asChild size="sm">
+                  <Link to="/get-started">
+                    Choose my role →
+                  </Link>
+                </Button>
               </div>
             )}
           </div>

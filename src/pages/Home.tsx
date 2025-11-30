@@ -106,11 +106,11 @@ export default function Home() {
               A complete training program for power utilities preparing for NERC CIP audits. 
               Learn the standards, build your evidence system, and practice before auditors arrive.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+            <div className="flex flex-col items-center gap-6 pt-6">
               <Button 
                 onClick={handleChooseRole}
                 size="lg" 
-                className="bg-white text-primary hover:bg-white/90 shadow-lg"
+                className="bg-white text-primary hover:bg-white/90 shadow-xl text-lg px-8 py-6 h-auto font-semibold"
               >
                 {preferences.role ? (
                   <>
@@ -124,11 +124,12 @@ export default function Home() {
                   </>
                 )}
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10">
-                <Link to="/modules">
-                  Browse All Modules
-                </Link>
-              </Button>
+              <Link 
+                to="/modules"
+                className="text-white/80 hover:text-white text-sm underline underline-offset-4 transition-colors"
+              >
+                Or browse all modules without choosing a role
+              </Link>
             </div>
           </div>
         </div>
@@ -176,11 +177,11 @@ export default function Home() {
             </div>
 
             {/* Primary CTA */}
-            <div className="mt-10 text-center space-y-4">
+            <div className="mt-10 text-center space-y-6">
               <Button 
                 onClick={handleChooseRole}
                 size="lg" 
-                className="shadow-lg"
+                className="shadow-xl text-lg px-8 py-6 h-auto font-semibold"
               >
                 {preferences.role ? (
                   <>
