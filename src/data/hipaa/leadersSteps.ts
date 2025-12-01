@@ -1,0 +1,85 @@
+export const leadersSteps = [
+  {
+    number: 1,
+    title: "Establish HIPAA Governance Structure",
+    content: "Create organizational structure for HIPAA compliance including Privacy Officer, Security Officer, and compliance committee. Define roles, responsibilities, and reporting relationships.",
+    keyPoints: [
+      "Designate Privacy Officer and Security Officer (required)",
+      "Establish HIPAA compliance committee with executive sponsorship",
+      "Define escalation paths for privacy and security incidents",
+      "Allocate budget for compliance program and security controls",
+    ],
+  },
+  {
+    number: 2,
+    title: "Develop Comprehensive Privacy Program",
+    content: "Implement HIPAA Privacy Rule requirements including policies, procedures, notice of privacy practices, patient rights, and minimum necessary standards.",
+    keyPoints: [
+      "Create and distribute Notice of Privacy Practices to all patients",
+      "Establish policies for minimum necessary use and disclosure",
+      "Implement procedures for patient rights (access, amendment, accounting)",
+      "Develop authorization forms and consent procedures",
+      "Create privacy complaint and violation response procedures",
+    ],
+  },
+  {
+    number: 3,
+    title: "Conduct Enterprise Risk Assessment",
+    content: "Perform comprehensive risk assessment across all systems, facilities, and business processes that involve ePHI. Document risks, vulnerabilities, and mitigation strategies.",
+    keyPoints: [
+      "Identify all threats and vulnerabilities to ePHI confidentiality, integrity, availability",
+      "Assess likelihood and impact of potential security incidents",
+      "Document current security controls and identify gaps",
+      "Prioritize risks and create risk mitigation roadmap",
+      "Update risk assessment annually and when environment changes",
+    ],
+  },
+  {
+    number: 4,
+    title: "Implement Security Management Process",
+    content: "Establish ongoing security management including policy development, risk management, sanctions, and information system activity review.",
+    keyPoints: [
+      "Develop comprehensive security policies and procedures",
+      "Implement risk management program with regular assessments",
+      "Establish sanctions policy for workforce violations",
+      "Create information system activity review procedures",
+      "Deploy security awareness training for all workforce members",
+    ],
+  },
+  {
+    number: 5,
+    title: "Manage Business Associate Compliance",
+    content: "Establish program for identifying, contracting, and monitoring business associates. Ensure proper BAAs are in place and conduct vendor risk assessments.",
+    keyPoints: [
+      "Create inventory of all business associates",
+      "Develop standard BAA templates meeting HIPAA requirements",
+      "Implement vendor risk assessment procedures",
+      "Monitor business associate compliance and security incidents",
+      "Establish termination procedures for non-compliant vendors",
+    ],
+  },
+  {
+    number: 6,
+    title: "Establish Breach Management Program",
+    content: "Develop comprehensive breach notification and response program per HIPAA Breach Notification Rule. Create procedures for breach assessment, notification, and mitigation.",
+    keyPoints: [
+      "Create breach assessment methodology (harm threshold analysis)",
+      "Establish notification procedures (individuals, HHS, media if >500)",
+      "Develop breach notification templates and communication protocols",
+      "Implement breach documentation and tracking system",
+      "Create breach prevention and mitigation strategies",
+    ],
+  },
+  {
+    number: 7,
+    title: "Maintain Ongoing Compliance Program",
+    content: "Sustain HIPAA compliance through continuous monitoring, training, auditing, and program improvement. Stay current with OCR guidance and enforcement trends.",
+    keyPoints: [
+      "Conduct annual HIPAA training for all workforce members",
+      "Perform regular internal audits and compliance assessments",
+      "Monitor OCR enforcement actions and update program accordingly",
+      "Review and update policies annually or when regulations change",
+      "Maintain compliance documentation for six years minimum",
+    ],
+  },
+];

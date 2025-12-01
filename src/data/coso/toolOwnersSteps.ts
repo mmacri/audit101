@@ -1,0 +1,85 @@
+export const toolOwnersSteps = [
+  {
+    number: 1,
+    title: "Inventory Systems Supporting Internal Control",
+    content: "Identify all applications, databases, and IT systems that support or execute internal control activities. Document system boundaries, interfaces, and control dependencies.",
+    keyPoints: [
+      "Create comprehensive inventory of control-relevant systems",
+      "Document automated controls within each system",
+      "Map system interfaces and data flows",
+      "Identify system owners and control responsibilities",
+    ],
+  },
+  {
+    number: 2,
+    title: "Design and Implement IT General Controls",
+    content: "Establish IT General Controls (ITGCs) supporting application controls: access management, change management, computer operations, and system development.",
+    keyPoints: [
+      "Implement logical access controls and segregation of duties",
+      "Establish change management procedures with testing and approvals",
+      "Deploy data backup and recovery procedures",
+      "Implement job scheduling and batch processing controls",
+      "Establish system monitoring and incident response",
+    ],
+  },
+  {
+    number: 3,
+    title: "Configure Application-Level Controls",
+    content: "Implement automated controls within applications including validations, calculations, interfaces, and reports supporting business processes.",
+    keyPoints: [
+      "Configure input validation and edit checks",
+      "Implement automated calculations and processing logic",
+      "Establish interface controls for data transmission",
+      "Deploy automated reconciliations and exception reporting",
+      "Document system-enforced segregation of duties",
+    ],
+  },
+  {
+    number: 4,
+    title: "Manage System Access and Authorization",
+    content: "Implement role-based access controls aligned with segregation of duties requirements. Conduct regular access reviews and certifications.",
+    keyPoints: [
+      "Define roles and access matrices based on job functions",
+      "Implement least privilege and need-to-know principles",
+      "Conduct quarterly access reviews and recertification",
+      "Monitor privileged access and administrative activities",
+      "Establish timely provisioning and deprovisioning procedures",
+    ],
+  },
+  {
+    number: 5,
+    title: "Monitor System Controls and Performance",
+    content: "Implement continuous monitoring of automated controls. Establish alerting for control failures and performance degradation.",
+    keyPoints: [
+      "Deploy automated control monitoring and alerting",
+      "Monitor system availability and performance metrics",
+      "Review system logs and access patterns",
+      "Investigate and resolve control exceptions",
+      "Report control failures and incidents to management",
+    ],
+  },
+  {
+    number: 6,
+    title: "Maintain Control Documentation",
+    content: "Document system controls, configurations, and procedures. Maintain evidence supporting control design and operating effectiveness.",
+    keyPoints: [
+      "Create and maintain system control matrices",
+      "Document control configurations and parameters",
+      "Maintain change logs and version control",
+      "Establish standard operating procedures for system controls",
+      "Organize audit evidence and control testing documentation",
+    ],
+  },
+  {
+    number: 7,
+    title: "Support Control Testing and Audits",
+    content: "Facilitate internal control testing and external audits. Provide system access, documentation, and evidence of control effectiveness.",
+    keyPoints: [
+      "Participate in control walkthroughs and testing",
+      "Generate audit reports and control evidence",
+      "Provide system access to auditors as appropriate",
+      "Address audit findings and implement system control enhancements",
+      "Maintain audit trail and testing documentation",
+    ],
+  },
+];

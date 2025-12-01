@@ -1,0 +1,85 @@
+export const auditorsSteps = [
+  {
+    number: 1,
+    title: "Plan HIPAA Compliance Audit",
+    content: "Develop risk-based audit plan covering Privacy Rule, Security Rule, and Breach Notification Rule requirements. Identify high-risk areas and prioritize audit scope.",
+    keyPoints: [
+      "Review previous audit findings and OCR enforcement trends",
+      "Assess organizational risk factors (size, PHI volume, complexity)",
+      "Define audit scope covering administrative, physical, technical safeguards",
+      "Develop audit program with testable control objectives",
+    ],
+  },
+  {
+    number: 2,
+    title: "Assess Privacy Rule Compliance",
+    content: "Evaluate compliance with HIPAA Privacy Rule requirements including Notice of Privacy Practices, minimum necessary standard, patient rights, and use/disclosure policies.",
+    keyPoints: [
+      "Review Notice of Privacy Practices distribution and acknowledgment",
+      "Test minimum necessary policies and implementation",
+      "Evaluate patient rights procedures (access, amendment, accounting)",
+      "Assess uses and disclosures authorization and documentation",
+      "Review privacy complaint handling and resolution",
+    ],
+  },
+  {
+    number: 3,
+    title: "Evaluate Security Rule Implementation",
+    content: "Test implementation of administrative, physical, and technical safeguards required by HIPAA Security Rule. Verify risk assessment, policies, and security controls.",
+    keyPoints: [
+      "Review security risk assessment methodology and completeness",
+      "Test access controls (unique user ID, emergency access, automatic logoff)",
+      "Evaluate audit controls and log review procedures",
+      "Assess encryption implementation for ePHI at rest and in transit",
+      "Verify integrity controls and transmission security",
+    ],
+  },
+  {
+    number: 4,
+    title: "Test Administrative Safeguards",
+    content: "Assess security management process, workforce security, information access management, security training, and contingency planning.",
+    keyPoints: [
+      "Verify security management process including risk management",
+      "Test workforce clearance, authorization, and termination procedures",
+      "Evaluate information access management and minimum necessary implementation",
+      "Review security awareness training program and records",
+      "Assess contingency planning including backups and disaster recovery",
+    ],
+  },
+  {
+    number: 5,
+    title: "Review Business Associate Management",
+    content: "Evaluate business associate identification, contracting, and oversight. Verify BAAs contain required elements and assess vendor risk management.",
+    keyPoints: [
+      "Review business associate inventory completeness",
+      "Assess BAAs for required HIPAA provisions",
+      "Evaluate vendor risk assessment procedures",
+      "Test business associate breach notification procedures",
+      "Review monitoring and termination procedures for non-compliant vendors",
+    ],
+  },
+  {
+    number: 6,
+    title: "Assess Breach Notification Compliance",
+    content: "Evaluate breach identification, assessment, notification, and documentation procedures. Verify compliance with notification timelines and requirements.",
+    keyPoints: [
+      "Review breach assessment methodology and harm analysis",
+      "Test breach notification procedures and timeline compliance",
+      "Assess breach documentation completeness and accuracy",
+      "Evaluate breach prevention and mitigation strategies",
+      "Review HHS breach portal submissions for accuracy",
+    ],
+  },
+  {
+    number: 7,
+    title: "Report Findings and Validate Remediation",
+    content: "Document audit findings with specific citations to HIPAA requirements. Provide risk-based recommendations and track remediation of identified deficiencies.",
+    keyPoints: [
+      "Issue audit report with findings mapped to HIPAA sections",
+      "Classify findings by severity and compliance risk",
+      "Provide specific, actionable remediation recommendations",
+      "Establish remediation timelines based on risk",
+      "Conduct follow-up testing to validate corrective actions",
+    ],
+  },
+];

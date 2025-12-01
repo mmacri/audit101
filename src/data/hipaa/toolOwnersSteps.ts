@@ -1,0 +1,85 @@
+export const toolOwnersSteps = [
+  {
+    number: 1,
+    title: "Inventory PHI Processing Systems",
+    content: "Identify all systems, applications, and databases that create, receive, maintain, or transmit Protected Health Information. Document system boundaries and data flows.",
+    keyPoints: [
+      "Create comprehensive inventory of all systems with PHI access",
+      "Document ePHI data flows between systems and external entities",
+      "Identify cloud services and third-party applications handling PHI",
+      "Map business associate relationships and data sharing agreements",
+    ],
+  },
+  {
+    number: 2,
+    title: "Assess System Security Controls",
+    content: "Evaluate existing security controls within your systems against HIPAA Security Rule requirements. Identify gaps in technical, administrative, and physical safeguards.",
+    keyPoints: [
+      "Review access controls and user authentication mechanisms",
+      "Assess audit logging and monitoring capabilities",
+      "Evaluate encryption for data at rest and in transit",
+      "Analyze integrity controls and backup/recovery procedures",
+      "Document addressable specifications implementation decisions",
+    ],
+  },
+  {
+    number: 3,
+    title: "Implement System-Level Safeguards",
+    content: "Deploy and configure HIPAA-required security controls within your systems. Ensure proper authentication, authorization, audit logging, and encryption capabilities.",
+    keyPoints: [
+      "Configure role-based access controls aligned with minimum necessary principle",
+      "Enable comprehensive audit logging for all PHI access and changes",
+      "Implement encryption for ePHI at rest and in transit",
+      "Deploy automatic session timeout and lockout mechanisms",
+      "Establish system integrity monitoring and validation",
+    ],
+  },
+  {
+    number: 4,
+    title: "Manage User Access and Privileges",
+    content: "Establish processes for granting, reviewing, and revoking access to systems containing ePHI. Implement workforce clearance procedures and access recertification.",
+    keyPoints: [
+      "Create access request and approval workflows",
+      "Conduct quarterly access reviews and recertification",
+      "Implement immediate termination procedures for departing staff",
+      "Document emergency access procedures and monitoring",
+      "Maintain audit trails of all access provisioning activities",
+    ],
+  },
+  {
+    number: 5,
+    title: "Monitor and Respond to Security Events",
+    content: "Implement continuous monitoring of systems for security events and potential breaches. Establish incident detection and response procedures for your systems.",
+    keyPoints: [
+      "Deploy security information and event management (SIEM) capabilities",
+      "Configure alerts for suspicious access patterns and anomalies",
+      "Establish incident response procedures for system-level events",
+      "Conduct regular log reviews and security event analysis",
+      "Document and report security incidents per organizational procedures",
+    ],
+  },
+  {
+    number: 6,
+    title: "Maintain System Documentation",
+    content: "Document system configurations, security controls, access procedures, and maintenance activities. Ensure documentation supports compliance validation and audit readiness.",
+    keyPoints: [
+      "Maintain current system security documentation",
+      "Document all configuration changes and security updates",
+      "Create and maintain system security plans",
+      "Document business associate integrations and data flows",
+      "Maintain evidence of security control implementation and testing",
+    ],
+  },
+  {
+    number: 7,
+    title: "Support Audit and Assessment Activities",
+    content: "Facilitate internal audits, risk assessments, and regulatory inspections. Provide evidence of security controls and respond to audit findings.",
+    keyPoints: [
+      "Participate in annual HIPAA security risk assessments",
+      "Provide system access and documentation to auditors",
+      "Generate audit reports and access logs as requested",
+      "Address audit findings and implement corrective actions",
+      "Maintain audit evidence and compliance documentation",
+    ],
+  },
+];

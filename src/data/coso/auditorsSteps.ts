@@ -1,0 +1,85 @@
+export const auditorsSteps = [
+  {
+    number: 1,
+    title: "Plan Internal Control Audit",
+    content: "Develop risk-based audit plan covering the five COSO components and 17 principles. Identify high-risk areas and prioritize audit scope based on materiality and risk.",
+    keyPoints: [
+      "Assess organizational risk environment and prior audit results",
+      "Define audit scope covering material business processes and controls",
+      "Develop audit program testing control design and operating effectiveness",
+      "Establish materiality thresholds for control deficiencies",
+    ],
+  },
+  {
+    number: 2,
+    title: "Assess Control Environment",
+    content: "Evaluate the control environment including tone at top, organizational structure, commitment to competence, and accountability mechanisms.",
+    keyPoints: [
+      "Evaluate board independence and oversight effectiveness",
+      "Assess management's commitment to integrity and ethical values",
+      "Review organizational structure and reporting relationships",
+      "Evaluate human capital policies and competency frameworks",
+      "Assess accountability mechanisms and performance evaluation",
+    ],
+  },
+  {
+    number: 3,
+    title: "Evaluate Risk Assessment Process",
+    content: "Test the organization's risk assessment process including risk identification, analysis, and response. Verify risks to objectives are comprehensively assessed.",
+    keyPoints: [
+      "Review risk assessment methodology and procedures",
+      "Test completeness of risk identification across objectives",
+      "Evaluate risk analysis for likelihood and impact assessment",
+      "Assess risk response decisions and control design linkage",
+      "Verify fraud risk assessment and override considerations",
+    ],
+  },
+  {
+    number: 4,
+    title: "Test Control Activities Design and Effectiveness",
+    content: "Evaluate design adequacy and test operating effectiveness of control activities. Assess whether controls effectively mitigate risks to acceptable levels.",
+    keyPoints: [
+      "Perform control walkthroughs to understand design",
+      "Test control operating effectiveness through sampling",
+      "Evaluate IT general controls supporting application controls",
+      "Assess segregation of duties and authorization controls",
+      "Test automated controls and their IT dependencies",
+    ],
+  },
+  {
+    number: 5,
+    title: "Assess Information and Communication",
+    content: "Evaluate quality and flow of information supporting internal control. Test internal and external communication channels for control-related information.",
+    keyPoints: [
+      "Assess quality and relevance of information supporting controls",
+      "Test communication channels for control deficiencies and issues",
+      "Evaluate reporting systems for completeness and accuracy",
+      "Review external communication mechanisms for stakeholders",
+      "Verify timely escalation of control issues to appropriate levels",
+    ],
+  },
+  {
+    number: 6,
+    title: "Evaluate Monitoring Activities",
+    content: "Assess the organization's ongoing and separate evaluations of control effectiveness. Verify control deficiencies are identified, evaluated, and remediated.",
+    keyPoints: [
+      "Review ongoing monitoring procedures and key indicators",
+      "Assess separate evaluation procedures (internal audit program)",
+      "Test deficiency identification and evaluation processes",
+      "Verify timely remediation of identified control deficiencies",
+      "Review communication of deficiencies to board and management",
+    ],
+  },
+  {
+    number: 7,
+    title: "Report Control Deficiencies and Recommendations",
+    content: "Document audit findings with severity classifications. Provide risk-based recommendations for control improvements and track remediation.",
+    keyPoints: [
+      "Classify deficiencies (material weakness, significant deficiency, deficiency)",
+      "Document root causes and control design/operating issues",
+      "Provide specific recommendations for control improvements",
+      "Communicate findings to appropriate management levels",
+      "Conduct follow-up testing to validate remediation effectiveness",
+    ],
+  },
+];
