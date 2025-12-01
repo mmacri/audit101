@@ -77,6 +77,10 @@ import CosoPractitioners from "./pages/academies/CosoPractitioners";
 import CosoToolOwners from "./pages/academies/CosoToolOwners";
 import CosoLeaders from "./pages/academies/CosoLeaders";
 import CosoAuditors from "./pages/academies/CosoAuditors";
+import HipaaResources from "./pages/academies/HipaaResources";
+import CosoResources from "./pages/academies/CosoResources";
+import Iso27001Resources from "./pages/academies/Iso27001Resources";
+import PciDssResources from "./pages/academies/PciDssResources";
 import CommonControlsHub from "./pages/CommonControlsHub";
 
 const queryClient = new QueryClient();
@@ -153,6 +157,7 @@ const App = () => (
           <Route path="/iso-27001/tool-owners" element={<Iso27001ToolOwners />} />
           <Route path="/iso-27001/leaders" element={<Iso27001Leaders />} />
           <Route path="/iso-27001/auditors" element={<Iso27001Auditors />} />
+          <Route path="/iso-27001/resources" element={<Iso27001Resources />} />
           
           {/* PCI DSS */}
           <Route path="/pci-dss" element={<PciDssHome />} />
@@ -161,6 +166,7 @@ const App = () => (
           <Route path="/pci-dss/tool-owners" element={<PciDssToolOwners />} />
           <Route path="/pci-dss/leaders" element={<PciDssLeaders />} />
           <Route path="/pci-dss/auditors" element={<PciDssAuditors />} />
+          <Route path="/pci-dss/resources" element={<PciDssResources />} />
           
           {/* HIPAA */}
           <Route path="/hipaa" element={<HipaaHome />} />
@@ -169,6 +175,7 @@ const App = () => (
           <Route path="/hipaa/tool-owners" element={<HipaaToolOwners />} />
           <Route path="/hipaa/leaders" element={<HipaaLeaders />} />
           <Route path="/hipaa/auditors" element={<HipaaAuditors />} />
+          <Route path="/hipaa/resources" element={<HipaaResources />} />
           
           {/* COSO */}
           <Route path="/coso" element={<CosoHome />} />
@@ -177,6 +184,7 @@ const App = () => (
           <Route path="/coso/tool-owners" element={<CosoToolOwners />} />
           <Route path="/coso/leaders" element={<CosoLeaders />} />
           <Route path="/coso/auditors" element={<CosoAuditors />} />
+          <Route path="/coso/resources" element={<CosoResources />} />
           
           {/* Common Controls Hub */}
           <Route path="/common-controls" element={<CommonControlsHub />} />

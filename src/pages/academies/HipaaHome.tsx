@@ -56,8 +56,8 @@ export default function HipaaHome() {
           const element = document.getElementById('persona-selection');
           element?.scrollIntoView({ behavior: 'smooth' });
         }}
-        secondaryCta="View framework guide"
-        secondaryAction={() => navigate('/hipaa/framework')}
+        secondaryCta="View resources"
+        secondaryAction={() => navigate('/hipaa/resources')}
       />
 
       <section className="py-16 bg-background">

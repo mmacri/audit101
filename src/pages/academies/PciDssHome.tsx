@@ -65,8 +65,8 @@ export default function PciDssHome() {
           const element = document.getElementById('persona-selection');
           element?.scrollIntoView({ behavior: 'smooth' });
         }}
-        secondaryCta="View Framework Guide"
-        secondaryAction={() => navigate('/pci-dss/framework')}
+        secondaryCta="View Resources"
+        secondaryAction={() => navigate('/pci-dss/resources')}
       />
 
       {/* Why It Matters */}

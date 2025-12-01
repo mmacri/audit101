@@ -61,8 +61,8 @@ export default function CosoHome() {
           const element = document.getElementById('persona-selection');
           element?.scrollIntoView({ behavior: 'smooth' });
         }}
-        secondaryCta="View framework guide"
-        secondaryAction={() => navigate('/coso/framework')}
+        secondaryCta="View resources"
+        secondaryAction={() => navigate('/coso/resources')}
       />
 
       <section className="py-16 bg-background">
