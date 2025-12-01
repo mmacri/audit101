@@ -11,6 +11,8 @@ import { CheckCircle2, Target, Layers, TrendingUp } from "lucide-react";
 import { PageIntro } from "@/components/PageIntro";
 import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
+import { PersonaComparison } from "@/components/PersonaComparison";
+import { Wrench, Shield, Users as UsersIcon, ClipboardCheck } from "lucide-react";
 
 export default function CisControlsHome() {
   const navigate = useNavigate();
@@ -28,6 +30,109 @@ export default function CisControlsHome() {
       navigate(persona.path);
     }
   };
+
+  const personasWithDetails = [
+    {
+      ...cisControlsPersonas[0],
+      keyResponsibilities: [
+        "Implement 18 CIS Controls across enterprise",
+        "Execute IG1, IG2, or IG3 safeguards",
+        "Deploy asset and vulnerability management",
+        "Configure logging and monitoring"
+      ],
+      typicalDay: [
+        "Inventory assets and software",
+        "Deploy security configurations",
+        "Scan for vulnerabilities",
+        "Collect and analyze logs"
+      ],
+      skills: ["CIS Controls Implementation", "Asset Management", "Vulnerability Management", "Security Monitoring"],
+      outcomes: [
+        "Achieve Implementation Group targets",
+        "Secure critical assets",
+        "Improve security posture",
+        "Advance CIS maturity"
+      ],
+      difficulty: "Intermediate" as const,
+      timeCommitment: "6-8 weeks",
+      focus: "Control Implementation"
+    },
+    {
+      ...cisControlsPersonas[1],
+      keyResponsibilities: [
+        "Manage security tools supporting CIS Controls",
+        "Map tool capabilities to safeguards",
+        "Provide technical SME guidance",
+        "Support IG progression"
+      ],
+      typicalDay: [
+        "Configure asset discovery tools",
+        "Optimize vulnerability scanners",
+        "Review log management systems",
+        "Support control assessments"
+      ],
+      skills: ["Tool Administration", "CIS Mapping", "Technical Expertise", "Capability Optimization"],
+      outcomes: [
+        "Operationalize CIS Controls",
+        "Automate safeguard evidence",
+        "Progress Implementation Groups",
+        "Improve tool effectiveness"
+      ],
+      difficulty: "Advanced" as const,
+      timeCommitment: "6-8 weeks",
+      focus: "Tool & Technology Management"
+    },
+    {
+      ...cisControlsPersonas[2],
+      keyResponsibilities: [
+        "Oversee CIS Controls program",
+        "Select appropriate Implementation Group",
+        "Align controls with business risk",
+        "Drive continuous improvement"
+      ],
+      typicalDay: [
+        "Review CIS maturity dashboards",
+        "Approve IG roadmap priorities",
+        "Present to executive leadership",
+        "Plan strategic initiatives"
+      ],
+      skills: ["Program Leadership", "Risk-Based Prioritization", "Executive Communication", "Strategic Planning"],
+      outcomes: [
+        "Build enterprise CIS program",
+        "Progress through IGs",
+        "Demonstrate security maturity",
+        "Align with business priorities"
+      ],
+      difficulty: "Advanced" as const,
+      timeCommitment: "4-6 weeks",
+      focus: "Program Strategy"
+    },
+    {
+      ...cisControlsPersonas[3],
+      keyResponsibilities: [
+        "Assess CIS Controls implementation",
+        "Evaluate safeguard effectiveness",
+        "Determine Implementation Group readiness",
+        "Track improvement initiatives"
+      ],
+      typicalDay: [
+        "Test safeguard implementations",
+        "Review control documentation",
+        "Assess IG maturity",
+        "Write assessment reports"
+      ],
+      skills: ["CIS Assessment", "Control Testing", "Maturity Evaluation", "Gap Analysis"],
+      outcomes: [
+        "Assess CIS maturity",
+        "Validate IG achievement",
+        "Identify control gaps",
+        "Support IG progression"
+      ],
+      difficulty: "Intermediate" as const,
+      timeCommitment: "5-7 weeks",
+      focus: "Assessment & Validation"
+    }
+  ];
 
   return (
     <AcademyLayout
@@ -125,6 +230,13 @@ export default function CisControlsHome() {
           </div>
         </div>
       </section>
+
+      {/* Persona Comparison */}
+      <PersonaComparison 
+        framework="cis-controls"
+        personas={personasWithDetails}
+        totalSteps={totalSteps}
+      />
 
       {/* Personalized Training Path */}
       <FrameworkPersonalizedPath 

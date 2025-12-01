@@ -11,6 +11,8 @@ import { Building2, Target, AlertTriangle, MessageSquare, TrendingUp } from "luc
 import { PageIntro } from "@/components/PageIntro";
 import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
+import { PersonaComparison } from "@/components/PersonaComparison";
+import { Wrench, Shield, Users as UsersIcon, ClipboardCheck } from "lucide-react";
 
 export default function CosoHome() {
   const navigate = useNavigate();
@@ -28,6 +30,109 @@ export default function CosoHome() {
       navigate(persona.path);
     }
   };
+
+  const personasWithDetails = [
+    {
+      ...personas[0],
+      keyResponsibilities: [
+        "Implement COSO internal control framework",
+        "Execute control activities",
+        "Document control procedures",
+        "Support operational effectiveness"
+      ],
+      typicalDay: [
+        "Document control procedures",
+        "Test control effectiveness",
+        "Support risk assessments",
+        "Implement control improvements"
+      ],
+      skills: ["Internal Controls", "Process Documentation", "Control Testing", "COSO Framework"],
+      outcomes: [
+        "Implement effective controls",
+        "Support reliable operations",
+        "Enable accurate reporting",
+        "Achieve compliance objectives"
+      ],
+      difficulty: "Intermediate" as const,
+      timeCommitment: "6-8 weeks",
+      focus: "Control Implementation"
+    },
+    {
+      ...personas[1],
+      keyResponsibilities: [
+        "Own critical business processes",
+        "Design and document controls",
+        "Support control environment",
+        "Coordinate with control owners"
+      ],
+      typicalDay: [
+        "Review process controls",
+        "Support control design",
+        "Coordinate with process owners",
+        "Validate control effectiveness"
+      ],
+      skills: ["Process Ownership", "Control Design", "Risk Management", "Cross-Functional Coordination"],
+      outcomes: [
+        "Design effective controls",
+        "Support reliable processes",
+        "Enable risk management",
+        "Demonstrate control maturity"
+      ],
+      difficulty: "Advanced" as const,
+      timeCommitment: "7-9 weeks",
+      focus: "Process & Control Design"
+    },
+    {
+      ...personas[2],
+      keyResponsibilities: [
+        "Oversee enterprise internal control program",
+        "Set tone at the top",
+        "Drive control environment",
+        "Report to board and stakeholders"
+      ],
+      typicalDay: [
+        "Review control dashboards",
+        "Meet with control owners",
+        "Present to audit committee",
+        "Drive strategic improvements"
+      ],
+      skills: ["Program Leadership", "Control Environment", "Board Communication", "Enterprise Risk Management"],
+      outcomes: [
+        "Build strong control environment",
+        "Achieve operational objectives",
+        "Enable reliable reporting",
+        "Demonstrate governance"
+      ],
+      difficulty: "Advanced" as const,
+      timeCommitment: "4-6 weeks",
+      focus: "Enterprise Leadership"
+    },
+    {
+      ...personas[3],
+      keyResponsibilities: [
+        "Assess internal control effectiveness",
+        "Evaluate COSO components",
+        "Test control activities",
+        "Report on control deficiencies"
+      ],
+      typicalDay: [
+        "Review control documentation",
+        "Test control samples",
+        "Interview process owners",
+        "Write audit reports"
+      ],
+      skills: ["Internal Audit", "COSO Assessment", "Control Testing", "Risk Evaluation"],
+      outcomes: [
+        "Assess control effectiveness",
+        "Identify deficiencies",
+        "Support improvements",
+        "Enable reliable reporting"
+      ],
+      difficulty: "Intermediate" as const,
+      timeCommitment: "5-7 weeks",
+      focus: "Internal Audit & Assessment"
+    }
+  ];
 
   const components = [
     {
@@ -152,6 +257,13 @@ export default function CosoHome() {
           </div>
         </div>
       </section>
+
+      {/* Persona Comparison */}
+      <PersonaComparison 
+        framework="coso"
+        personas={personasWithDetails}
+        totalSteps={totalSteps}
+      />
 
       {/* Personalized Training Path */}
       <FrameworkPersonalizedPath 

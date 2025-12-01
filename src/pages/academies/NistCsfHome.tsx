@@ -7,10 +7,11 @@ import { PersonaProgressCard } from "@/components/shared/PersonaProgressCard";
 import { nistCsfPersonas } from "@/data/nistCsf/personas";
 import { nistCsfPractitionersSteps } from "@/data/nistCsf/practitionersSteps";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle2, Network, BarChart3, Shield } from "lucide-react";
+import { CheckCircle2, Network, BarChart3, Wrench, Shield, Users as UsersIcon, ClipboardCheck } from "lucide-react";
 import { PageIntro } from "@/components/PageIntro";
 import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
+import { PersonaComparison } from "@/components/PersonaComparison";
 
 export default function NistCsfHome() {
   const navigate = useNavigate();
@@ -28,6 +29,109 @@ export default function NistCsfHome() {
       navigate(persona.path);
     }
   };
+
+  const personasWithDetails = [
+    {
+      ...nistCsfPersonas[0],
+      keyResponsibilities: [
+        "Implement CSF functions across organization",
+        "Execute Identify, Protect, Detect outcomes",
+        "Deploy Respond and Recover capabilities",
+        "Map controls to CSF categories"
+      ],
+      typicalDay: [
+        "Conduct asset inventories",
+        "Configure security monitoring",
+        "Test incident response procedures",
+        "Document CSF implementations"
+      ],
+      skills: ["CSF Implementation", "Risk Management", "Security Operations", "Framework Mapping"],
+      outcomes: [
+        "Achieve CSF Profile targets",
+        "Improve security posture",
+        "Advance Tier maturity",
+        "Demonstrate risk management"
+      ],
+      difficulty: "Intermediate" as const,
+      timeCommitment: "5-7 weeks",
+      focus: "Operational Implementation"
+    },
+    {
+      ...nistCsfPersonas[1],
+      keyResponsibilities: [
+        "Manage security tools and technologies",
+        "Map tool capabilities to CSF subcategories",
+        "Provide technical expertise",
+        "Support CSF Profile development"
+      ],
+      typicalDay: [
+        "Review tool coverage of CSF",
+        "Configure detection capabilities",
+        "Support risk assessments",
+        "Optimize security tooling"
+      ],
+      skills: ["Tool Management", "CSF Mapping", "Technical Analysis", "Capability Assessment"],
+      outcomes: [
+        "Operationalize CSF controls",
+        "Improve detection/response",
+        "Support Profile achievement",
+        "Enable continuous improvement"
+      ],
+      difficulty: "Advanced" as const,
+      timeCommitment: "6-8 weeks",
+      focus: "Technical Capabilities"
+    },
+    {
+      ...nistCsfPersonas[2],
+      keyResponsibilities: [
+        "Align cybersecurity with business risk",
+        "Develop Current and Target Profiles",
+        "Communicate risk to executives",
+        "Drive CSF program strategy"
+      ],
+      typicalDay: [
+        "Review CSF Profile status",
+        "Meet with business leaders",
+        "Present to board of directors",
+        "Plan strategic initiatives"
+      ],
+      skills: ["Executive Communication", "Risk Management", "Strategic Planning", "Profile Development"],
+      outcomes: [
+        "Align security with business",
+        "Achieve Target Profile",
+        "Advance Tier maturity",
+        "Demonstrate risk management"
+      ],
+      difficulty: "Advanced" as const,
+      timeCommitment: "4-6 weeks",
+      focus: "Strategic Alignment"
+    },
+    {
+      ...nistCsfPersonas[3],
+      keyResponsibilities: [
+        "Assess CSF implementation maturity",
+        "Evaluate Profile achievement",
+        "Review control effectiveness",
+        "Track improvement initiatives"
+      ],
+      typicalDay: [
+        "Review CSF documentation",
+        "Test subcategory implementations",
+        "Assess Tier maturity",
+        "Write assessment reports"
+      ],
+      skills: ["CSF Assessment", "Maturity Evaluation", "Gap Analysis", "Report Writing"],
+      outcomes: [
+        "Assess CSF maturity",
+        "Validate Profile achievement",
+        "Identify improvement areas",
+        "Support risk reporting"
+      ],
+      difficulty: "Intermediate" as const,
+      timeCommitment: "5-7 weeks",
+      focus: "Assessment & Maturity"
+    }
+  ];
 
   return (
     <AcademyLayout
@@ -125,6 +229,13 @@ export default function NistCsfHome() {
           </div>
         </div>
       </section>
+
+      {/* Persona Comparison */}
+      <PersonaComparison 
+        framework="nist-csf"
+        personas={personasWithDetails}
+        totalSteps={totalSteps}
+      />
 
       {/* Personalized Training Path */}
       <FrameworkPersonalizedPath 
