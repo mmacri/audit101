@@ -21,6 +21,7 @@ import FinalExam from "./pages/FinalExam";
 import Certificate from "./pages/Certificate";
 import RoleCertificate from "./pages/RoleCertificate";
 import Achievements from "./pages/Achievements";
+import Progress from "./pages/Progress";
 import ProgressBackup from "./pages/ProgressBackup";
 import ManagerGuide from "./pages/ManagerGuide";
 import SoftSkillsTraining from "./pages/SoftSkillsTraining";
@@ -108,6 +109,7 @@ const App = () => (
           <Route path="/final-exam" element={<FinalExam />} />
           <Route path="/certificate" element={<Certificate />} />
           <Route path="/achievements" element={<Achievements />} />
+          <Route path="/progress" element={<Progress />} />
           <Route path="/progress-backup" element={<ProgressBackup />} />
           <Route path="/manager-guide" element={<ManagerGuide />} />
           <Route path="/soft-skills" element={<SoftSkillsTraining />} />
