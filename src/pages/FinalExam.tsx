@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
+import { GlobalNav } from "@/components/shared/GlobalNav";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { 
@@ -297,6 +298,7 @@ export default function FinalExam() {
   if (!showExam) {
     return (
       <Layout>
+        <GlobalNav />
         <section className="py-20 md:py-28">
           <div className="container">
             <div className="max-w-2xl mx-auto text-center">
@@ -350,6 +352,7 @@ export default function FinalExam() {
 
   return (
     <Layout>
+      <GlobalNav />
       <section className="py-12 md:py-16">
         <div className="container">
           <div className="max-w-3xl mx-auto">

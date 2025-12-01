@@ -1,4 +1,5 @@
 import { Layout } from '@/components/layout/Layout';
+import { GlobalNav } from '@/components/shared/GlobalNav';
 import { PageIntro } from '@/components/PageIntro';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Users, Calendar, MessageSquare, Award, RefreshCw, Target, BookOpen, Rocket } from 'lucide-react';
@@ -6,6 +7,7 @@ import { Users, Calendar, MessageSquare, Award, RefreshCw, Target, BookOpen, Roc
 export default function ManagerGuide() {
   return (
     <Layout>
+      <GlobalNav />
       <section className="bg-gradient-to-br from-primary/5 to-accent/5 py-12 md:py-16">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">

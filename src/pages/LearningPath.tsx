@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
+import { GlobalNav } from "@/components/shared/GlobalNav";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ProgressWidget } from "@/components/ProgressWidget";
 import { RoleSelectorCards } from "@/components/RoleSelectorCards";
@@ -82,6 +83,7 @@ export default function LearningPath() {
 
   return (
     <Layout>
+      <GlobalNav />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/5 to-accent/5 py-12 md:py-16">
         <div className="container">

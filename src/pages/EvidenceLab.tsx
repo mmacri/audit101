@@ -1,4 +1,5 @@
 import { Layout } from "@/components/layout/Layout";
+import { GlobalNav } from "@/components/shared/GlobalNav";
 import { InteractiveChecklist } from "@/components/InteractiveChecklist";
 import { SampleArtifact } from "@/components/SampleArtifact";
 import { EvidenceOrganizationDiagram } from "@/components/diagrams/EvidenceOrganizationDiagram";
@@ -64,6 +65,7 @@ const exerciseSteps = [
 export default function EvidenceLab() {
   return (
     <Layout>
+      <GlobalNav />
       {/* Hero */}
       <section className="bg-gradient-to-br from-primary/5 to-accent/5 py-16 md:py-20">
         <div className="container">

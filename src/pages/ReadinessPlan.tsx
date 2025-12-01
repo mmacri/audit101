@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Layout } from "@/components/layout/Layout";
+import { GlobalNav } from "@/components/shared/GlobalNav";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -185,6 +186,7 @@ a formal CIP compliance program or official audit preparation.
 
   return (
     <Layout>
+      <GlobalNav />
       {/* Hero */}
       <section className="bg-gradient-to-br from-primary/5 to-accent/5 py-16 md:py-20 print:hidden">
         <div className="container">

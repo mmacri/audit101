@@ -1,11 +1,13 @@
 import { Layout } from '@/components/layout/Layout';
 import { PageIntro } from '@/components/PageIntro';
 import { ProgressDashboard } from '@/components/ProgressDashboard';
+import { GlobalNav } from '@/components/shared/GlobalNav';
 import { TrendingUp } from 'lucide-react';
 
 export default function Progress() {
   return (
     <Layout>
+      <GlobalNav />
       <section className="py-12 md:py-16">
         <div className="container">
           {/* Header */}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
+import { GlobalNav } from "@/components/shared/GlobalNav";
 import { PageIntro } from "@/components/PageIntro";
 import { Quiz, QuizQuestion } from "@/components/Quiz";
 import { useProgress } from "@/hooks/useProgress";
@@ -1102,6 +1103,7 @@ export default function Modules() {
 
   return (
     <Layout>
+      <GlobalNav />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/5 to-accent/5 py-12 md:py-16">
         <div className="container">
