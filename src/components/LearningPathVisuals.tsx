@@ -1,76 +1,272 @@
-import { Card, CardContent } from '@/components/ui/card';
+import { useState } from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { 
   BookOpen, 
   FileText, 
   Video, 
   CheckSquare, 
   Code, 
-  Layers,
-  HelpCircle
+  HelpCircle,
+  Clock,
+  PlayCircle,
+  Download,
+  Lightbulb,
+  Target,
+  CheckCircle2
 } from 'lucide-react';
 
-interface LearningPathVisualsProps {
+export type ContentType = 'reading' | 'video' | 'exercise' | 'quiz' | 'documentation' | 'interactive' | 'template' | 'case-study';
+
+interface StepContent {
   stepNumber: number;
   title: string;
-  contentTypes: Array<'reading' | 'video' | 'exercise' | 'quiz' | 'documentation' | 'interactive'>;
+  description: string;
+  duration: string;
+  contentTypes: ContentType[];
+  learningObjectives: string[];
+  deliverables: string[];
 }
 
-export function LearningPathVisuals({ stepNumber, title, contentTypes }: LearningPathVisualsProps) {
-  const contentIcons = {
-    'reading': { icon: BookOpen, label: 'Reading', color: 'text-blue-500' },
-    'video': { icon: Video, label: 'Video', color: 'text-purple-500' },
-    'exercise': { icon: CheckSquare, label: 'Exercise', color: 'text-green-500' },
-    'quiz': { icon: HelpCircle, label: 'Quiz', color: 'text-orange-500' },
-    'documentation': { icon: FileText, label: 'Documentation', color: 'text-gray-500' },
-    'interactive': { icon: Code, label: 'Interactive', color: 'text-pink-500' },
+interface InteractiveLearningPathProps {
+  steps: StepContent[];
+  completedSteps: number[];
+}
+
+export function InteractiveLearningPath({ steps, completedSteps }: InteractiveLearningPathProps) {
+  const [selectedStep, setSelectedStep] = useState<number | null>(null);
+
+  const contentIcons: Record<ContentType, { icon: any; label: string; color: string; bgColor: string }> = {
+    'reading': { icon: BookOpen, label: 'Reading Material', color: 'text-blue-600', bgColor: 'bg-blue-500/10' },
+    'video': { icon: Video, label: 'Video Tutorial', color: 'text-purple-600', bgColor: 'bg-purple-500/10' },
+    'exercise': { icon: CheckSquare, label: 'Hands-on Exercise', color: 'text-green-600', bgColor: 'bg-green-500/10' },
+    'quiz': { icon: HelpCircle, label: 'Knowledge Check', color: 'text-orange-600', bgColor: 'bg-orange-500/10' },
+    'documentation': { icon: FileText, label: 'Documentation', color: 'text-gray-600', bgColor: 'bg-gray-500/10' },
+    'interactive': { icon: Code, label: 'Interactive Lab', color: 'text-pink-600', bgColor: 'bg-pink-500/10' },
+    'template': { icon: Download, label: 'Template Download', color: 'text-indigo-600', bgColor: 'bg-indigo-500/10' },
+    'case-study': { icon: Lightbulb, label: 'Case Study', color: 'text-amber-600', bgColor: 'bg-amber-500/10' }
   };
 
   return (
-    <Card className="border-l-4 border-l-primary">
-      <CardContent className="pt-4">
-        <div className="flex items-start gap-4">
-          <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-            <span className="text-primary font-bold">{stepNumber}</span>
-          </div>
-          <div className="flex-1">
-            <h4 className="font-semibold mb-3">{title}</h4>
-            <div className="flex flex-wrap gap-2">
-              {contentTypes.map((type) => {
-                const { icon: Icon, label, color } = contentIcons[type];
+    <section className="py-16 bg-background">
+      <div className="container max-w-6xl">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">Your Interactive Learning Journey</h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Explore each step to see the learning materials, exercises, and assessments you'll complete
+          </p>
+        </div>
+
+        <Tabs defaultValue="timeline" className="w-full">
+          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
+            <TabsTrigger value="timeline">Timeline View</TabsTrigger>
+            <TabsTrigger value="grid">Grid View</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="timeline" className="space-y-6">
+            <div className="relative">
+              {steps.map((step, index) => {
+                const isCompleted = completedSteps.includes(step.stepNumber);
+                const isSelected = selectedStep === step.stepNumber;
+                
                 return (
-                  <Badge key={type} variant="outline" className="gap-1.5">
-                    <Icon className={`h-3 w-3 ${color}`} />
-                    <span className="text-xs">{label}</span>
-                  </Badge>
+                  <div key={step.stepNumber} className="relative pb-8 last:pb-0">
+                    {/* Connecting line */}
+                    {index < steps.length - 1 && (
+                      <div className={`absolute left-6 top-12 bottom-0 w-0.5 ${
+                        completedSteps.includes(step.stepNumber) && completedSteps.includes(steps[index + 1].stepNumber)
+                          ? 'bg-primary'
+                          : 'bg-border'
+                      }`} />
+                    )}
+                    
+                    <Card 
+                      className={`transition-all duration-300 cursor-pointer hover:shadow-lg ${
+                        isSelected ? 'ring-2 ring-primary shadow-lg' : ''
+                      } ${isCompleted ? 'border-primary/50' : ''}`}
+                      onClick={() => setSelectedStep(isSelected ? null : step.stepNumber)}
+                    >
+                      <CardHeader>
+                        <div className="flex items-start gap-4">
+                          {/* Step number badge */}
+                          <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 border-2 ${
+                            isCompleted 
+                              ? 'bg-primary border-primary' 
+                              : 'bg-muted border-border'
+                          }`}>
+                            {isCompleted ? (
+                              <CheckCircle2 className="h-6 w-6 text-primary-foreground" />
+                            ) : (
+                              <span className={`text-lg font-bold ${isCompleted ? 'text-primary-foreground' : 'text-muted-foreground'}`}>
+                                {step.stepNumber}
+                              </span>
+                            )}
+                          </div>
+
+                          <div className="flex-1">
+                            <div className="flex items-center justify-between mb-2">
+                              <CardTitle className="text-xl">{step.title}</CardTitle>
+                              <Badge variant="secondary" className="gap-1.5">
+                                <Clock className="h-3 w-3" />
+                                {step.duration}
+                              </Badge>
+                            </div>
+                            <CardDescription className="text-base">
+                              {step.description}
+                            </CardDescription>
+                          </div>
+                        </div>
+
+                        {/* Content type badges */}
+                        <div className="flex flex-wrap gap-2 mt-4 ml-16">
+                          {step.contentTypes.map((type) => {
+                            const { icon: Icon, label, color, bgColor } = contentIcons[type];
+                            return (
+                              <Badge 
+                                key={type} 
+                                variant="outline" 
+                                className={`gap-1.5 ${bgColor} border-0`}
+                              >
+                                <Icon className={`h-3.5 w-3.5 ${color}`} />
+                                <span className="text-xs font-medium">{label}</span>
+                              </Badge>
+                            );
+                          })}
+                        </div>
+                      </CardHeader>
+
+                      {/* Expanded content */}
+                      {isSelected && (
+                        <CardContent className="pt-0 ml-16 animate-fade-in">
+                          <div className="grid md:grid-cols-2 gap-6 pt-4 border-t border-border">
+                            <div>
+                              <div className="flex items-center gap-2 mb-3">
+                                <Target className="h-4 w-4 text-primary" />
+                                <h4 className="font-semibold">Learning Objectives</h4>
+                              </div>
+                              <ul className="space-y-2">
+                                {step.learningObjectives.map((objective, idx) => (
+                                  <li key={idx} className="flex items-start gap-2 text-sm">
+                                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                                    <span>{objective}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                            <div>
+                              <div className="flex items-center gap-2 mb-3">
+                                <FileText className="h-4 w-4 text-primary" />
+                                <h4 className="font-semibold">What You'll Create</h4>
+                              </div>
+                              <ul className="space-y-2">
+                                {step.deliverables.map((deliverable, idx) => (
+                                  <li key={idx} className="flex items-start gap-2 text-sm">
+                                    <Download className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                                    <span>{deliverable}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+
+                          <Button className="mt-6" variant={isCompleted ? "outline" : "default"}>
+                            <PlayCircle className="mr-2 h-4 w-4" />
+                            {isCompleted ? 'Review Step' : 'Start Step'}
+                          </Button>
+                        </CardContent>
+                      )}
+                    </Card>
+                  </div>
                 );
               })}
             </div>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  );
-}
+          </TabsContent>
 
-// Component to show overall learning journey
-export function LearningJourneyMap({ steps }: { steps: Array<{ title: string; description: string }> }) {
-  return (
-    <div className="relative">
-      {steps.map((step, index) => (
-        <div key={index} className="relative pl-8 pb-8 last:pb-0">
-          {index < steps.length - 1 && (
-            <div className="absolute left-[15px] top-6 bottom-0 w-0.5 bg-border" />
-          )}
-          <div className="absolute left-0 top-0 w-8 h-8 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center">
-            <span className="text-sm font-semibold text-primary">{index + 1}</span>
-          </div>
-          <div className="ml-4">
-            <h4 className="font-semibold text-foreground mb-1">{step.title}</h4>
-            <p className="text-sm text-muted-foreground">{step.description}</p>
-          </div>
-        </div>
-      ))}
-    </div>
+          <TabsContent value="grid">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {steps.map((step) => {
+                const isCompleted = completedSteps.includes(step.stepNumber);
+                
+                return (
+                  <Card 
+                    key={step.stepNumber}
+                    className={`hover:shadow-lg transition-all duration-300 cursor-pointer ${
+                      isCompleted ? 'border-primary/50' : ''
+                    }`}
+                    onClick={() => setSelectedStep(selectedStep === step.stepNumber ? null : step.stepNumber)}
+                  >
+                    <CardHeader>
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 border-2 ${
+                          isCompleted 
+                            ? 'bg-primary border-primary' 
+                            : 'bg-muted border-border'
+                        }`}>
+                          {isCompleted ? (
+                            <CheckCircle2 className="h-5 w-5 text-primary-foreground" />
+                          ) : (
+                            <span className={`font-bold ${isCompleted ? 'text-primary-foreground' : 'text-muted-foreground'}`}>
+                              {step.stepNumber}
+                            </span>
+                          )}
+                        </div>
+                        <Badge variant="secondary" className="gap-1.5 text-xs">
+                          <Clock className="h-3 w-3" />
+                          {step.duration}
+                        </Badge>
+                      </div>
+                      <CardTitle className="text-lg">{step.title}</CardTitle>
+                      <CardDescription className="text-sm line-clamp-2">
+                        {step.description}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex flex-wrap gap-1.5">
+                        {step.contentTypes.map((type) => {
+                          const { icon: Icon, color, bgColor } = contentIcons[type];
+                          return (
+                            <div 
+                              key={type}
+                              className={`p-1.5 rounded ${bgColor}`}
+                              title={contentIcons[type].label}
+                            >
+                              <Icon className={`h-3.5 w-3.5 ${color}`} />
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <div className="mt-4 text-xs text-muted-foreground">
+                        {step.learningObjectives.length} objectives • {step.deliverables.length} deliverables
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          </TabsContent>
+        </Tabs>
+
+        {/* Content Legend */}
+        <Card className="mt-12 bg-muted/30">
+          <CardHeader>
+            <CardTitle className="text-base">Content Types Legend</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {Object.entries(contentIcons).map(([type, { icon: Icon, label, color, bgColor }]) => (
+                <div key={type} className="flex items-center gap-2">
+                  <div className={`p-2 rounded ${bgColor}`}>
+                    <Icon className={`h-4 w-4 ${color}`} />
+                  </div>
+                  <span className="text-sm">{label}</span>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </section>
   );
 }
