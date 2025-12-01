@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { UserRoleBadge } from "@/components/UserRoleBadge";
 import { EnhancedGlobalSearch } from "@/components/EnhancedGlobalSearch";
 import { useUserPreferences, roleLabels, UserRole } from "@/hooks/useUserPreferences";
-import { Menu, X, GraduationCap, ChevronDown, BookOpen, Trophy, FolderOpen, User, Home, BookMarked } from "lucide-react";
+import { Menu, X, GraduationCap, ChevronDown, BookOpen, Trophy, FolderOpen, User, Users, Home, BookMarked } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -33,29 +33,29 @@ const roleToSlug: Record<UserRole, string> = {
 
 const navGroups: NavGroup[] = [
   {
-    label: "Learn",
-    icon: BookOpen,
+    label: "Framework Paths",
+    icon: BookMarked,
     items: [
-      { label: "All Modules", href: "/modules", description: "Full library of 12 training modules" },
-      { label: "Learning Path", href: "/learning-path", description: "Role-based learning tracks" },
-      { label: "Self Assessment", href: "/self-assessment", description: "Evaluate your readiness" },
-      { label: "Soft Skills Training", href: "/soft-skills", description: "Audit interview techniques" },
+      { label: "NERC CIP", href: "/nerc-cip", description: "Power utility compliance" },
+      { label: "NIST 800-53", href: "/nist-800-53", description: "Federal security controls" },
+      { label: "ISO 27001", href: "/iso-27001", description: "ISMS certification" },
+      { label: "CIS Controls", href: "/cis-controls", description: "18 prioritized safeguards" },
+      { label: "NIST CSF", href: "/nist-csf", description: "Cybersecurity Framework" },
+      { label: "PCI DSS", href: "/pci-dss", description: "Payment card security" },
+      { label: "HIPAA", href: "/hipaa", description: "Healthcare compliance" },
+      { label: "SOX ITGC", href: "/sox-itgc", description: "Financial IT controls" },
+      { label: "COSO", href: "/coso", description: "Internal controls" },
     ],
   },
   {
-    label: "Academies",
-    icon: BookMarked,
+    label: "Persona Paths",
+    icon: Users,
     items: [
-      { label: "NERC CIP Academy", href: "/nerc-cip", description: "Power utility compliance training" },
-      { label: "NIST 800-53 Academy", href: "/nist-800-53", description: "Federal security controls" },
-      { label: "CIS Controls Academy", href: "/cis-controls", description: "18 prioritized safeguards" },
-      { label: "NIST CSF Academy", href: "/nist-csf", description: "Cybersecurity Framework" },
-      { label: "SOX ITGC Academy", href: "/sox-itgc", description: "Financial IT controls" },
-      { label: "HIPAA Academy", href: "/hipaa", description: "Healthcare compliance" },
-      { label: "COSO Framework", href: "/coso", description: "Internal control framework" },
-      { label: "ISO 27001 Academy", href: "/iso-27001", description: "ISMS certification" },
-      { label: "PCI DSS Academy", href: "/pci-dss", description: "Payment card security" },
-      { label: "Common Controls Hub", href: "/common-controls", description: "Cross-framework mapping" },
+      { label: "View All Personas", href: "/#personas", description: "Browse all role-based paths" },
+      { label: "Practitioners & Implementers", href: "/#personas", description: "Hands-on security staff" },
+      { label: "Tool Owners & SMEs", href: "/#personas", description: "System administrators" },
+      { label: "Leaders & Executives", href: "/#personas", description: "Program managers" },
+      { label: "Internal Auditors", href: "/#personas", description: "Audit professionals" },
     ],
   },
   {
@@ -72,16 +72,13 @@ const navGroups: NavGroup[] = [
     label: "Resources",
     icon: FolderOpen,
     items: [
-      { label: "Evidence Lab", href: "/evidence-lab", description: "Sample artifacts & evidence" },
-      { label: "Audit Simulator", href: "/audit-simulator", description: "Practice audit requests" },
-      { label: "Audit Journey Guide", href: "/audit-journey", description: "Timeline & phases walkthrough" },
-      { label: "Readiness Plan Builder", href: "/readiness-plan", description: "Create your audit plan" },
-      { label: "RSAW Tutorial", href: "/rsaw-tutorial", description: "Audit worksheet guide" },
-      { label: "Case Studies", href: "/case-studies", description: "Real-world compliance scenarios" },
-      { label: "Scope & TCA Matrix", href: "/scope-matrix", description: "Asset classification guide" },
-      { label: "Templates & Downloads", href: "/resources", description: "Checklists, matrices, forms" },
-      { label: "Manager Guide", href: "/manager-guide", description: "Team training delivery" },
-      { label: "About CIP Academy", href: "/about", description: "Mission & contact" },
+      { label: "Common Controls Hub", href: "/common-controls", description: "Cross-framework mapping" },
+      { label: "Learning Path", href: "/learning-path", description: "Role-based tracks" },
+      { label: "Role Training (NERC)", href: "/role-training", description: "NERC CIP role paths" },
+      { label: "Case Studies", href: "/case-studies", description: "Real-world scenarios" },
+      { label: "Evidence Lab", href: "/evidence-lab", description: "Sample artifacts" },
+      { label: "Templates & Tools", href: "/resources", description: "Downloads" },
+      { label: "About", href: "/about", description: "Mission & contact" },
     ],
   },
 ];
@@ -138,8 +135,22 @@ export function Navbar() {
               Start
             </Link>
 
-            {/* Learn Dropdown */}
-            {navGroups.filter(g => g.label === "Learn").map((group) => (
+            {/* How It Works */}
+            <Link
+              to="/how-it-works"
+              className={cn(
+                "px-3 py-2 text-sm font-medium rounded-lg transition-colors flex items-center gap-1",
+                location.pathname === "/how-it-works"
+                  ? "text-primary bg-primary/10"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
+              )}
+            >
+              <BookOpen className="h-4 w-4" />
+              How It Works
+            </Link>
+
+            {/* Framework Paths Dropdown */}
+            {navGroups.filter(g => g.label === "Framework Paths").map((group) => (
               <DropdownMenu key={group.label}>
                 <DropdownMenuTrigger asChild>
                   <button
@@ -185,8 +196,8 @@ export function Navbar() {
               </DropdownMenu>
             ))}
 
-            {/* Academies Dropdown */}
-            {navGroups.filter(g => g.label === "Academies").map((group) => (
+            {/* Persona Paths Dropdown */}
+            {navGroups.filter(g => g.label === "Persona Paths").map((group) => (
               <DropdownMenu key={group.label}>
                 <DropdownMenuTrigger asChild>
                   <button

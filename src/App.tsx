@@ -28,6 +28,7 @@ import SoftSkillsTraining from "./pages/SoftSkillsTraining";
 import ScopeMatrix from "./pages/ScopeMatrix";
 import RSAWTutorial from "./pages/RSAWTutorial";
 import NotFound from "./pages/NotFound";
+import HowItWorks from "./pages/HowItWorks";
 import AcademyPortfolio from "./pages/AcademyPortfolio";
 import Nist80053Home from "./pages/academies/Nist80053Home";
 import Nist80053Practitioners from "./pages/academies/Nist80053Practitioners";
@@ -101,6 +102,7 @@ const App = () => (
       <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
         <Routes>
         <Route path="/" element={<Audit101 />} />
+        <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/get-started" element={<GetStarted />} />
           <Route path="/learning-path" element={<LearningPath />} />
           <Route path="/modules" element={<Modules />} />
