@@ -25,7 +25,12 @@ export default function CommonControlsHub() {
   const filteredMappings = controlMappings.filter(mapping => {
     const matchesSearch = !searchTerm || 
       mapping.family.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      mapping.description.toLowerCase().includes(searchTerm.toLowerCase());
+      mapping.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      mapping.cip.some(item => item.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      mapping.nist80053.some(item => item.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      mapping.cisControls.some(item => item.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      mapping.nistCsf.some(item => item.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      mapping.soxItgc.some(item => item.toLowerCase().includes(searchTerm.toLowerCase()));
     
     const matchesFramework = !selectedFramework ||
       (mapping[selectedFramework as keyof ControlMapping] as string[]).length > 0;
@@ -135,7 +140,7 @@ export default function CommonControlsHub() {
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Search control families..."
+                placeholder="Search controls across all frameworks (e.g., 'CIP-004', 'access control', 'AC-2')..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-9"

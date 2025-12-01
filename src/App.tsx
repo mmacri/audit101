@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import GetStarted from "./pages/GetStarted";
+import Audit101 from "./pages/Audit101";
 import LearningPath from "./pages/LearningPath";
 import Modules from "./pages/Modules";
 import RoleTraining from "./pages/RoleTraining";
@@ -62,8 +63,9 @@ const App = () => (
       <Sonner />
       <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/get-started" element={<GetStarted />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/get-started" element={<GetStarted />} />
+        <Route path="/audit-101" element={<Audit101 />} />
           <Route path="/modules" element={<Modules />} />
           <Route path="/role-training" element={<RoleTraining />} />
           <Route path="/role-training/:roleId" element={<RoleTrainingDetail />} />
