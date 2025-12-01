@@ -2,13 +2,24 @@ import { useNavigate } from "react-router-dom";
 import { AcademyHero } from "@/components/shared/AcademyHero";
 import { PersonaGrid } from "@/components/shared/PersonaGrid";
 import { AcademyLayout } from "@/components/shared/AcademyLayout";
+import { AcademyNav } from "@/components/shared/AcademyNav";
+import { PersonaProgressCard } from "@/components/shared/PersonaProgressCard";
 import { nist80053Personas } from "@/data/nist80053/personas";
+import { nist80053PractitionersSteps } from "@/data/nist80053/practitionersSteps";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2, BookOpen, FileText, Target } from "lucide-react";
 import { PageIntro } from "@/components/PageIntro";
+import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 
 export default function Nist80053Home() {
   const navigate = useNavigate();
+  
+  const practitionerProgress = useFrameworkProgress("nist-800-53", "practitioners");
+  const toolOwnerProgress = useFrameworkProgress("nist-800-53", "tool-owners");
+  const leaderProgress = useFrameworkProgress("nist-800-53", "leaders");
+  const auditorProgress = useFrameworkProgress("nist-800-53", "auditors");
+  
+  const totalSteps = nist80053PractitionersSteps.length;
 
   const handleSelectPersona = (personaId: string) => {
     const persona = nist80053Personas.find(p => p.id === personaId);
@@ -25,14 +36,13 @@ export default function Nist80053Home() {
         { label: "NIST 800-53" }
       ]}
     >
+      <AcademyNav academyPath="/nist-800-53" academyName="NIST 800-53" />
+      
       <AcademyHero
         title="NIST 800-53 Readiness Academy"
         subtitle="Role-based learning paths to build, assess, and document NIST 800-53 controls for your systems."
-        primaryCta="Choose your learning path"
-        primaryAction={() => {
-          const element = document.getElementById('persona-selection');
-          element?.scrollIntoView({ behavior: 'smooth' });
-        }}
+        primaryCta="View my progress"
+        primaryAction={() => navigate('/progress')}
         secondaryCta="View all resources"
         secondaryAction={() => navigate('/nist-800-53/resources')}
       />
@@ -84,6 +94,37 @@ export default function Nist80053Home() {
         </div>
       </section>
 
+      {/* Progress Overview */}
+      <section className="py-16 bg-muted/30">
+        <div className="container max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Your Learning Progress</h2>
+            <p className="text-muted-foreground text-lg">
+              Track your progress across all persona learning paths
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {nist80053Personas.map((persona, index) => {
+              const progress = [practitionerProgress, toolOwnerProgress, leaderProgress, auditorProgress][index];
+              return (
+                <PersonaProgressCard
+                  key={persona.id}
+                  title={persona.title}
+                  description={persona.description}
+                  icon={persona.icon}
+                  path={persona.path}
+                  completionPercentage={progress.getCompletionPercentage(totalSteps)}
+                  completedSteps={progress.getCurrentProgress().stepsCompleted.length}
+                  totalSteps={totalSteps}
+                  isCompleted={progress.isPersonaComplete()}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Persona Selection */}
       <div id="persona-selection">
         <PersonaGrid
@@ -93,7 +134,7 @@ export default function Nist80053Home() {
       </div>
 
       {/* What You'll Learn */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-16 bg-background">
         <div className="container max-w-4xl">
           <h2 className="text-3xl font-bold text-navy text-center mb-8">
             What You'll Learn
