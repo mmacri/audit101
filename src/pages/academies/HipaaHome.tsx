@@ -1,11 +1,22 @@
+import { useNavigate } from "react-router-dom";
 import { AcademyHero } from "@/components/shared/AcademyHero";
 import { PersonaGrid } from "@/components/shared/PersonaGrid";
 import { AcademyLayout } from "@/components/shared/AcademyLayout";
 import { personas } from "@/data/hipaa/personas";
-import { Shield, FileText, Users, Scale } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Shield, FileText, Users, Scale } from "lucide-react";
+import { PageIntro } from "@/components/PageIntro";
 
-const HipaaHome = () => {
+export default function HipaaHome() {
+  const navigate = useNavigate();
+
+  const handleSelectPersona = (personaId: string) => {
+    const persona = personas.find(p => p.id === personaId);
+    if (persona) {
+      navigate(persona.path);
+    }
+  };
+
   const frameworks = [
     {
       icon: Shield,
@@ -31,28 +42,33 @@ const HipaaHome = () => {
 
   return (
     <AcademyLayout
-      title="HIPAA Readiness Academy"
-      description="Master HIPAA compliance with comprehensive training for all roles"
+      academyName="HIPAA Readiness Academy"
+      breadcrumbs={[
+        { label: "Academies", path: "/" },
+        { label: "HIPAA" }
+      ]}
     >
       <AcademyHero
         title="HIPAA Security & Privacy Readiness Academy"
-        subtitle="Build comprehensive healthcare data protection and compliance programs"
-        description="Navigate HIPAA Privacy Rule, Security Rule, Breach Notification, and enforcement requirements with role-specific training paths designed for healthcare organizations and business associates."
-        frameworkName="HIPAA"
-        accentColor="emerald"
+        subtitle="Build comprehensive healthcare data protection and compliance programs with role-specific training paths."
+        primaryCta="Choose your learning path"
+        primaryAction={() => {
+          const element = document.getElementById('persona-selection');
+          element?.scrollIntoView({ behavior: 'smooth' });
+        }}
+        secondaryCta="View framework guide"
+        secondaryAction={() => navigate('/hipaa/framework')}
       />
 
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-4">
-            HIPAA Framework Overview
-          </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+      <section className="py-16 bg-background">
+        <div className="container max-w-4xl">
+          <PageIntro>
             HIPAA establishes national standards to protect sensitive patient health information
-            from being disclosed without patient consent or knowledge.
-          </p>
+            from being disclosed without patient consent or knowledge. Master Privacy Rule, Security Rule,
+            Breach Notification, and enforcement requirements.
+          </PageIntro>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
             {frameworks.map((framework, index) => (
               <Card key={index} className="border-emerald-500/20 hover:border-emerald-500/40 transition-colors">
                 <CardContent className="pt-6">
@@ -63,12 +79,12 @@ const HipaaHome = () => {
               </Card>
             ))}
           </div>
-
-          <PersonaGrid personas={personas} frameworkPath="hipaa" />
         </div>
       </section>
+
+      <div id="persona-selection">
+        <PersonaGrid personas={personas} onSelectPersona={handleSelectPersona} />
+      </div>
     </AcademyLayout>
   );
-};
-
-export default HipaaHome;
+}

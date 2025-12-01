@@ -1,31 +1,30 @@
 import { AcademyLayout } from "@/components/shared/AcademyLayout";
 import { StepSection } from "@/components/shared/StepSection";
 import { auditorsSteps } from "@/data/hipaa/auditorsSteps";
-import { ClipboardCheck } from "lucide-react";
 
 const HipaaAuditors = () => {
   return (
     <AcademyLayout
-      title="HIPAA Auditors Path"
-      description="HIPAA compliance audit methodology"
+      academyName="HIPAA Readiness Academy"
+      breadcrumbs={[
+        { label: "Academies", path: "/" },
+        { label: "HIPAA", path: "/hipaa" },
+        { label: "Internal Auditors" }
+      ]}
+      showBackButton
     >
-      <div className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-16 h-16 bg-emerald-500/10 rounded-xl flex items-center justify-center">
-              <ClipboardCheck className="w-8 h-8 text-emerald-500" />
-            </div>
-            <div>
-              <h1 className="text-4xl font-bold mb-2">Internal Auditors & Risk Reviewers</h1>
-              <p className="text-xl text-muted-foreground">
-                Comprehensive HIPAA compliance audit path
-              </p>
-            </div>
-          </div>
-
-          <div className="space-y-12">
+      <div className="py-12 bg-gradient-to-br from-emerald-500/5 to-background">
+        <div className="container max-w-4xl">
+          <h1 className="text-4xl font-bold mb-3">
+            HIPAA for Internal Auditors
+          </h1>
+          <p className="text-xl text-muted-foreground mb-8">
+            Your 7-step path to HIPAA compliance audit methodology
+          </p>
+          
+          <div className="space-y-8">
             {auditorsSteps.map((step) => (
-              <StepSection key={step.number} step={step} accentColor="emerald" />
+              <StepSection key={step.number} step={step} />
             ))}
           </div>
         </div>
