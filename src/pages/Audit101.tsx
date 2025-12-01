@@ -353,7 +353,7 @@ export default function Audit101() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <Card className="hover:shadow-lg transition-all cursor-pointer" onClick={() => navigate("/progress-backup")}>
+            <Card className="hover:shadow-lg transition-all cursor-pointer" onClick={() => navigate("/progress")}>
               <CardHeader>
                 <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mb-3">
                   <TrendingUp className="h-6 w-6 text-blue-500" />
