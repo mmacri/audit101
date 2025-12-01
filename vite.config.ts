@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
   const isGitHubPages = env.GITHUB_PAGES === 'true' || process.env.GITHUB_PAGES === 'true';
   
   return {
-    base: isGitHubPages ? "/cip-audit-ready/" : "/",
+    base: isGitHubPages ? "/audit101/" : "/",
     server: {
       host: "::",
       port: 8080,
