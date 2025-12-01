@@ -1,11 +1,22 @@
+import { useNavigate } from "react-router-dom";
 import { AcademyHero } from "@/components/shared/AcademyHero";
 import { PersonaGrid } from "@/components/shared/PersonaGrid";
 import { AcademyLayout } from "@/components/shared/AcademyLayout";
 import { personas } from "@/data/coso/personas";
-import { Building2, Target, AlertTriangle, MessageSquare, TrendingUp } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Building2, Target, AlertTriangle, MessageSquare, TrendingUp } from "lucide-react";
+import { PageIntro } from "@/components/PageIntro";
 
-const CosoHome = () => {
+export default function CosoHome() {
+  const navigate = useNavigate();
+
+  const handleSelectPersona = (personaId: string) => {
+    const persona = personas.find(p => p.id === personaId);
+    if (persona) {
+      navigate(persona.path);
+    }
+  };
+
   const components = [
     {
       icon: Building2,
@@ -36,28 +47,33 @@ const CosoHome = () => {
 
   return (
     <AcademyLayout
-      title="COSO Framework Academy"
-      description="Master internal controls and enterprise risk management"
+      academyName="COSO Framework Academy"
+      breadcrumbs={[
+        { label: "Academies", path: "/" },
+        { label: "COSO" }
+      ]}
     >
       <AcademyHero
         title="COSO Internal Control Framework Academy"
-        subtitle="Build robust internal control and enterprise risk management programs"
-        description="Master the COSO Internal Control - Integrated Framework with comprehensive training on the five components and seventeen principles of effective internal control."
-        frameworkName="COSO"
-        accentColor="violet"
+        subtitle="Build robust internal control and enterprise risk management programs with comprehensive role-based training."
+        primaryCta="Choose your learning path"
+        primaryAction={() => {
+          const element = document.getElementById('persona-selection');
+          element?.scrollIntoView({ behavior: 'smooth' });
+        }}
+        secondaryCta="View framework guide"
+        secondaryAction={() => navigate('/coso/framework')}
       />
 
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-4">
-            COSO Framework Components
-          </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+      <section className="py-16 bg-background">
+        <div className="container max-w-4xl">
+          <PageIntro>
             The COSO framework provides a comprehensive approach to internal control,
             helping organizations achieve objectives related to operations, reporting, and compliance.
-          </p>
+            Master the five components and seventeen principles of effective internal control.
+          </PageIntro>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mt-8">
             {components.map((component, index) => (
               <Card key={index} className="border-violet-500/20 hover:border-violet-500/40 transition-colors">
                 <CardContent className="pt-6">
@@ -68,12 +84,12 @@ const CosoHome = () => {
               </Card>
             ))}
           </div>
-
-          <PersonaGrid personas={personas} frameworkPath="coso" />
         </div>
       </section>
+
+      <div id="persona-selection">
+        <PersonaGrid personas={personas} onSelectPersona={handleSelectPersona} />
+      </div>
     </AcademyLayout>
   );
-};
-
-export default CosoHome;
+}
