@@ -1,0 +1,86 @@
+export const leadersSteps = [
+  {
+    number: 1,
+    title: "Establish Control Environment and Tone at Top",
+    content: "Set the foundation for internal control through organizational values, ethics, and commitment to integrity. Demonstrate oversight and accountability at all levels.",
+    keyPoints: [
+      "Demonstrate commitment to integrity and ethical values",
+      "Establish board independence and oversight responsibilities",
+      "Define organizational structure and reporting relationships",
+      "Demonstrate commitment to competence and human capital",
+      "Hold individuals accountable for internal control responsibilities",
+    ],
+  },
+  {
+    number: 2,
+    title: "Define Objectives and Risk Appetite",
+    content: "Establish clear organizational objectives aligned with mission and strategy. Define risk appetite and tolerance levels to guide risk assessment and control design.",
+    keyPoints: [
+      "Define strategic, operations, reporting, and compliance objectives",
+      "Establish risk appetite statement and tolerance levels",
+      "Cascade objectives throughout organizational levels",
+      "Align objectives with resource allocation and priorities",
+      "Communicate objectives clearly across the organization",
+    ],
+  },
+  {
+    number: 3,
+    title: "Oversee Enterprise Risk Assessment",
+    content: "Establish risk assessment process identifying and analyzing risks to organizational objectives. Ensure comprehensive risk identification and assessment.",
+    keyPoints: [
+      "Implement enterprise risk assessment methodology",
+      "Identify internal and external risks to objectives",
+      "Assess significance of risks (likelihood and impact)",
+      "Determine risk responses (accept, avoid, reduce, share)",
+      "Assess risk of fraud and consider potential for override",
+    ],
+  },
+  {
+    number: 4,
+    title: "Design and Implement Control System",
+    content: "Establish control activities across the organization to mitigate risks to acceptable levels. Ensure control system supports all five COSO components.",
+    keyPoints: [
+      "Design control activities addressing identified risks",
+      "Deploy general controls over technology supporting control activities",
+      "Establish policies and procedures across the organization",
+      "Implement segregation of duties and authorization frameworks",
+      "Allocate resources to support control implementation",
+    ],
+  },
+  {
+    number: 5,
+    title: "Establish Information and Communication Systems",
+    content: "Ensure quality information flows throughout organization to support internal control. Establish internal and external communication channels.",
+    keyPoints: [
+      "Implement systems providing relevant, quality information",
+      "Establish internal communication channels for control information",
+      "Create external communication mechanisms for stakeholders",
+      "Develop reporting systems for control performance and deficiencies",
+      "Ensure timely communication of control issues to appropriate parties",
+    ],
+  },
+  {
+    number: 6,
+    title: "Implement Monitoring and Oversight",
+    content: "Establish ongoing and separate evaluations to assess control effectiveness. Ensure control deficiencies are identified and remediated timely.",
+    keyPoints: [
+      "Conduct ongoing monitoring of control effectiveness",
+      "Perform periodic separate evaluations (internal audits)",
+      "Establish deficiency evaluation and escalation procedures",
+      "Remediate identified control deficiencies timely",
+      "Communicate control deficiencies to board and management",
+    ],
+  },
+  {
+    number: 7,
+    title: "Report on Internal Control Effectiveness",
+    content: "Assess and report on internal control over financial reporting and operations. Provide management assertions on control effectiveness to stakeholders.",
+    keyPoints: [
+      "Conduct management assessment of internal control effectiveness",
+      "Document assessment methodology and results",
+      "Identify material weaknesses and significant deficiencies",
+      "Provide management assertion on control effectiveness",
+      "Coordinate with external auditors on control reporting requirements",
+    ],
+  },
+];
