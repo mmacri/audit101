@@ -3,10 +3,10 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Home from "./pages/Home";
 import GetStarted from "./pages/GetStarted";
 import Audit101 from "./pages/Audit101";
 import LearningPath from "./pages/LearningPath";
+import AuditJourney from "./pages/AuditJourney";
 import Modules from "./pages/Modules";
 import RoleTraining from "./pages/RoleTraining";
 import RoleTrainingDetail from "./pages/RoleTrainingDetail";
@@ -101,8 +101,8 @@ const App = () => (
       <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
         <Routes>
         <Route path="/" element={<Audit101 />} />
-        <Route path="/nerc-cip" element={<Home />} />
         <Route path="/get-started" element={<GetStarted />} />
+          <Route path="/learning-path" element={<LearningPath />} />
           <Route path="/modules" element={<Modules />} />
           <Route path="/role-training" element={<RoleTraining />} />
           <Route path="/role-training/:roleId" element={<RoleTrainingDetail />} />
@@ -122,6 +122,8 @@ const App = () => (
           <Route path="/soft-skills" element={<SoftSkillsTraining />} />
           <Route path="/scope-matrix" element={<ScopeMatrix />} />
           <Route path="/rsaw-tutorial" element={<RSAWTutorial />} />
+          <Route path="/audit-journey" element={<AuditJourney />} />
+          <Route path="/self-assessment" element={<SelfAssessment />} />
           
           {/* New Academy Routes */}
           <Route path="/academies" element={<AcademyPortfolio />} />
@@ -208,11 +210,7 @@ const App = () => (
           {/* Common Controls Hub */}
           <Route path="/common-controls" element={<CommonControlsHub />} />
           
-          {/* Redirects for consolidated pages */}
-          <Route path="/nerc-cip-101" element={<Navigate to="/modules#module-1" replace />} />
-          <Route path="/audit-journey" element={<Navigate to="/modules#module-10" replace />} />
-          <Route path="/learning-path" element={<Navigate to="/get-started" replace />} />
-          <Route path="/self-assessment" element={<Navigate to="/get-started" replace />} />
+          {/* Redirects */}
           <Route path="/index.html" element={<Navigate to="/" replace />} />
           
           <Route path="*" element={<NotFound />} />
