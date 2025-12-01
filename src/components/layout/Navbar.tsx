@@ -37,6 +37,8 @@ const navGroups: NavGroup[] = [
     icon: BookOpen,
     items: [
       { label: "All Modules", href: "/modules", description: "Full library of 12 training modules" },
+      { label: "Learning Path", href: "/learning-path", description: "Role-based learning tracks" },
+      { label: "Self Assessment", href: "/self-assessment", description: "Evaluate your readiness" },
       { label: "Soft Skills Training", href: "/soft-skills", description: "Audit interview techniques" },
     ],
   },
@@ -72,6 +74,7 @@ const navGroups: NavGroup[] = [
     items: [
       { label: "Evidence Lab", href: "/evidence-lab", description: "Sample artifacts & evidence" },
       { label: "Audit Simulator", href: "/audit-simulator", description: "Practice audit requests" },
+      { label: "Audit Journey Guide", href: "/audit-journey", description: "Timeline & phases walkthrough" },
       { label: "Readiness Plan Builder", href: "/readiness-plan", description: "Create your audit plan" },
       { label: "RSAW Tutorial", href: "/rsaw-tutorial", description: "Audit worksheet guide" },
       { label: "Case Studies", href: "/case-studies", description: "Real-world compliance scenarios" },
