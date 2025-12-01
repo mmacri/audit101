@@ -12,6 +12,7 @@ import { Persona } from "@/components/shared/PersonaGrid";
 import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 import { iso27001PractitionersSteps } from "@/data/iso27001/practitionersSteps";
 import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
+import { PersonaComparison } from "@/components/PersonaComparison";
 
 const iso27001Personas: Persona[] = [
   {
@@ -60,6 +61,109 @@ export default function Iso27001Home() {
       navigate(persona.path);
     }
   };
+
+  const personasWithDetails = [
+    {
+      ...iso27001Personas[0],
+      keyResponsibilities: [
+        "Implement ISMS Annex A controls",
+        "Conduct risk assessments",
+        "Maintain Statement of Applicability",
+        "Execute operational security procedures"
+      ],
+      typicalDay: [
+        "Update risk treatment plans",
+        "Implement security controls",
+        "Document ISMS procedures",
+        "Monitor control effectiveness"
+      ],
+      skills: ["ISMS Implementation", "Risk Assessment", "Control Design", "Documentation"],
+      outcomes: [
+        "Build compliant ISMS",
+        "Pass certification audits",
+        "Maintain ISO 27001 compliance",
+        "Manage ongoing improvements"
+      ],
+      difficulty: "Intermediate" as const,
+      timeCommitment: "7-9 weeks",
+      focus: "ISMS Implementation"
+    },
+    {
+      ...iso27001Personas[1],
+      keyResponsibilities: [
+        "Own technical security systems",
+        "Implement Annex A technical controls",
+        "Provide security SME expertise",
+        "Support certification audits"
+      ],
+      typicalDay: [
+        "Configure security technologies",
+        "Review control implementations",
+        "Support risk assessments",
+        "Validate technical controls"
+      ],
+      skills: ["Security Architecture", "Technical Controls", "System Administration", "Audit Support"],
+      outcomes: [
+        "Deploy compliant systems",
+        "Support certification",
+        "Maintain technical controls",
+        "Provide SME guidance"
+      ],
+      difficulty: "Advanced" as const,
+      timeCommitment: "7-9 weeks",
+      focus: "Technical Security"
+    },
+    {
+      ...iso27001Personas[2],
+      keyResponsibilities: [
+        "Oversee ISMS program",
+        "Secure management commitment",
+        "Manage certification process",
+        "Drive continuous improvement"
+      ],
+      typicalDay: [
+        "Review ISMS performance metrics",
+        "Coordinate with certification body",
+        "Present to management",
+        "Plan strategic initiatives"
+      ],
+      skills: ["Program Leadership", "Management Engagement", "Strategic Planning", "Certification Management"],
+      outcomes: [
+        "Achieve ISO 27001 certification",
+        "Maintain certification",
+        "Drive ISMS maturity",
+        "Demonstrate compliance"
+      ],
+      difficulty: "Advanced" as const,
+      timeCommitment: "5-7 weeks",
+      focus: "ISMS Leadership"
+    },
+    {
+      ...iso27001Personas[3],
+      keyResponsibilities: [
+        "Conduct internal ISMS audits",
+        "Review control effectiveness",
+        "Prepare for certification audits",
+        "Track corrective actions"
+      ],
+      typicalDay: [
+        "Review ISMS documentation",
+        "Test control implementations",
+        "Interview process owners",
+        "Write audit reports"
+      ],
+      skills: ["ISMS Auditing", "Control Assessment", "Evidence Review", "Report Writing"],
+      outcomes: [
+        "Conduct effective internal audits",
+        "Prepare for certification",
+        "Identify improvement areas",
+        "Support surveillance audits"
+      ],
+      difficulty: "Intermediate" as const,
+      timeCommitment: "6-8 weeks",
+      focus: "ISMS Auditing"
+    }
+  ];
 
   return (
     <AcademyLayout
@@ -162,6 +266,13 @@ export default function Iso27001Home() {
           </div>
         </div>
       </section>
+
+      {/* Persona Comparison */}
+      <PersonaComparison 
+        framework="iso-27001"
+        personas={personasWithDetails}
+        totalSteps={totalSteps}
+      />
 
       {/* Personalized Training Path */}
       <FrameworkPersonalizedPath 
