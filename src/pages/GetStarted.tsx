@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
+import { GlobalNav } from "@/components/shared/GlobalNav";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -192,6 +193,7 @@ export default function GetStarted() {
 
   return (
     <Layout>
+      <GlobalNav />
       {/* Hero Section */}
       <section className="gradient-hero py-12 md:py-16">
         <div className="container">

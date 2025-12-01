@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { Layout } from '@/components/layout/Layout';
+import { GlobalNav } from '@/components/shared/GlobalNav';
 import { PageIntro } from '@/components/PageIntro';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -92,6 +93,7 @@ export default function ProgressBackup() {
 
   return (
     <Layout>
+      <GlobalNav />
       <section className="py-12 md:py-16">
         <div className="container">
           <div className="max-w-3xl mx-auto">

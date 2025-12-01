@@ -1,4 +1,5 @@
 import { Layout } from "@/components/layout/Layout";
+import { GlobalNav } from "@/components/shared/GlobalNav";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -250,6 +251,7 @@ const regionalEntities = [
 export default function Resources() {
   return (
     <Layout>
+      <GlobalNav />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/5 to-accent/5 py-16 md:py-20">
         <div className="container">

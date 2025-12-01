@@ -1,4 +1,5 @@
 import { Layout } from "@/components/layout/Layout";
+import { GlobalNav } from "@/components/shared/GlobalNav";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -186,6 +187,7 @@ const sampleRSAWData = {
 export default function RSAWTutorial() {
   return (
     <Layout>
+      <GlobalNav />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-navy via-navy to-primary/20 text-navy-foreground py-16 md:py-20">
         <div className="container">

@@ -1,4 +1,5 @@
 import { Layout } from "@/components/layout/Layout";
+import { GlobalNav } from "@/components/shared/GlobalNav";
 import { Link } from "react-router-dom";
 import { 
   BookOpen, 
@@ -196,6 +197,7 @@ const moduleNames: Record<number, string> = {
 export default function CaseStudies() {
   return (
     <Layout>
+      <GlobalNav />
       {/* Hero */}
       <section className="bg-gradient-to-br from-primary/5 to-accent/5 py-16 md:py-20">
         <div className="container">

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
+import { GlobalNav } from "@/components/shared/GlobalNav";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { 
@@ -209,6 +210,7 @@ export default function AuditSimulator() {
 
   return (
     <Layout>
+      <GlobalNav />
       {/* Hero */}
       <section className="bg-gradient-to-br from-primary/5 to-accent/5 py-16 md:py-20">
         <div className="container">
