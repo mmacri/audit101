@@ -308,7 +308,7 @@ export default function CommonControlsHub() {
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { name: "CIP Readiness Academy", path: "/" },
+              { name: "NERC CIP Readiness Academy", path: "/nerc-cip" },
               { name: "NIST 800-53 Readiness Academy", path: "/nist-800-53" },
               { name: "CIS Controls Readiness Academy", path: "/cis-controls" },
               { name: "NIST CSF Readiness Academy", path: "/nist-csf" },

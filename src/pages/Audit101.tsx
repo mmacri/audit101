@@ -21,7 +21,7 @@ export default function Audit101() {
   const academies = [
     {
       name: "NERC CIP Readiness Academy",
-      path: "/",
+      path: "/nerc-cip",
       icon: Shield,
       color: "bg-blue-500",
       description: "Critical Infrastructure Protection for energy sector organizations",

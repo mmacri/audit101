@@ -63,9 +63,9 @@ const App = () => (
       <Sonner />
       <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
         <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Audit101 />} />
+        <Route path="/nerc-cip" element={<Home />} />
         <Route path="/get-started" element={<GetStarted />} />
-        <Route path="/audit-101" element={<Audit101 />} />
           <Route path="/modules" element={<Modules />} />
           <Route path="/role-training" element={<RoleTraining />} />
           <Route path="/role-training/:roleId" element={<RoleTrainingDetail />} />

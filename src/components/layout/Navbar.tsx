@@ -44,8 +44,7 @@ const navGroups: NavGroup[] = [
     label: "Academies",
     icon: BookMarked,
     items: [
-      { label: "🎯 Audit 101 - Start Here", href: "/audit-101", description: "Central hub for all training paths" },
-      { label: "NERC CIP Academy", href: "/", description: "Power utility compliance training" },
+      { label: "NERC CIP Academy", href: "/nerc-cip", description: "Power utility compliance training" },
       { label: "NIST 800-53 Academy", href: "/nist-800-53", description: "Federal security controls" },
       { label: "CIS Controls Academy", href: "/cis-controls", description: "18 prioritized safeguards" },
       { label: "NIST CSF Academy", href: "/nist-csf", description: "Cybersecurity Framework" },
