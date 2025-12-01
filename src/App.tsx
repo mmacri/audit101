@@ -83,6 +83,13 @@ import CosoResources from "./pages/academies/CosoResources";
 import Iso27001Resources from "./pages/academies/Iso27001Resources";
 import PciDssResources from "./pages/academies/PciDssResources";
 import CommonControlsHub from "./pages/CommonControlsHub";
+import NercCipHome from "./pages/academies/NercCipHome";
+import NercCipPractitioners from "./pages/academies/NercCipPractitioners";
+import NercCipToolOwners from "./pages/academies/NercCipToolOwners";
+import NercCipLeaders from "./pages/academies/NercCipLeaders";
+import NercCipAuditors from "./pages/academies/NercCipAuditors";
+import NercCipResources from "./pages/academies/NercCipResources";
+import NercCip101 from "./pages/NercCip101";
 
 const queryClient = new QueryClient();
 
@@ -187,6 +194,15 @@ const App = () => (
           <Route path="/coso/leaders" element={<CosoLeaders />} />
           <Route path="/coso/auditors" element={<CosoAuditors />} />
           <Route path="/coso/resources" element={<CosoResources />} />
+          
+          {/* NERC CIP */}
+          <Route path="/nerc-cip/home" element={<NercCipHome />} />
+          <Route path="/nerc-cip/practitioners" element={<NercCipPractitioners />} />
+          <Route path="/nerc-cip/tool-owners" element={<NercCipToolOwners />} />
+          <Route path="/nerc-cip/leaders" element={<NercCipLeaders />} />
+          <Route path="/nerc-cip/auditors" element={<NercCipAuditors />} />
+          <Route path="/nerc-cip/resources" element={<NercCipResources />} />
+          <Route path="/nerc-cip-101" element={<NercCip101 />} />
           
           {/* Common Controls Hub */}
           <Route path="/common-controls" element={<CommonControlsHub />} />
