@@ -41,6 +41,7 @@ import CisControlsLeaders from "./pages/academies/CisControlsLeaders";
 import CisControlsAuditors from "./pages/academies/CisControlsAuditors";
 import CisControlsResources from "./pages/academies/CisControlsResources";
 import NistCsfHome from "./pages/academies/NistCsfHome";
+import NistCsfFramework from "./pages/NistCsfFramework";
 import NistCsfPractitioners from "./pages/academies/NistCsfPractitioners";
 import NistCsfToolOwners from "./pages/academies/NistCsfToolOwners";
 import NistCsfLeaders from "./pages/academies/NistCsfLeaders";
@@ -106,6 +107,7 @@ const App = () => (
           
           {/* NIST CSF */}
           <Route path="/nist-csf" element={<NistCsfHome />} />
+          <Route path="/nist-csf/framework" element={<NistCsfFramework />} />
           <Route path="/nist-csf/practitioners" element={<NistCsfPractitioners />} />
           <Route path="/nist-csf/tool-owners" element={<NistCsfToolOwners />} />
           <Route path="/nist-csf/leaders" element={<NistCsfLeaders />} />

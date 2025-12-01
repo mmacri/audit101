@@ -33,8 +33,8 @@ export default function NistCsfHome() {
           const element = document.getElementById('persona-selection');
           element?.scrollIntoView({ behavior: 'smooth' });
         }}
-        secondaryCta="View all resources"
-        secondaryAction={() => navigate('/nist-csf/resources')}
+        secondaryCta="View Framework Guide"
+        secondaryAction={() => navigate('/nist-csf/framework')}
       />
 
       {/* Why It Matters */}

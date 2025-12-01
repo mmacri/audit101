@@ -92,27 +92,30 @@ export default function Audit101() {
     <AcademyLayout
       academyName="Audit 101"
       breadcrumbs={[
-        { label: "Audit 101" }
+        { label: "Audit 101 Dashboard" }
       ]}
     >
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
-        <div className="container max-w-5xl text-center">
-          <Badge className="mb-4 text-lg px-4 py-1">Central Training Hub</Badge>
+        <div className="container max-w-6xl text-center">
+          <Badge className="mb-4 text-lg px-4 py-1">Multi-Framework Training Academy</Badge>
           <h1 className="text-5xl font-bold text-navy mb-6">
-            Audit 101: Your Compliance Training Hub
+            Audit 101: Complete Compliance & Audit Training
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Navigate to the right training path for your role and framework. From NERC CIP to SOX ITGC, 
-            we provide role-specific guidance for practitioners, tool owners, leaders, and auditors.
+          <p className="text-xl text-muted-foreground max-w-4xl mx-auto mb-4">
+            Master audit readiness across multiple frameworks with role-specific learning paths. 
+            Choose your framework, select your role, and follow our proven 7-step methodology.
+          </p>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
+            Whether you're preparing for NERC CIP, NIST CSF, ISO 27001, PCI DSS, HIPAA, COSO, or SOX ITGC compliance—we provide comprehensive training for practitioners, tool owners, leaders, and auditors.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
             <Button size="lg" onClick={() => {
-              const element = document.getElementById('academies');
+              const element = document.getElementById('learning-paths');
               element?.scrollIntoView({ behavior: 'smooth' });
             }}>
               <BookOpen className="mr-2 h-5 w-5" />
-              Explore Academies
+              Start Learning
             </Button>
             <Button size="lg" variant="outline" onClick={() => navigate("/common-controls")}>
               <Network className="mr-2 h-5 w-5" />
@@ -122,15 +125,81 @@ export default function Audit101() {
         </div>
       </section>
 
-      {/* Role Overview */}
+      {/* Learning Approach */}
       <section className="py-16 bg-background">
+        <div className="container max-w-5xl text-center">
+          <h2 className="text-3xl font-bold text-navy mb-4">
+            Two Ways to Learn
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-12">
+            Choose the path that best fits your learning goals
+          </p>
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="text-left hover:shadow-lg transition-all">
+              <CardHeader>
+                <div className="w-12 h-12 rounded-lg bg-blue-500 flex items-center justify-center mb-3">
+                  <Shield className="h-6 w-6 text-white" />
+                </div>
+                <CardTitle className="text-2xl">Framework-Based Learning</CardTitle>
+                <CardDescription className="text-base">
+                  Deep dive into a specific compliance framework
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="mb-4 text-muted-foreground">
+                  Perfect when you need comprehensive knowledge of NERC CIP, NIST CSF, ISO 27001, PCI DSS, HIPAA, COSO, or SOX ITGC.
+                </p>
+                <Button 
+                  variant="outline" 
+                  onClick={() => {
+                    const element = document.getElementById('academies');
+                    element?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                >
+                  View Frameworks <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="text-left hover:shadow-lg transition-all">
+              <CardHeader>
+                <div className="w-12 h-12 rounded-lg bg-purple-500 flex items-center justify-center mb-3">
+                  <Users className="h-6 w-6 text-white" />
+                </div>
+                <CardTitle className="text-2xl">Role-Based Learning</CardTitle>
+                <CardDescription className="text-base">
+                  Learn skills specific to your job function
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="mb-4 text-muted-foreground">
+                  Ideal for developing expertise as an internal auditor, IT/cyber auditor, compliance officer, or risk manager across all frameworks.
+                </p>
+                <Button 
+                  variant="outline"
+                  onClick={() => {
+                    const element = document.getElementById('personas');
+                    element?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                >
+                  View Roles <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Role Overview */}
+      <section id="personas" className="py-16 bg-muted/30">
         <div className="container max-w-6xl">
           <div className="text-center mb-12">
+            <Badge className="mb-4">Role-Based Paths</Badge>
             <h2 className="text-3xl font-bold text-navy mb-4">
               Four Role-Based Learning Paths
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Each academy is tailored to your specific role in the compliance process
+              Each path provides comprehensive training tailored to your specific responsibilities in audit, compliance, and risk management
             </p>
           </div>
 
@@ -159,14 +228,15 @@ export default function Audit101() {
       </section>
 
       {/* Academy Cards */}
-      <section id="academies" className="py-16 bg-muted/30">
+      <section id="academies" className="py-16 bg-background">
         <div className="container max-w-6xl">
           <div className="text-center mb-12">
+            <Badge className="mb-4">Framework Learning Paths</Badge>
             <h2 className="text-3xl font-bold text-navy mb-4">
-              Choose Your Framework Academy
+              Choose Your Compliance Framework
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Select the compliance framework most relevant to your organization
+              Select the framework(s) most relevant to your organization. Each provides complete training with role-specific 7-step learning paths.
             </p>
           </div>
 
