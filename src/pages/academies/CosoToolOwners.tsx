@@ -1,36 +1,19 @@
-import { AcademyLayout } from "@/components/shared/AcademyLayout";
-import { StepSection } from "@/components/shared/StepSection";
+import { PersonaPageWrapper } from "@/components/shared/PersonaPageWrapper";
 import { toolOwnersSteps } from "@/data/coso/toolOwnersSteps";
 
-const CosoToolOwners = () => {
+export default function CosoToolOwners() {
   return (
-    <AcademyLayout
-      academyName="COSO Framework Academy"
+    <PersonaPageWrapper
+      framework="coso"
+      persona="tool-owners"
+      title="COSO for Tool Owners & SMEs"
+      description="Your 7-step path to system controls and IT general controls"
       breadcrumbs={[
-        { label: "Academies", path: "/" },
+        { label: "Audit 101", path: "/" },
         { label: "COSO", path: "/coso" },
-        { label: "Tool Owners & SMEs" }
+        { label: "Tool Owners" }
       ]}
-      showBackButton
-    >
-      <div className="py-12 bg-gradient-to-br from-violet-500/5 to-background">
-        <div className="container max-w-4xl">
-          <h1 className="text-4xl font-bold mb-3">
-            COSO for Tool Owners & SMEs
-          </h1>
-          <p className="text-xl text-muted-foreground mb-8">
-            Your 7-step path to system controls and IT general controls
-          </p>
-          
-          <div className="space-y-8">
-            {toolOwnersSteps.map((step) => (
-              <StepSection key={step.number} step={step} />
-            ))}
-          </div>
-        </div>
-      </div>
-    </AcademyLayout>
+      steps={toolOwnersSteps}
+    />
   );
-};
-
-export default CosoToolOwners;
+}

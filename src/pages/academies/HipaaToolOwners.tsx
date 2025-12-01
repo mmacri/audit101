@@ -1,36 +1,19 @@
-import { AcademyLayout } from "@/components/shared/AcademyLayout";
-import { StepSection } from "@/components/shared/StepSection";
+import { PersonaPageWrapper } from "@/components/shared/PersonaPageWrapper";
 import { toolOwnersSteps } from "@/data/hipaa/toolOwnersSteps";
 
-const HipaaToolOwners = () => {
+export default function HipaaToolOwners() {
   return (
-    <AcademyLayout
-      academyName="HIPAA Readiness Academy"
+    <PersonaPageWrapper
+      framework="hipaa"
+      persona="tool-owners"
+      title="HIPAA for Tool Owners & SMEs"
+      description="Your 7-step path to managing PHI processing systems"
       breadcrumbs={[
-        { label: "Academies", path: "/" },
+        { label: "Audit 101", path: "/" },
         { label: "HIPAA", path: "/hipaa" },
-        { label: "Tool Owners & SMEs" }
+        { label: "Tool Owners" }
       ]}
-      showBackButton
-    >
-      <div className="py-12 bg-gradient-to-br from-emerald-500/5 to-background">
-        <div className="container max-w-4xl">
-          <h1 className="text-4xl font-bold mb-3">
-            HIPAA for Tool Owners & SMEs
-          </h1>
-          <p className="text-xl text-muted-foreground mb-8">
-            Your 7-step path to managing PHI processing systems
-          </p>
-          
-          <div className="space-y-8">
-            {toolOwnersSteps.map((step) => (
-              <StepSection key={step.number} step={step} />
-            ))}
-          </div>
-        </div>
-      </div>
-    </AcademyLayout>
+      steps={toolOwnersSteps}
+    />
   );
-};
-
-export default HipaaToolOwners;
+}
