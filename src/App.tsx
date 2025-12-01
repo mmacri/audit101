@@ -32,10 +32,25 @@ import Nist80053Practitioners from "./pages/academies/Nist80053Practitioners";
 import Nist80053ToolOwners from "./pages/academies/Nist80053ToolOwners";
 import Nist80053Leaders from "./pages/academies/Nist80053Leaders";
 import Nist80053Auditors from "./pages/academies/Nist80053Auditors";
+import Nist80053Resources from "./pages/academies/Nist80053Resources";
 import CisControlsHome from "./pages/academies/CisControlsHome";
 import CisControlsPractitioners from "./pages/academies/CisControlsPractitioners";
+import CisControlsToolOwners from "./pages/academies/CisControlsToolOwners";
+import CisControlsLeaders from "./pages/academies/CisControlsLeaders";
+import CisControlsAuditors from "./pages/academies/CisControlsAuditors";
+import CisControlsResources from "./pages/academies/CisControlsResources";
 import NistCsfHome from "./pages/academies/NistCsfHome";
+import NistCsfPractitioners from "./pages/academies/NistCsfPractitioners";
+import NistCsfToolOwners from "./pages/academies/NistCsfToolOwners";
+import NistCsfLeaders from "./pages/academies/NistCsfLeaders";
+import NistCsfAuditors from "./pages/academies/NistCsfAuditors";
+import NistCsfResources from "./pages/academies/NistCsfResources";
 import SoxItgcHome from "./pages/academies/SoxItgcHome";
+import SoxItgcPractitioners from "./pages/academies/SoxItgcPractitioners";
+import SoxItgcToolOwners from "./pages/academies/SoxItgcToolOwners";
+import SoxItgcLeaders from "./pages/academies/SoxItgcLeaders";
+import SoxItgcAuditors from "./pages/academies/SoxItgcAuditors";
+import SoxItgcResources from "./pages/academies/SoxItgcResources";
 import CommonControlsHub from "./pages/CommonControlsHub";
 
 const queryClient = new QueryClient();
@@ -70,15 +85,40 @@ const App = () => (
           
           {/* New Academy Routes */}
           <Route path="/academies" element={<AcademyPortfolio />} />
+          
+          {/* NIST 800-53 */}
           <Route path="/nist-800-53" element={<Nist80053Home />} />
           <Route path="/nist-800-53/practitioners" element={<Nist80053Practitioners />} />
           <Route path="/nist-800-53/tool-owners" element={<Nist80053ToolOwners />} />
           <Route path="/nist-800-53/leaders" element={<Nist80053Leaders />} />
           <Route path="/nist-800-53/auditors" element={<Nist80053Auditors />} />
+          <Route path="/nist-800-53/resources" element={<Nist80053Resources />} />
+          
+          {/* CIS Controls */}
           <Route path="/cis-controls" element={<CisControlsHome />} />
           <Route path="/cis-controls/practitioners" element={<CisControlsPractitioners />} />
+          <Route path="/cis-controls/tool-owners" element={<CisControlsToolOwners />} />
+          <Route path="/cis-controls/leaders" element={<CisControlsLeaders />} />
+          <Route path="/cis-controls/auditors" element={<CisControlsAuditors />} />
+          <Route path="/cis-controls/resources" element={<CisControlsResources />} />
+          
+          {/* NIST CSF */}
           <Route path="/nist-csf" element={<NistCsfHome />} />
+          <Route path="/nist-csf/practitioners" element={<NistCsfPractitioners />} />
+          <Route path="/nist-csf/tool-owners" element={<NistCsfToolOwners />} />
+          <Route path="/nist-csf/leaders" element={<NistCsfLeaders />} />
+          <Route path="/nist-csf/auditors" element={<NistCsfAuditors />} />
+          <Route path="/nist-csf/resources" element={<NistCsfResources />} />
+          
+          {/* SOX ITGC */}
           <Route path="/sox-itgc" element={<SoxItgcHome />} />
+          <Route path="/sox-itgc/practitioners" element={<SoxItgcPractitioners />} />
+          <Route path="/sox-itgc/tool-owners" element={<SoxItgcToolOwners />} />
+          <Route path="/sox-itgc/leaders" element={<SoxItgcLeaders />} />
+          <Route path="/sox-itgc/auditors" element={<SoxItgcAuditors />} />
+          <Route path="/sox-itgc/resources" element={<SoxItgcResources />} />
+          
+          {/* Common Controls Hub */}
           <Route path="/common-controls" element={<CommonControlsHub />} />
           
           {/* Redirects for consolidated pages */}
