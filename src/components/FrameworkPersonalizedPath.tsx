@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Sparkles, Copy, User } from 'lucide-react';
+import { Progress } from '@/components/ui/progress';
+import { Sparkles, Copy, User, CheckCircle2, Circle, ArrowRight } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import { Framework, Persona, frameworkLabels, personaLabels } from '@/types/frameworkTypes';
+import { useFrameworkProgress } from '@/hooks/useFrameworkProgress';
 
 interface FrameworkPersonalizedPathProps {
   framework: Framework;
@@ -15,6 +17,16 @@ export function FrameworkPersonalizedPath({ framework, personas }: FrameworkPers
   const [selectedPersona, setSelectedPersona] = useState<string>('');
   const [timeHorizon, setTimeHorizon] = useState<string>('');
   const [generatedPlan, setGeneratedPlan] = useState<string>('');
+  
+  // Get progress for the selected persona
+  const progress = useFrameworkProgress(
+    framework, 
+    selectedPersona as any // Cast to match Persona type
+  );
+  
+  const completedSteps = progress.getCurrentProgress().stepsCompleted;
+  const totalSteps = 7; // All frameworks have 7 steps
+  const completionPercentage = Math.round((completedSteps.length / totalSteps) * 100);
 
   const generatePlan = () => {
     if (!selectedPersona || !timeHorizon) {
@@ -35,6 +47,10 @@ export function FrameworkPersonalizedPath({ framework, personas }: FrameworkPers
       day: 'numeric' 
     });
 
+    // Get step completion status
+    const stepStatus = (stepNum: number) => completedSteps.includes(stepNum) ? '✓' : '○';
+    
+    // Build the plan text with progress indicators
     const plan = `
 ═══════════════════════════════════════════════════════════════
 ${frameworkName.toUpperCase()} READINESS TRAINING PLAN
@@ -44,6 +60,7 @@ Generated: ${today}
 Role: ${persona?.title}
 Time Horizon: ${days} Days
 Framework: ${frameworkName}
+Progress: ${completedSteps.length}/${totalSteps} steps completed (${completionPercentage}%)
 
 ───────────────────────────────────────────────────────────────
 YOUR LEARNING PATH
@@ -59,37 +76,37 @@ ${persona?.description}
 
 Complete these steps in order for comprehensive ${frameworkName} readiness:
 
-Step 1: Understand Framework Fundamentals
+${stepStatus(1)} Step 1: Understand Framework Fundamentals ${completedSteps.includes(1) ? '[COMPLETED]' : ''}
   → Learn the structure and requirements of ${frameworkName}
   → Identify how it applies to your organization
   → Review official documentation and guidance
 
-Step 2: Define Your Scope
+${stepStatus(2)} Step 2: Define Your Scope ${completedSteps.includes(2) ? '[COMPLETED]' : ''}
   → Identify systems, processes, and data in scope
   → Document boundaries and dependencies
   → Establish roles and responsibilities
 
-Step 3: Assess Current State
+${stepStatus(3)} Step 3: Assess Current State ${completedSteps.includes(3) ? '[COMPLETED]' : ''}
   → Evaluate existing controls and processes
   → Identify gaps against ${frameworkName} requirements
   → Document evidence and artifacts
 
-Step 4: Build Implementation Plan
+${stepStatus(4)} Step 4: Build Implementation Plan ${completedSteps.includes(4) ? '[COMPLETED]' : ''}
   → Prioritize remediation activities
   → Assign ownership and timelines
   → Develop documentation templates
 
-Step 5: Implement Controls
+${stepStatus(5)} Step 5: Implement Controls ${completedSteps.includes(5) ? '[COMPLETED]' : ''}
   → Deploy technical and administrative controls
   → Train staff on procedures and requirements
   → Test and validate effectiveness
 
-Step 6: Organize Evidence
+${stepStatus(6)} Step 6: Organize Evidence ${completedSteps.includes(6) ? '[COMPLETED]' : ''}
   → Collect and organize compliance evidence
   → Create control documentation
   → Prepare for assessment or audit
 
-Step 7: Prepare for Validation
+${stepStatus(7)} Step 7: Prepare for Validation ${completedSteps.includes(7) ? '[COMPLETED]' : ''}
   → Conduct internal reviews
   → Address findings and gaps
   → Practice audit response procedures
@@ -111,7 +128,7 @@ Week 11-12: Complete Steps 6-7 (Final validation and audit prep)` : ''}
 NEXT ACTIONS THIS WEEK
 ───────────────────────────────────────────────────────────────
 
-1. Begin Step 1: Review ${frameworkName} framework overview
+1. ${completedSteps.includes(1) ? 'Continue to Step 2' : 'Begin Step 1: Review ' + frameworkName + ' framework overview'}
 2. Identify key stakeholders in your organization
 3. Schedule a kickoff meeting with relevant teams
 4. Review available resources and documentation templates
@@ -129,8 +146,10 @@ SUCCESS TIPS
 
 ───────────────────────────────────────────────────────────────
 
-Start your journey today by selecting your role path from the
-options below and following the 7-step structured learning path.
+${completedSteps.length === totalSteps ? 
+  '🎉 CONGRATULATIONS! You have completed all 7 steps!\n\nYou are now ready for audit validation. Review your evidence\nand schedule your assessment.' :
+  'Start your journey today by selecting your role path and\nfollowing the 7-step structured learning path.\n\nYour current progress: ' + completedSteps.length + '/' + totalSteps + ' steps completed'
+}
 
 Generated by Audit101 ${frameworkName} Academy
 ═══════════════════════════════════════════════════════════════
@@ -209,9 +228,53 @@ Generated by Audit101 ${frameworkName} Academy
               </div>
             </div>
 
+            {selectedPersona && (
+              <div className="space-y-3 p-4 bg-muted/50 rounded-lg border border-border/50">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="font-medium text-foreground">Your Current Progress</span>
+                  <span className="text-muted-foreground">
+                    {completedSteps.length} of {totalSteps} steps completed
+                  </span>
+                </div>
+                <Progress value={completionPercentage} className="h-2" />
+                
+                <div className="grid grid-cols-7 gap-2 mt-3">
+                  {[1, 2, 3, 4, 5, 6, 7].map((step) => (
+                    <div
+                      key={step}
+                      className="flex flex-col items-center gap-1.5"
+                    >
+                      {completedSteps.includes(step) ? (
+                        <CheckCircle2 className="h-6 w-6 text-primary" />
+                      ) : (
+                        <Circle className="h-6 w-6 text-muted-foreground/40" />
+                      )}
+                      <span className="text-xs font-medium text-muted-foreground">
+                        Step {step}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                
+                {completedSteps.length < totalSteps && (
+                  <div className="flex items-center gap-2 mt-3 pt-3 border-t border-border/50 text-sm text-primary">
+                    <ArrowRight className="h-4 w-4" />
+                    <span className="font-medium">Next: Complete Step {completedSteps.length + 1}</span>
+                  </div>
+                )}
+                
+                {completedSteps.length === totalSteps && (
+                  <div className="flex items-center gap-2 mt-3 pt-3 border-t border-border/50 text-sm text-green-600">
+                    <CheckCircle2 className="h-4 w-4" />
+                    <span className="font-medium">All steps completed! 🎉</span>
+                  </div>
+                )}
+              </div>
+            )}
+
             <Button onClick={generatePlan} className="w-full" size="lg">
               <Sparkles className="mr-2 h-5 w-5" />
-              Generate My Personalized Plan
+              {generatedPlan ? 'Regenerate Plan' : 'Generate My Personalized Plan'}
             </Button>
 
             {generatedPlan && (
