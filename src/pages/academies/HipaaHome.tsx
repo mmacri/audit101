@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Shield, FileText, Users, Scale } from "lucide-react";
 import { PageIntro } from "@/components/PageIntro";
 import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
+import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
 
 export default function HipaaHome() {
   const navigate = useNavigate();
@@ -122,6 +123,12 @@ export default function HipaaHome() {
           </div>
         </div>
       </section>
+
+      {/* Personalized Training Path */}
+      <FrameworkPersonalizedPath 
+        framework="hipaa" 
+        personas={personas}
+      />
 
       <div id="persona-selection">
         <PersonaGrid personas={personas} onSelectPersona={handleSelectPersona} />

@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { CheckCircle2, Network, BarChart3, Shield } from "lucide-react";
 import { PageIntro } from "@/components/PageIntro";
 import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
+import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
 
 export default function NistCsfHome() {
   const navigate = useNavigate();
@@ -124,6 +125,12 @@ export default function NistCsfHome() {
           </div>
         </div>
       </section>
+
+      {/* Personalized Training Path */}
+      <FrameworkPersonalizedPath 
+        framework="nist-csf" 
+        personas={nistCsfPersonas}
+      />
 
       {/* Persona Selection */}
       <div id="persona-selection">

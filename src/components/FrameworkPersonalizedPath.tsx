@@ -1,0 +1,236 @@
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Sparkles, Copy, User } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
+import { Framework, Persona, frameworkLabels, personaLabels } from '@/types/frameworkTypes';
+
+interface FrameworkPersonalizedPathProps {
+  framework: Framework;
+  personas: Array<{ id: string; title: string; description: string }>;
+}
+
+export function FrameworkPersonalizedPath({ framework, personas }: FrameworkPersonalizedPathProps) {
+  const [selectedPersona, setSelectedPersona] = useState<string>('');
+  const [timeHorizon, setTimeHorizon] = useState<string>('');
+  const [generatedPlan, setGeneratedPlan] = useState<string>('');
+
+  const generatePlan = () => {
+    if (!selectedPersona || !timeHorizon) {
+      toast({
+        title: 'Missing selections',
+        description: 'Please select both a role and time horizon.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    const days = parseInt(timeHorizon);
+    const persona = personas.find(p => p.id === selectedPersona);
+    const frameworkName = frameworkLabels[framework];
+    const today = new Date().toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+
+    const plan = `
+═══════════════════════════════════════════════════════════════
+${frameworkName.toUpperCase()} READINESS TRAINING PLAN
+═══════════════════════════════════════════════════════════════
+
+Generated: ${today}
+Role: ${persona?.title}
+Time Horizon: ${days} Days
+Framework: ${frameworkName}
+
+───────────────────────────────────────────────────────────────
+YOUR LEARNING PATH
+───────────────────────────────────────────────────────────────
+
+As a ${persona?.title}, your ${days}-day training plan focuses on:
+
+${persona?.description}
+
+───────────────────────────────────────────────────────────────
+7-STEP LEARNING JOURNEY
+───────────────────────────────────────────────────────────────
+
+Complete these steps in order for comprehensive ${frameworkName} readiness:
+
+Step 1: Understand Framework Fundamentals
+  → Learn the structure and requirements of ${frameworkName}
+  → Identify how it applies to your organization
+  → Review official documentation and guidance
+
+Step 2: Define Your Scope
+  → Identify systems, processes, and data in scope
+  → Document boundaries and dependencies
+  → Establish roles and responsibilities
+
+Step 3: Assess Current State
+  → Evaluate existing controls and processes
+  → Identify gaps against ${frameworkName} requirements
+  → Document evidence and artifacts
+
+Step 4: Build Implementation Plan
+  → Prioritize remediation activities
+  → Assign ownership and timelines
+  → Develop documentation templates
+
+Step 5: Implement Controls
+  → Deploy technical and administrative controls
+  → Train staff on procedures and requirements
+  → Test and validate effectiveness
+
+Step 6: Organize Evidence
+  → Collect and organize compliance evidence
+  → Create control documentation
+  → Prepare for assessment or audit
+
+Step 7: Prepare for Validation
+  → Conduct internal reviews
+  → Address findings and gaps
+  → Practice audit response procedures
+
+───────────────────────────────────────────────────────────────
+${days}-DAY MILESTONES
+───────────────────────────────────────────────────────────────
+
+${days >= 30 ? `Week 1-2: Complete Steps 1-2 (Framework fundamentals and scope)
+Week 3-4: Complete Step 3 (Current state assessment)` : ''}
+${days >= 60 ? `
+Week 5-6: Complete Step 4 (Implementation planning)
+Week 7-8: Begin Step 5 (Control implementation)` : ''}
+${days >= 90 ? `
+Week 9-10: Complete Step 5 and begin Step 6 (Evidence organization)
+Week 11-12: Complete Steps 6-7 (Final validation and audit prep)` : ''}
+
+───────────────────────────────────────────────────────────────
+NEXT ACTIONS THIS WEEK
+───────────────────────────────────────────────────────────────
+
+1. Begin Step 1: Review ${frameworkName} framework overview
+2. Identify key stakeholders in your organization
+3. Schedule a kickoff meeting with relevant teams
+4. Review available resources and documentation templates
+
+───────────────────────────────────────────────────────────────
+SUCCESS TIPS
+───────────────────────────────────────────────────────────────
+
+• Focus on progress over perfection
+• Complete one step before moving to the next
+• Engage stakeholders early and often
+• Document everything as you go
+• Use practice tools and templates provided
+• Review your progress weekly
+
+───────────────────────────────────────────────────────────────
+
+Start your journey today by selecting your role path from the
+options below and following the 7-step structured learning path.
+
+Generated by Audit101 ${frameworkName} Academy
+═══════════════════════════════════════════════════════════════
+`.trim();
+
+    setGeneratedPlan(plan);
+  };
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(generatedPlan);
+      toast({
+        title: 'Copied!',
+        description: 'Training plan copied to clipboard.',
+      });
+    } catch (err) {
+      toast({
+        title: 'Copy failed',
+        description: 'Please select and copy the text manually.',
+        variant: 'destructive',
+      });
+    }
+  };
+
+  return (
+    <section className="py-16 bg-muted/30">
+      <div className="container max-w-4xl">
+        <Card className="border-primary/20">
+          <CardHeader>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                <Sparkles className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <CardTitle className="text-2xl">Get Your Personalized Training Path</CardTitle>
+                <CardDescription className="text-base mt-1">
+                  Tailored to your {frameworkLabels[framework]} responsibilities
+                </CardDescription>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <label className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
+                  <User className="h-4 w-4 text-primary" />
+                  Select Your Role
+                </label>
+                <Select value={selectedPersona} onValueChange={setSelectedPersona}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Choose your role" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {personas.map((persona) => (
+                      <SelectItem key={persona.id} value={persona.id}>
+                        {persona.title}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <label className="text-sm font-medium text-foreground mb-2 block">
+                  Time Horizon
+                </label>
+                <Select value={timeHorizon} onValueChange={setTimeHorizon}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select timeframe" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="30">30 Days - Quick Start</SelectItem>
+                    <SelectItem value="60">60 Days - Foundation</SelectItem>
+                    <SelectItem value="90">90 Days - Comprehensive</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            <Button onClick={generatePlan} className="w-full" size="lg">
+              <Sparkles className="mr-2 h-5 w-5" />
+              Generate My Personalized Plan
+            </Button>
+
+            {generatedPlan && (
+              <div className="mt-6">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-sm font-semibold text-foreground">Your Personalized Training Plan</span>
+                  <Button variant="outline" size="sm" onClick={copyToClipboard}>
+                    <Copy className="mr-2 h-3 w-3" />
+                    Copy to Clipboard
+                  </Button>
+                </div>
+                <pre className="bg-background rounded-lg p-4 text-xs font-mono overflow-x-auto whitespace-pre-wrap max-h-96 overflow-y-auto border border-border">
+                  {generatedPlan}
+                </pre>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+    </section>
+  );
+}

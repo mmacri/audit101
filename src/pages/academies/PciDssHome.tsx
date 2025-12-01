@@ -11,6 +11,7 @@ import { Wrench, Users as UsersIcon, ClipboardCheck } from "lucide-react";
 import { Persona } from "@/components/shared/PersonaGrid";
 import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 import { pciDssPractitionersSteps } from "@/data/pciDss/practitionersSteps";
+import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
 
 const pciDssPersonas: Persona[] = [
   {
@@ -161,6 +162,12 @@ export default function PciDssHome() {
           </div>
         </div>
       </section>
+
+      {/* Personalized Training Path */}
+      <FrameworkPersonalizedPath 
+        framework="pci-dss" 
+        personas={pciDssPersonas}
+      />
 
       {/* Persona Selection */}
       <div id="persona-selection">

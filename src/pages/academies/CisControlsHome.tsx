@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { CheckCircle2, Target, Layers, TrendingUp } from "lucide-react";
 import { PageIntro } from "@/components/PageIntro";
 import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
+import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
 
 export default function CisControlsHome() {
   const navigate = useNavigate();
@@ -124,6 +125,12 @@ export default function CisControlsHome() {
           </div>
         </div>
       </section>
+
+      {/* Personalized Training Path */}
+      <FrameworkPersonalizedPath 
+        framework="cis-controls" 
+        personas={cisControlsPersonas}
+      />
 
       {/* Persona Selection */}
       <div id="persona-selection">

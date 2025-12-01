@@ -11,6 +11,7 @@ import { Wrench, Users as UsersIcon, ClipboardCheck } from "lucide-react";
 import { Persona } from "@/components/shared/PersonaGrid";
 import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 import { iso27001PractitionersSteps } from "@/data/iso27001/practitionersSteps";
+import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
 
 const iso27001Personas: Persona[] = [
   {
@@ -161,6 +162,12 @@ export default function Iso27001Home() {
           </div>
         </div>
       </section>
+
+      {/* Personalized Training Path */}
+      <FrameworkPersonalizedPath 
+        framework="iso-27001" 
+        personas={iso27001Personas}
+      />
 
       {/* Persona Selection */}
       <div id="persona-selection">
