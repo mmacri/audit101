@@ -1,4 +1,5 @@
 import { AcademyLayout } from "@/components/shared/AcademyLayout";
+import { GlobalNav } from "@/components/shared/GlobalNav";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -132,6 +133,7 @@ export default function Audit101() {
         { label: "Audit 101 Dashboard" }
       ]}
     >
+      <GlobalNav />
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
         <div className="container max-w-6xl text-center">
@@ -147,16 +149,16 @@ export default function Audit101() {
             Whether you're preparing for NERC CIP, NIST CSF, ISO 27001, PCI DSS, HIPAA, COSO, or SOX ITGC compliance—we provide comprehensive training for practitioners, tool owners, leaders, and auditors.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
-            <Button size="lg" onClick={() => {
-              const element = document.getElementById('learning-paths');
+            <Button size="lg" onClick={() => navigate("/progress")}>
+              <TrendingUp className="mr-2 h-5 w-5" />
+              View My Progress
+            </Button>
+            <Button size="lg" variant="outline" onClick={() => {
+              const element = document.getElementById('academies');
               element?.scrollIntoView({ behavior: 'smooth' });
             }}>
               <BookOpen className="mr-2 h-5 w-5" />
-              Start Learning
-            </Button>
-            <Button size="lg" variant="outline" onClick={() => navigate("/common-controls")}>
-              <Network className="mr-2 h-5 w-5" />
-              Common Controls Hub
+              Browse Academies
             </Button>
           </div>
         </div>
@@ -172,6 +174,26 @@ export default function Audit101() {
             Choose the path that best fits your learning goals
           </p>
           <div className="grid md:grid-cols-2 gap-8">
+            <Card className="text-left hover:shadow-lg transition-all">
+              <CardHeader>
+                <div className="w-12 h-12 rounded-lg bg-primary flex items-center justify-center mb-3">
+                  <TrendingUp className="h-6 w-6 text-white" />
+                </div>
+                <CardTitle className="text-2xl">Track Your Progress</CardTitle>
+                <CardDescription className="text-base">
+                  Monitor learning across all frameworks
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="mb-4 text-muted-foreground">
+                  View your completed paths, earned achievements, and personalized recommendations based on your learning activity.
+                </p>
+                <Button onClick={() => navigate("/progress")}>
+                  View Dashboard <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </CardContent>
+            </Card>
+
             <Card className="text-left hover:shadow-lg transition-all">
               <CardHeader>
                 <div className="w-12 h-12 rounded-lg bg-blue-500 flex items-center justify-center mb-3">

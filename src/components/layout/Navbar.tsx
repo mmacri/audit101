@@ -49,6 +49,10 @@ const navGroups: NavGroup[] = [
       { label: "CIS Controls Academy", href: "/cis-controls", description: "18 prioritized safeguards" },
       { label: "NIST CSF Academy", href: "/nist-csf", description: "Cybersecurity Framework" },
       { label: "SOX ITGC Academy", href: "/sox-itgc", description: "Financial IT controls" },
+      { label: "HIPAA Academy", href: "/hipaa", description: "Healthcare compliance" },
+      { label: "COSO Framework", href: "/coso", description: "Internal control framework" },
+      { label: "ISO 27001 Academy", href: "/iso-27001", description: "ISMS certification" },
+      { label: "PCI DSS Academy", href: "/pci-dss", description: "Payment card security" },
       { label: "Common Controls Hub", href: "/common-controls", description: "Cross-framework mapping" },
     ],
   },
@@ -56,6 +60,7 @@ const navGroups: NavGroup[] = [
     label: "My Progress",
     icon: Trophy,
     items: [
+      { label: "Progress Dashboard", href: "/progress", description: "Track learning across frameworks" },
       { label: "Achievements", href: "/achievements", description: "View earned badges" },
       { label: "Final Exam", href: "/final-exam", description: "Earn your certificate" },
       { label: "Progress Backup", href: "/progress-backup", description: "Export/import your data" },
