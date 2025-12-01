@@ -60,6 +60,14 @@ export default function Audit101() {
       personas: ["Practitioners", "Tool Owners", "Leaders", "Auditors"]
     },
     {
+      name: "PCI DSS Readiness Academy",
+      path: "/pci-dss",
+      icon: CreditCard,
+      color: "bg-cyan-500",
+      description: "Payment Card Industry Data Security Standard for cardholder data protection",
+      personas: ["Practitioners", "Tool Owners", "Leaders", "Auditors"]
+    },
+    {
       name: "SOX ITGC Readiness Academy",
       path: "/sox-itgc",
       icon: Users,

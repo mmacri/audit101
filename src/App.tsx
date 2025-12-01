@@ -59,6 +59,12 @@ import Iso27001Practitioners from "./pages/academies/Iso27001Practitioners";
 import Iso27001ToolOwners from "./pages/academies/Iso27001ToolOwners";
 import Iso27001Leaders from "./pages/academies/Iso27001Leaders";
 import Iso27001Auditors from "./pages/academies/Iso27001Auditors";
+import PciDssHome from "./pages/academies/PciDssHome";
+import PciDssFramework from "./pages/PciDssFramework";
+import PciDssPractitioners from "./pages/academies/PciDssPractitioners";
+import PciDssToolOwners from "./pages/academies/PciDssToolOwners";
+import PciDssLeaders from "./pages/academies/PciDssLeaders";
+import PciDssAuditors from "./pages/academies/PciDssAuditors";
 import CommonControlsHub from "./pages/CommonControlsHub";
 
 const queryClient = new QueryClient();
@@ -135,6 +141,14 @@ const App = () => (
           <Route path="/iso-27001/tool-owners" element={<Iso27001ToolOwners />} />
           <Route path="/iso-27001/leaders" element={<Iso27001Leaders />} />
           <Route path="/iso-27001/auditors" element={<Iso27001Auditors />} />
+          
+          {/* PCI DSS */}
+          <Route path="/pci-dss" element={<PciDssHome />} />
+          <Route path="/pci-dss/framework" element={<PciDssFramework />} />
+          <Route path="/pci-dss/practitioners" element={<PciDssPractitioners />} />
+          <Route path="/pci-dss/tool-owners" element={<PciDssToolOwners />} />
+          <Route path="/pci-dss/leaders" element={<PciDssLeaders />} />
+          <Route path="/pci-dss/auditors" element={<PciDssAuditors />} />
           
           {/* Common Controls Hub */}
           <Route path="/common-controls" element={<CommonControlsHub />} />
