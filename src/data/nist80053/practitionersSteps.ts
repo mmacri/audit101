@@ -1,10 +1,23 @@
-import { LearningStep } from "@/components/shared/StepSection";
+import { EnhancedLearningStep } from "@/components/shared/PersonaPageWrapper";
 
-export const nist80053PractitionersSteps: LearningStep[] = [
+export const nist80053PractitionersSteps: EnhancedLearningStep[] = [
   {
     number: 1,
     title: "Understand NIST 800-53 and Your Role",
     description: "Learn the structure of NIST SP 800-53 Rev. 5, including control families (AC, AU, IR, RA, etc.), baselines (Low/Moderate/High), and how practitioners implement technical and operational controls.",
+    duration: "2-3 hours",
+    contentTypes: ['reading', 'video', 'documentation', 'quiz'],
+    learningObjectives: [
+      "Understand the 20 NIST 800-53 control families",
+      "Differentiate between Low, Moderate, and High baselines",
+      "Identify controls applicable to your systems",
+      "Master control structure and enhancements"
+    ],
+    deliverables: [
+      "Control family reference guide",
+      "System baseline determination worksheet",
+      "Role-specific control mapping"
+    ],
     actions: [
       "Review NIST SP 800-53 Rev. 5 overview and the 20 control families",
       "Understand the difference between Low, Moderate, and High baselines",
@@ -26,6 +39,20 @@ export const nist80053PractitionersSteps: LearningStep[] = [
     number: 2,
     title: "System Categorization & Boundary Definition",
     description: "Work with your team to define system boundaries, identify information types, and determine the FIPS 199 impact level that drives your control baseline selection.",
+    duration: "3-4 hours",
+    contentTypes: ['reading', 'interactive', 'template', 'exercise'],
+    learningObjectives: [
+      "Define clear system boundaries and connections",
+      "Conduct FIPS 199 impact categorization",
+      "Document information types and sensitivity",
+      "Map system dependencies and data flows"
+    ],
+    deliverables: [
+      "System boundary diagram",
+      "FIPS 199 categorization worksheet",
+      "Information type inventory",
+      "System authorization boundary document"
+    ],
     actions: [
       "Participate in system boundary definition workshops",
       "Document all system components: servers, databases, networks, applications, cloud services",
@@ -71,6 +98,22 @@ export const nist80053PractitionersSteps: LearningStep[] = [
     number: 4,
     title: "Implement Technical & Operational Controls",
     description: "Configure systems, deploy security tools, and implement procedures to satisfy your assigned controls. Focus on AC, AU, CM, IA, SC, and SI families.",
+    duration: "4-6 hours",
+    contentTypes: ['video', 'interactive', 'exercise', 'documentation'],
+    learningObjectives: [
+      "Implement access control mechanisms (AC family)",
+      "Configure audit logging and monitoring (AU family)",
+      "Establish configuration management processes (CM family)",
+      "Deploy authentication and MFA systems (IA family)",
+      "Implement encryption and boundary protection (SC, SI families)"
+    ],
+    deliverables: [
+      "System configuration checklists",
+      "Access control matrices",
+      "Audit logging configuration",
+      "Security tool deployment guides",
+      "Configuration baseline documentation"
+    ],
     actions: [
       "Access Control (AC): Configure least privilege, role-based access, session controls, remote access protections",
       "Audit & Accountability (AU): Deploy logging infrastructure, configure audit policies, protect log integrity, set up log retention",
@@ -98,6 +141,21 @@ export const nist80053PractitionersSteps: LearningStep[] = [
     number: 5,
     title: "Document Controls & Collect Evidence",
     description: "Create control implementation statements and continuously collect evidence demonstrating that controls are operating effectively.",
+    duration: "3-5 hours",
+    contentTypes: ['documentation', 'template', 'exercise', 'video'],
+    learningObjectives: [
+      "Write clear control implementation descriptions",
+      "Collect and organize compliance evidence",
+      "Maintain System Security Plan (SSP) documentation",
+      "Create evidence repositories and indexes"
+    ],
+    deliverables: [
+      "Control implementation narratives",
+      "Evidence collection procedures",
+      "SSP control descriptions",
+      "Artifact repository structure",
+      "Evidence traceability matrix"
+    ],
     actions: [
       "Write clear control implementation descriptions for each assigned control",
       "Document configuration settings with screenshots and exports",
@@ -124,6 +182,20 @@ export const nist80053PractitionersSteps: LearningStep[] = [
     number: 6,
     title: "Participate in Internal Assessment",
     description: "Support your organization's internal control assessment by providing artifacts, demonstrating controls, and remediating findings.",
+    duration: "2-4 hours",
+    contentTypes: ['exercise', 'case-study', 'documentation', 'quiz'],
+    learningObjectives: [
+      "Prepare for internal control assessments",
+      "Present evidence to assessors effectively",
+      "Understand assessment methodologies",
+      "Respond to findings and implement remediation"
+    ],
+    deliverables: [
+      "Assessment preparation checklist",
+      "Evidence presentation materials",
+      "Remediation action plans",
+      "POA&M documentation"
+    ],
     actions: [
       "Respond to assessor information requests promptly",
       "Demonstrate technical controls during walkthroughs (logging, access controls, encryption, etc.)",
@@ -147,6 +219,21 @@ export const nist80053PractitionersSteps: LearningStep[] = [
     number: 7,
     title: "Continuous Monitoring & Improvement",
     description: "Maintain controls over time through continuous monitoring, ongoing evidence collection, configuration management, and tracking improvements via POA&Ms.",
+    duration: "Ongoing",
+    contentTypes: ['reading', 'interactive', 'template', 'exercise'],
+    learningObjectives: [
+      "Establish continuous monitoring processes",
+      "Track and report control effectiveness metrics",
+      "Manage POA&Ms for identified weaknesses",
+      "Adapt to system changes and security updates"
+    ],
+    deliverables: [
+      "Continuous monitoring plan",
+      "Control effectiveness dashboards",
+      "POA&M tracking system",
+      "Change impact assessments",
+      "Ongoing evidence collection procedures"
+    ],
     actions: [
       "Implement continuous monitoring processes: automated log analysis, vulnerability scanning, configuration drift detection",
       "Track control effectiveness metrics and report them regularly",

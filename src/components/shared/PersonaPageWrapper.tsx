@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { AcademyLayout } from './AcademyLayout';
 import { StepSection, LearningStep } from './StepSection';
+import { InteractiveLearningPath, ContentType } from '@/components/LearningPathVisuals';
 import { Card } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
@@ -9,14 +10,23 @@ import { useFrameworkProgress } from '@/hooks/useFrameworkProgress';
 import { Framework, Persona } from '@/types/frameworkTypes';
 import { useToast } from '@/hooks/use-toast';
 
+// Extended step interface with content metadata
+export interface EnhancedLearningStep extends LearningStep {
+  contentTypes?: ContentType[];
+  duration?: string;
+  learningObjectives?: string[];
+  deliverables?: string[];
+}
+
 interface PersonaPageWrapperProps {
   framework: Framework;
   persona: Persona;
   title: string;
   description: string;
   breadcrumbs: Array<{ label: string; path?: string }>;
-  steps: LearningStep[];
+  steps: EnhancedLearningStep[];
   children?: ReactNode;
+  showInteractivePath?: boolean;
 }
 
 export function PersonaPageWrapper({
@@ -27,6 +37,7 @@ export function PersonaPageWrapper({
   breadcrumbs,
   steps,
   children,
+  showInteractivePath = true,
 }: PersonaPageWrapperProps) {
   const { 
     isStepComplete, 
@@ -35,12 +46,33 @@ export function PersonaPageWrapper({
     getCompletionPercentage,
     markPersonaComplete,
     isPersonaComplete,
+    getCurrentProgress
   } = useFrameworkProgress(framework, persona);
   
   const { toast } = useToast();
   const completionPercentage = getCompletionPercentage(steps.length);
   const allStepsComplete = steps.every(step => isStepComplete(step.number));
   const personaComplete = isPersonaComplete();
+  const completedSteps = getCurrentProgress().stepsCompleted;
+
+  // Convert steps to interactive format
+  const interactiveSteps = steps.map(step => ({
+    stepNumber: step.number,
+    title: step.title,
+    description: step.description,
+    duration: step.duration || '1-2 hours',
+    contentTypes: step.contentTypes || ['reading', 'documentation', 'exercise'] as ContentType[],
+    learningObjectives: step.learningObjectives || [
+      'Understand key concepts and requirements',
+      'Apply knowledge to real-world scenarios',
+      'Build practical skills through exercises'
+    ],
+    deliverables: step.deliverables || [
+      'Documentation templates',
+      'Implementation checklist',
+      'Evidence samples'
+    ]
+  }));
 
   const handleMarkStepComplete = (stepNumber: number) => {
     const isComplete = isStepComplete(stepNumber);
@@ -152,15 +184,28 @@ export function PersonaPageWrapper({
           {/* Children (if any) */}
           {children}
 
-          {/* Steps */}
-          {steps.map((step) => (
-            <StepSection
-              key={step.number}
-              step={step}
-              isCompleted={isStepComplete(step.number)}
-              onMarkComplete={() => handleMarkStepComplete(step.number)}
-            />
-          ))}
+          {/* Interactive Learning Path */}
+          {showInteractivePath && interactiveSteps.length > 0 && (
+            <div className="mb-8">
+              <InteractiveLearningPath 
+                steps={interactiveSteps}
+                completedSteps={completedSteps}
+              />
+            </div>
+          )}
+
+          {/* Traditional Steps View */}
+          <div className="space-y-6">
+            <h2 className="text-2xl font-bold">Detailed Step-by-Step Guide</h2>
+            {steps.map((step) => (
+              <StepSection
+                key={step.number}
+                step={step}
+                isCompleted={isStepComplete(step.number)}
+                onMarkComplete={() => handleMarkStepComplete(step.number)}
+              />
+            ))}
+          </div>
         </div>
       </section>
     </AcademyLayout>
