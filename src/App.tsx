@@ -53,6 +53,12 @@ import SoxItgcToolOwners from "./pages/academies/SoxItgcToolOwners";
 import SoxItgcLeaders from "./pages/academies/SoxItgcLeaders";
 import SoxItgcAuditors from "./pages/academies/SoxItgcAuditors";
 import SoxItgcResources from "./pages/academies/SoxItgcResources";
+import Iso27001Home from "./pages/academies/Iso27001Home";
+import Iso27001Framework from "./pages/Iso27001Framework";
+import Iso27001Practitioners from "./pages/academies/Iso27001Practitioners";
+import Iso27001ToolOwners from "./pages/academies/Iso27001ToolOwners";
+import Iso27001Leaders from "./pages/academies/Iso27001Leaders";
+import Iso27001Auditors from "./pages/academies/Iso27001Auditors";
 import CommonControlsHub from "./pages/CommonControlsHub";
 
 const queryClient = new QueryClient();
@@ -121,6 +127,14 @@ const App = () => (
           <Route path="/sox-itgc/leaders" element={<SoxItgcLeaders />} />
           <Route path="/sox-itgc/auditors" element={<SoxItgcAuditors />} />
           <Route path="/sox-itgc/resources" element={<SoxItgcResources />} />
+          
+          {/* ISO 27001 */}
+          <Route path="/iso-27001" element={<Iso27001Home />} />
+          <Route path="/iso-27001/framework" element={<Iso27001Framework />} />
+          <Route path="/iso-27001/practitioners" element={<Iso27001Practitioners />} />
+          <Route path="/iso-27001/tool-owners" element={<Iso27001ToolOwners />} />
+          <Route path="/iso-27001/leaders" element={<Iso27001Leaders />} />
+          <Route path="/iso-27001/auditors" element={<Iso27001Auditors />} />
           
           {/* Common Controls Hub */}
           <Route path="/common-controls" element={<CommonControlsHub />} />

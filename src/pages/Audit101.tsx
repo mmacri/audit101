@@ -52,6 +52,14 @@ export default function Audit101() {
       personas: ["Practitioners", "Tool Owners", "Leaders", "Auditors"]
     },
     {
+      name: "ISO 27001 Readiness Academy",
+      path: "/iso-27001",
+      icon: Shield,
+      color: "bg-indigo-500",
+      description: "Information Security Management System (ISMS) certification and compliance",
+      personas: ["Practitioners", "Tool Owners", "Leaders", "Auditors"]
+    },
+    {
       name: "SOX ITGC Readiness Academy",
       path: "/sox-itgc",
       icon: Users,
