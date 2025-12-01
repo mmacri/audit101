@@ -7,10 +7,11 @@ import { PersonaProgressCard } from "@/components/shared/PersonaProgressCard";
 import { personas } from "@/data/hipaa/personas";
 import { practitionersSteps } from "@/data/hipaa/practitionersSteps";
 import { Card, CardContent } from "@/components/ui/card";
-import { Shield, FileText, Users, Scale } from "lucide-react";
+import { FileText, Users, Scale, Wrench, Shield, Users as UsersIcon, ClipboardCheck } from "lucide-react";
 import { PageIntro } from "@/components/PageIntro";
 import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
+import { PersonaComparison } from "@/components/PersonaComparison";
 
 export default function HipaaHome() {
   const navigate = useNavigate();
@@ -28,6 +29,109 @@ export default function HipaaHome() {
       navigate(persona.path);
     }
   };
+
+  const personasWithDetails = [
+    {
+      ...personas[0],
+      keyResponsibilities: [
+        "Implement HIPAA Security Rule safeguards",
+        "Protect PHI in systems and applications",
+        "Execute administrative and technical controls",
+        "Maintain physical security measures"
+      ],
+      typicalDay: [
+        "Configure access controls for PHI",
+        "Implement encryption solutions",
+        "Test security systems",
+        "Document safeguard implementations"
+      ],
+      skills: ["Healthcare Security", "PHI Protection", "Safeguard Implementation", "HIPAA Compliance"],
+      outcomes: [
+        "Secure protected health information",
+        "Pass HIPAA assessments",
+        "Prevent data breaches",
+        "Maintain patient trust"
+      ],
+      difficulty: "Intermediate" as const,
+      timeCommitment: "6-8 weeks",
+      focus: "PHI Security Implementation"
+    },
+    {
+      ...personas[1],
+      keyResponsibilities: [
+        "Manage healthcare IT systems",
+        "Own EHR and clinical applications",
+        "Support Business Associate agreements",
+        "Validate technical safeguards"
+      ],
+      typicalDay: [
+        "Monitor healthcare systems",
+        "Review vendor security attestations",
+        "Test disaster recovery",
+        "Support risk assessments"
+      ],
+      skills: ["Healthcare IT", "EHR Management", "Vendor Management", "Technical Safeguards"],
+      outcomes: [
+        "Maintain compliant healthcare systems",
+        "Manage Business Associate risks",
+        "Support breach prevention",
+        "Enable clinical operations"
+      ],
+      difficulty: "Advanced" as const,
+      timeCommitment: "7-9 weeks",
+      focus: "Healthcare Systems Management"
+    },
+    {
+      ...personas[2],
+      keyResponsibilities: [
+        "Oversee HIPAA compliance program",
+        "Manage Privacy and Security Officers",
+        "Coordinate breach response",
+        "Report to healthcare executives"
+      ],
+      typicalDay: [
+        "Review compliance dashboards",
+        "Coordinate with Privacy Officer",
+        "Meet with Business Associates",
+        "Present to leadership"
+      ],
+      skills: ["Program Leadership", "Privacy Management", "Breach Response", "Healthcare Compliance"],
+      outcomes: [
+        "Build enterprise HIPAA program",
+        "Prevent and manage breaches",
+        "Coordinate Privacy/Security",
+        "Maintain patient trust"
+      ],
+      difficulty: "Advanced" as const,
+      timeCommitment: "5-7 weeks",
+      focus: "Program Leadership"
+    },
+    {
+      ...personas[3],
+      keyResponsibilities: [
+        "Conduct HIPAA compliance audits",
+        "Assess Privacy and Security Rules",
+        "Test safeguard effectiveness",
+        "Prepare for HHS audits"
+      ],
+      typicalDay: [
+        "Review risk assessments",
+        "Test PHI access controls",
+        "Interview healthcare staff",
+        "Document audit findings"
+      ],
+      skills: ["HIPAA Auditing", "Privacy Assessment", "Security Testing", "Breach Investigation"],
+      outcomes: [
+        "Conduct effective HIPAA audits",
+        "Identify compliance gaps",
+        "Prepare for HHS reviews",
+        "Support breach prevention"
+      ],
+      difficulty: "Intermediate" as const,
+      timeCommitment: "6-8 weeks",
+      focus: "HIPAA Audit & Assessment"
+    }
+  ];
 
   const frameworks = [
     {
@@ -123,6 +227,13 @@ export default function HipaaHome() {
           </div>
         </div>
       </section>
+
+      {/* Persona Comparison */}
+      <PersonaComparison 
+        framework="hipaa"
+        personas={personasWithDetails}
+        totalSteps={totalSteps}
+      />
 
       {/* Personalized Training Path */}
       <FrameworkPersonalizedPath 

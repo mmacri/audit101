@@ -11,6 +11,8 @@ import { CheckCircle2, Lock, GitBranch, Server } from "lucide-react";
 import { PageIntro } from "@/components/PageIntro";
 import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
+import { PersonaComparison } from "@/components/PersonaComparison";
+import { Wrench, Shield, Users as UsersIcon, ClipboardCheck } from "lucide-react";
 
 export default function SoxItgcHome() {
   const navigate = useNavigate();
@@ -28,6 +30,109 @@ export default function SoxItgcHome() {
       navigate(persona.path);
     }
   };
+
+  const personasWithDetails = [
+    {
+      ...soxItgcPersonas[0],
+      keyResponsibilities: [
+        "Implement ITGC controls for financial systems",
+        "Execute access provisioning and reviews",
+        "Document change management procedures",
+        "Maintain backup and recovery controls"
+      ],
+      typicalDay: [
+        "Process user access requests",
+        "Execute quarterly access reviews",
+        "Document system changes",
+        "Test backup procedures"
+      ],
+      skills: ["ITGC Implementation", "Access Management", "Change Control", "Documentation"],
+      outcomes: [
+        "Maintain SOX-compliant IT controls",
+        "Pass external SOX audits",
+        "Support financial reporting",
+        "Demonstrate control effectiveness"
+      ],
+      difficulty: "Beginner" as const,
+      timeCommitment: "5-7 weeks",
+      focus: "ITGC Operations"
+    },
+    {
+      ...soxItgcPersonas[1],
+      keyResponsibilities: [
+        "Own financial systems and infrastructure",
+        "Manage IAM and ticketing platforms",
+        "Support ITGC control design",
+        "Coordinate with external auditors"
+      ],
+      typicalDay: [
+        "Monitor critical financial systems",
+        "Review access control configurations",
+        "Support SOX testing activities",
+        "Manage system availability"
+      ],
+      skills: ["System Ownership", "IAM Management", "SDLC Controls", "Audit Coordination"],
+      outcomes: [
+        "Maintain compliant financial systems",
+        "Support SOX control testing",
+        "Provide evidence to auditors",
+        "Enable reliable financial reporting"
+      ],
+      difficulty: "Intermediate" as const,
+      timeCommitment: "6-8 weeks",
+      focus: "System & Tool Management"
+    },
+    {
+      ...soxItgcPersonas[2],
+      keyResponsibilities: [
+        "Oversee SOX ITGC program",
+        "Coordinate IT and Finance teams",
+        "Manage external auditor relationships",
+        "Report control status to leadership"
+      ],
+      typicalDay: [
+        "Review SOX compliance dashboards",
+        "Meet with external auditors",
+        "Coordinate control testing",
+        "Present to audit committee"
+      ],
+      skills: ["Program Management", "Cross-Functional Leadership", "Auditor Relations", "SOX Compliance"],
+      outcomes: [
+        "Achieve clean SOX audits",
+        "Coordinate IT/Finance teams",
+        "Manage audit timelines",
+        "Support financial reporting"
+      ],
+      difficulty: "Advanced" as const,
+      timeCommitment: "4-6 weeks",
+      focus: "Program Leadership"
+    },
+    {
+      ...soxItgcPersonas[3],
+      keyResponsibilities: [
+        "Test ITGC control effectiveness",
+        "Prepare for external SOX audits",
+        "Document control testing results",
+        "Track remediation activities"
+      ],
+      typicalDay: [
+        "Test access control samples",
+        "Review change management tickets",
+        "Validate backup procedures",
+        "Document testing results"
+      ],
+      skills: ["SOX Testing", "Control Sampling", "Evidence Review", "Audit Preparation"],
+      outcomes: [
+        "Conduct effective ITGC testing",
+        "Prepare for external audits",
+        "Identify control deficiencies",
+        "Support clean audit opinions"
+      ],
+      difficulty: "Intermediate" as const,
+      timeCommitment: "5-7 weeks",
+      focus: "Testing & Audit Support"
+    }
+  ];
 
   return (
     <AcademyLayout
@@ -125,6 +230,13 @@ export default function SoxItgcHome() {
           </div>
         </div>
       </section>
+
+      {/* Persona Comparison */}
+      <PersonaComparison 
+        framework="sox-itgc"
+        personas={personasWithDetails}
+        totalSteps={totalSteps}
+      />
 
       {/* Personalized Training Path */}
       <FrameworkPersonalizedPath 
