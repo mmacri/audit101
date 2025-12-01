@@ -13,7 +13,11 @@ import {
   BookOpen,
   Target,
   Layers,
-  CreditCard
+  CreditCard,
+  HeartPulse,
+  Building2,
+  Award,
+  TrendingUp
 } from "lucide-react";
 
 export default function Audit101() {
@@ -74,6 +78,22 @@ export default function Audit101() {
       icon: Users,
       color: "bg-rose-500",
       description: "IT General Controls for Sarbanes-Oxley compliance",
+      personas: ["Practitioners", "Tool Owners", "Leaders", "Auditors"]
+    },
+    {
+      name: "HIPAA Readiness Academy",
+      path: "/hipaa",
+      icon: HeartPulse,
+      color: "bg-emerald-500",
+      description: "Healthcare data protection and privacy compliance",
+      personas: ["Practitioners", "Tool Owners", "Leaders", "Auditors"]
+    },
+    {
+      name: "COSO Framework Academy",
+      path: "/coso",
+      icon: Building2,
+      color: "bg-violet-500",
+      description: "Internal controls and enterprise risk management",
       personas: ["Practitioners", "Tool Owners", "Leaders", "Auditors"]
     }
   ];
@@ -319,6 +339,77 @@ export default function Audit101() {
         </div>
       </section>
 
+      {/* Progress Tracking & Achievements */}
+      <section className="py-16 bg-background">
+        <div className="container max-w-6xl">
+          <div className="text-center mb-12">
+            <Badge className="mb-4">Track Your Progress</Badge>
+            <h2 className="text-3xl font-bold text-navy mb-4">
+              Measure Your Learning Journey
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Track progress across frameworks, earn achievements, and download certificates as you complete learning paths
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card className="hover:shadow-lg transition-all cursor-pointer" onClick={() => navigate("/progress-backup")}>
+              <CardHeader>
+                <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mb-3">
+                  <TrendingUp className="h-6 w-6 text-blue-500" />
+                </div>
+                <CardTitle>Progress Dashboard</CardTitle>
+                <CardDescription>
+                  Track completion across all frameworks and learning paths
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button variant="ghost" className="w-full justify-between">
+                  View Progress
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-all cursor-pointer" onClick={() => navigate("/achievements")}>
+              <CardHeader>
+                <div className="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center mb-3">
+                  <Award className="h-6 w-6 text-amber-500" />
+                </div>
+                <CardTitle>Achievements & Badges</CardTitle>
+                <CardDescription>
+                  Earn badges as you complete milestones and modules
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button variant="ghost" className="w-full justify-between">
+                  View Achievements
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-all cursor-pointer" onClick={() => navigate("/certificate")}>
+              <CardHeader>
+                <div className="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center mb-3">
+                  <FileCheck className="h-6 w-6 text-purple-500" />
+                </div>
+                <CardTitle>Certificates</CardTitle>
+                <CardDescription>
+                  Download completion certificates for your training records
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button variant="ghost" className="w-full justify-between">
+                  View Certificates
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Getting Started */}
       <section className="py-16 bg-muted/30">
         <div className="container max-w-4xl">
@@ -367,6 +458,17 @@ export default function Audit101() {
               <CardContent>
                 <CardDescription>
                   Use the Common Controls Hub to understand how controls map across frameworks, reducing duplicate work and centralizing your evidence repository.
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>5. Track Progress & Earn Certificates</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>
+                  Monitor your completion across all learning paths, earn achievement badges, and download certificates to validate your training.
                 </CardDescription>
               </CardContent>
             </Card>

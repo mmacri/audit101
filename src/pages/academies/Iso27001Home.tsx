@@ -65,8 +65,8 @@ export default function Iso27001Home() {
           const element = document.getElementById('persona-selection');
           element?.scrollIntoView({ behavior: 'smooth' });
         }}
-        secondaryCta="View Framework Guide"
-        secondaryAction={() => navigate('/iso-27001/framework')}
+        secondaryCta="View Resources"
+        secondaryAction={() => navigate('/iso-27001/resources')}
       />
 
       {/* Why It Matters */}
