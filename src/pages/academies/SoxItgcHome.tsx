@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { CheckCircle2, Lock, GitBranch, Server } from "lucide-react";
 import { PageIntro } from "@/components/PageIntro";
 import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
+import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
 
 export default function SoxItgcHome() {
   const navigate = useNavigate();
@@ -124,6 +125,12 @@ export default function SoxItgcHome() {
           </div>
         </div>
       </section>
+
+      {/* Personalized Training Path */}
+      <FrameworkPersonalizedPath 
+        framework="sox-itgc" 
+        personas={soxItgcPersonas}
+      />
 
       {/* Persona Selection */}
       <div id="persona-selection">

@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Shield, Zap, AlertTriangle, FileCheck } from "lucide-react";
 import { PageIntro } from "@/components/PageIntro";
 import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
+import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
 
 export default function NercCipHome() {
   const navigate = useNavigate();
@@ -147,6 +148,12 @@ export default function NercCipHome() {
           </div>
         </div>
       </section>
+
+      {/* Personalized Training Path */}
+      <FrameworkPersonalizedPath 
+        framework="nerc-cip" 
+        personas={personas}
+      />
 
       <div id="persona-selection">
         <PersonaGrid personas={personas} onSelectPersona={handleSelectPersona} />

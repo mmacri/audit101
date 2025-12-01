@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { CheckCircle2, BookOpen, FileText, Target } from "lucide-react";
 import { PageIntro } from "@/components/PageIntro";
 import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
+import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
 
 export default function Nist80053Home() {
   const navigate = useNavigate();
@@ -124,6 +125,12 @@ export default function Nist80053Home() {
           </div>
         </div>
       </section>
+
+      {/* Personalized Training Path */}
+      <FrameworkPersonalizedPath 
+        framework="nist-800-53" 
+        personas={nist80053Personas}
+      />
 
       {/* Persona Selection */}
       <div id="persona-selection">

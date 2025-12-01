@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Building2, Target, AlertTriangle, MessageSquare, TrendingUp } from "lucide-react";
 import { PageIntro } from "@/components/PageIntro";
 import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
+import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
 
 export default function CosoHome() {
   const navigate = useNavigate();
@@ -151,6 +152,12 @@ export default function CosoHome() {
           </div>
         </div>
       </section>
+
+      {/* Personalized Training Path */}
+      <FrameworkPersonalizedPath 
+        framework="coso" 
+        personas={personas}
+      />
 
       <div id="persona-selection">
         <PersonaGrid personas={personas} onSelectPersona={handleSelectPersona} />
