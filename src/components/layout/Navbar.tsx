@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { UserRoleBadge } from "@/components/UserRoleBadge";
 import { EnhancedGlobalSearch } from "@/components/EnhancedGlobalSearch";
 import { useUserPreferences, roleLabels, UserRole } from "@/hooks/useUserPreferences";
-import { Menu, X, GraduationCap, ChevronDown, BookOpen, Trophy, FolderOpen, User, Home } from "lucide-react";
+import { Menu, X, GraduationCap, ChevronDown, BookOpen, Trophy, FolderOpen, User, Home, BookMarked } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -38,6 +38,18 @@ const navGroups: NavGroup[] = [
     items: [
       { label: "All Modules", href: "/modules", description: "Full library of 12 training modules" },
       { label: "Soft Skills Training", href: "/soft-skills", description: "Audit interview techniques" },
+    ],
+  },
+  {
+    label: "Academies",
+    icon: BookMarked,
+    items: [
+      { label: "NERC CIP Academy", href: "/", description: "Power utility compliance training" },
+      { label: "NIST 800-53 Academy", href: "/nist-800-53", description: "Federal security controls" },
+      { label: "CIS Controls Academy", href: "/cis-controls", description: "18 prioritized safeguards" },
+      { label: "NIST CSF Academy", href: "/nist-csf", description: "Cybersecurity Framework" },
+      { label: "SOX ITGC Academy", href: "/sox-itgc", description: "Financial IT controls" },
+      { label: "Common Controls Hub", href: "/common-controls", description: "Cross-framework mapping" },
     ],
   },
   {
@@ -138,6 +150,53 @@ export function Navbar() {
                 <DropdownMenuContent align="start" className="w-64">
                   <DropdownMenuLabel className="text-xs text-muted-foreground uppercase tracking-wide">
                     {group.label}
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  {group.items.map((item) => (
+                    <DropdownMenuItem key={item.href} asChild>
+                      <Link
+                        to={item.href}
+                        className={cn(
+                          "flex flex-col items-start gap-0.5 py-2",
+                          location.pathname === item.href && "bg-primary/5"
+                        )}
+                      >
+                        <span className={cn(
+                          "font-medium",
+                          location.pathname === item.href && "text-primary"
+                        )}>
+                          {item.label}
+                        </span>
+                        {item.description && (
+                          <span className="text-xs text-muted-foreground">{item.description}</span>
+                        )}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ))}
+
+            {/* Academies Dropdown */}
+            {navGroups.filter(g => g.label === "Academies").map((group) => (
+              <DropdownMenu key={group.label}>
+                <DropdownMenuTrigger asChild>
+                  <button
+                    className={cn(
+                      "px-3 py-2 text-sm font-medium rounded-lg transition-colors flex items-center gap-1",
+                      isActiveInGroup(group)
+                        ? "text-primary bg-primary/10"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    )}
+                  >
+                    <group.icon className="h-4 w-4" />
+                    {group.label}
+                    <ChevronDown className="h-3 w-3" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-72">
+                  <DropdownMenuLabel className="text-xs text-muted-foreground uppercase tracking-wide">
+                    Framework Academies
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   {group.items.map((item) => (
