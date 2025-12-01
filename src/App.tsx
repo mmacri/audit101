@@ -29,6 +29,13 @@ import NotFound from "./pages/NotFound";
 import AcademyPortfolio from "./pages/AcademyPortfolio";
 import Nist80053Home from "./pages/academies/Nist80053Home";
 import Nist80053Practitioners from "./pages/academies/Nist80053Practitioners";
+import Nist80053ToolOwners from "./pages/academies/Nist80053ToolOwners";
+import Nist80053Leaders from "./pages/academies/Nist80053Leaders";
+import Nist80053Auditors from "./pages/academies/Nist80053Auditors";
+import CisControlsHome from "./pages/academies/CisControlsHome";
+import CisControlsPractitioners from "./pages/academies/CisControlsPractitioners";
+import NistCsfHome from "./pages/academies/NistCsfHome";
+import SoxItgcHome from "./pages/academies/SoxItgcHome";
 import CommonControlsHub from "./pages/CommonControlsHub";
 
 const queryClient = new QueryClient();
@@ -65,6 +72,13 @@ const App = () => (
           <Route path="/academies" element={<AcademyPortfolio />} />
           <Route path="/nist-800-53" element={<Nist80053Home />} />
           <Route path="/nist-800-53/practitioners" element={<Nist80053Practitioners />} />
+          <Route path="/nist-800-53/tool-owners" element={<Nist80053ToolOwners />} />
+          <Route path="/nist-800-53/leaders" element={<Nist80053Leaders />} />
+          <Route path="/nist-800-53/auditors" element={<Nist80053Auditors />} />
+          <Route path="/cis-controls" element={<CisControlsHome />} />
+          <Route path="/cis-controls/practitioners" element={<CisControlsPractitioners />} />
+          <Route path="/nist-csf" element={<NistCsfHome />} />
+          <Route path="/sox-itgc" element={<SoxItgcHome />} />
           <Route path="/common-controls" element={<CommonControlsHub />} />
           
           {/* Redirects for consolidated pages */}
