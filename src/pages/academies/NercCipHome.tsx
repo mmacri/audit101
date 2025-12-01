@@ -11,6 +11,8 @@ import { Shield, Zap, AlertTriangle, FileCheck } from "lucide-react";
 import { PageIntro } from "@/components/PageIntro";
 import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
+import { PersonaComparison } from "@/components/PersonaComparison";
+import { Wrench, Users as UsersIcon, ClipboardCheck } from "lucide-react";
 
 export default function NercCipHome() {
   const navigate = useNavigate();
@@ -29,6 +31,110 @@ export default function NercCipHome() {
       navigate(persona.path);
     }
   };
+
+  // Enhanced persona data for comparison
+  const personasWithDetails = [
+    {
+      ...personas[0],
+      keyResponsibilities: [
+        "Implement technical CIP controls on BES Cyber Systems",
+        "Manage access controls and authentication systems",
+        "Deploy and maintain security monitoring tools",
+        "Execute patch management and vulnerability remediation"
+      ],
+      typicalDay: [
+        "Review security logs and alerts from EACMS",
+        "Apply security patches to critical systems",
+        "Configure firewall rules and network segmentation",
+        "Document control implementations for audit evidence"
+      ],
+      skills: ["System Administration", "Network Security", "Compliance Documentation", "Technical Controls"],
+      outcomes: [
+        "Deploy compliant BES Cyber Systems configurations",
+        "Maintain security baselines and hardening standards",
+        "Respond to security incidents effectively",
+        "Prepare technical evidence for NERC audits"
+      ],
+      difficulty: "Intermediate" as const,
+      timeCommitment: "6-8 weeks",
+      focus: "Hands-on Implementation"
+    },
+    {
+      ...personas[1],
+      keyResponsibilities: [
+        "Own and operate critical systems (EACMS, PACS)",
+        "Ensure system availability and reliability",
+        "Coordinate with IT/OT teams on changes",
+        "Validate control effectiveness"
+      ],
+      typicalDay: [
+        "Monitor system health and performance",
+        "Review change requests for compliance impact",
+        "Test backup and recovery procedures",
+        "Collaborate with auditors on control testing"
+      ],
+      skills: ["System Ownership", "Risk Assessment", "Vendor Management", "Process Design"],
+      outcomes: [
+        "Maintain compliant critical systems",
+        "Design effective control processes",
+        "Manage third-party relationships",
+        "Support audit validation activities"
+      ],
+      difficulty: "Advanced" as const,
+      timeCommitment: "8-10 weeks",
+      focus: "System Operations & SME Support"
+    },
+    {
+      ...personas[2],
+      keyResponsibilities: [
+        "Oversee CIP compliance program strategy",
+        "Allocate resources and manage budgets",
+        "Report to executive leadership and board",
+        "Coordinate with NERC Regional Entities"
+      ],
+      typicalDay: [
+        "Review compliance metrics and dashboards",
+        "Approve remediation plans and timelines",
+        "Meet with senior management on program status",
+        "Strategic planning for future requirements"
+      ],
+      skills: ["Program Management", "Executive Communication", "Risk Management", "Strategic Planning"],
+      outcomes: [
+        "Build enterprise-wide CIP programs",
+        "Communicate risk to executives",
+        "Manage audit relationships",
+        "Drive continuous improvement"
+      ],
+      difficulty: "Advanced" as const,
+      timeCommitment: "4-6 weeks",
+      focus: "Strategic Oversight & Governance"
+    },
+    {
+      ...personas[3],
+      keyResponsibilities: [
+        "Plan and execute internal CIP audits",
+        "Test control effectiveness",
+        "Document findings and recommendations",
+        "Prepare for external NERC audits"
+      ],
+      typicalDay: [
+        "Review control documentation and evidence",
+        "Interview system owners and practitioners",
+        "Test samples of access reviews and patches",
+        "Write audit reports and track remediation"
+      ],
+      skills: ["Audit Planning", "Control Testing", "Evidence Analysis", "Report Writing"],
+      outcomes: [
+        "Conduct effective internal audits",
+        "Identify compliance gaps proactively",
+        "Prepare comprehensive audit evidence",
+        "Support external audit coordination"
+      ],
+      difficulty: "Intermediate" as const,
+      timeCommitment: "5-7 weeks",
+      focus: "Audit & Validation"
+    }
+  ];
 
   const standards = [
     {
@@ -148,6 +254,13 @@ export default function NercCipHome() {
           </div>
         </div>
       </section>
+
+      {/* Persona Comparison */}
+      <PersonaComparison 
+        framework="nerc-cip"
+        personas={personasWithDetails}
+        totalSteps={totalSteps}
+      />
 
       {/* Personalized Training Path */}
       <FrameworkPersonalizedPath 

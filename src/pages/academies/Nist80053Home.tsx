@@ -11,6 +11,8 @@ import { CheckCircle2, BookOpen, FileText, Target } from "lucide-react";
 import { PageIntro } from "@/components/PageIntro";
 import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
+import { PersonaComparison } from "@/components/PersonaComparison";
+import { Wrench, Shield, Users as UsersIcon, ClipboardCheck } from "lucide-react";
 
 export default function Nist80053Home() {
   const navigate = useNavigate();
@@ -28,6 +30,109 @@ export default function Nist80053Home() {
       navigate(persona.path);
     }
   };
+
+  const personasWithDetails = [
+    {
+      ...nist80053Personas[0],
+      keyResponsibilities: [
+        "Implement NIST 800-53 controls across systems",
+        "Configure security tools and infrastructure",
+        "Document System Security Plans (SSPs)",
+        "Execute continuous monitoring activities"
+      ],
+      typicalDay: [
+        "Deploy AC, AU, CM, and IA controls",
+        "Configure SIEM and vulnerability scanners",
+        "Update control documentation",
+        "Test security configurations"
+      ],
+      skills: ["Control Implementation", "System Hardening", "Documentation", "Technical Controls"],
+      outcomes: [
+        "Build compliant federal systems",
+        "Maintain SSPs and POA&Ms",
+        "Pass FedRAMP assessments",
+        "Operate continuous monitoring"
+      ],
+      difficulty: "Intermediate" as const,
+      timeCommitment: "6-8 weeks",
+      focus: "Technical Implementation"
+    },
+    {
+      ...nist80053Personas[1],
+      keyResponsibilities: [
+        "Manage security tools (SIEM, IAM, scanners)",
+        "Map tool capabilities to controls",
+        "Provide technical SME guidance",
+        "Validate control effectiveness"
+      ],
+      typicalDay: [
+        "Configure detection and response tools",
+        "Review security tool outputs",
+        "Support assessment activities",
+        "Optimize tool configurations"
+      ],
+      skills: ["Tool Administration", "Control Mapping", "Technical Analysis", "Process Optimization"],
+      outcomes: [
+        "Operationalize security controls",
+        "Automate compliance evidence",
+        "Support assessments",
+        "Improve security posture"
+      ],
+      difficulty: "Advanced" as const,
+      timeCommitment: "7-9 weeks",
+      focus: "Tools & Automation"
+    },
+    {
+      ...nist80053Personas[2],
+      keyResponsibilities: [
+        "Oversee NIST 800-53 program",
+        "Select and tailor control baselines",
+        "Manage assessment and authorization",
+        "Report to executives and auditors"
+      ],
+      typicalDay: [
+        "Review compliance dashboards",
+        "Make tailoring decisions",
+        "Coordinate with assessors",
+        "Present to leadership"
+      ],
+      skills: ["Program Management", "Risk Management", "Strategic Planning", "Stakeholder Management"],
+      outcomes: [
+        "Build enterprise programs",
+        "Achieve ATO/FedRAMP",
+        "Manage POA&Ms",
+        "Drive improvements"
+      ],
+      difficulty: "Advanced" as const,
+      timeCommitment: "5-7 weeks",
+      focus: "Program Leadership"
+    },
+    {
+      ...nist80053Personas[3],
+      keyResponsibilities: [
+        "Assess control implementations",
+        "Test control effectiveness",
+        "Document assessment findings",
+        "Support external assessments"
+      ],
+      typicalDay: [
+        "Review SSPs and evidence",
+        "Test control samples",
+        "Interview system owners",
+        "Write assessment reports"
+      ],
+      skills: ["Assessment Planning", "Control Testing", "Report Writing", "Risk Analysis"],
+      outcomes: [
+        "Conduct 800-53 assessments",
+        "Prepare for external reviews",
+        "Document SAR findings",
+        "Support ATO process"
+      ],
+      difficulty: "Intermediate" as const,
+      timeCommitment: "6-8 weeks",
+      focus: "Assessment & Validation"
+    }
+  ];
 
   return (
     <AcademyLayout
@@ -125,6 +230,13 @@ export default function Nist80053Home() {
           </div>
         </div>
       </section>
+
+      {/* Persona Comparison */}
+      <PersonaComparison 
+        framework="nist-800-53"
+        personas={personasWithDetails}
+        totalSteps={totalSteps}
+      />
 
       {/* Personalized Training Path */}
       <FrameworkPersonalizedPath 

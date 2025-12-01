@@ -12,6 +12,7 @@ import { Persona } from "@/components/shared/PersonaGrid";
 import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 import { pciDssPractitionersSteps } from "@/data/pciDss/practitionersSteps";
 import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
+import { PersonaComparison } from "@/components/PersonaComparison";
 
 const pciDssPersonas: Persona[] = [
   {
@@ -60,6 +61,109 @@ export default function PciDssHome() {
       navigate(persona.path);
     }
   };
+
+  const personasWithDetails = [
+    {
+      ...pciDssPersonas[0],
+      keyResponsibilities: [
+        "Implement PCI DSS controls in CDE",
+        "Manage cardholder data encryption",
+        "Configure network segmentation",
+        "Monitor security systems and alerts"
+      ],
+      typicalDay: [
+        "Review firewall configurations",
+        "Apply security patches to payment systems",
+        "Monitor IDS/IPS alerts",
+        "Document control implementations"
+      ],
+      skills: ["Payment Security", "Encryption", "Network Security", "Compliance Controls"],
+      outcomes: [
+        "Secure cardholder data environment",
+        "Pass QSA assessments",
+        "Complete SAQ requirements",
+        "Maintain PCI DSS compliance"
+      ],
+      difficulty: "Intermediate" as const,
+      timeCommitment: "5-7 weeks",
+      focus: "CDE Protection"
+    },
+    {
+      ...pciDssPersonas[1],
+      keyResponsibilities: [
+        "Own payment systems and infrastructure",
+        "Manage encryption key lifecycles",
+        "Coordinate vendor compliance",
+        "Validate technical controls"
+      ],
+      typicalDay: [
+        "Monitor payment processing systems",
+        "Review vendor attestations",
+        "Test backup and recovery",
+        "Support quarterly scans"
+      ],
+      skills: ["System Management", "Vendor Relations", "Key Management", "Technical Controls"],
+      outcomes: [
+        "Maintain compliant payment systems",
+        "Manage vendor relationships",
+        "Pass ASV scans",
+        "Support validation activities"
+      ],
+      difficulty: "Advanced" as const,
+      timeCommitment: "6-8 weeks",
+      focus: "System & Vendor Management"
+    },
+    {
+      ...pciDssPersonas[2],
+      keyResponsibilities: [
+        "Oversee PCI DSS compliance program",
+        "Select appropriate SAQ type",
+        "Manage QSA relationships",
+        "Report compliance status"
+      ],
+      typicalDay: [
+        "Review compliance dashboards",
+        "Coordinate with QSAs",
+        "Approve remediation plans",
+        "Present to executives"
+      ],
+      skills: ["Program Leadership", "Risk Management", "Vendor Management", "Executive Communication"],
+      outcomes: [
+        "Achieve annual compliance",
+        "Manage validation process",
+        "Reduce compliance scope",
+        "Drive program improvements"
+      ],
+      difficulty: "Advanced" as const,
+      timeCommitment: "4-6 weeks",
+      focus: "Program Oversight"
+    },
+    {
+      ...pciDssPersonas[3],
+      keyResponsibilities: [
+        "Conduct internal PCI audits",
+        "Test control effectiveness",
+        "Prepare for QSA assessments",
+        "Track remediation activities"
+      ],
+      typicalDay: [
+        "Review cardholder data flows",
+        "Test access controls",
+        "Document evidence",
+        "Write audit findings"
+      ],
+      skills: ["Audit Planning", "Control Testing", "Evidence Management", "Risk Assessment"],
+      outcomes: [
+        "Conduct pre-QSA assessments",
+        "Identify compliance gaps",
+        "Prepare validation evidence",
+        "Support external audits"
+      ],
+      difficulty: "Intermediate" as const,
+      timeCommitment: "5-7 weeks",
+      focus: "Audit & Validation"
+    }
+  ];
 
   return (
     <AcademyLayout
@@ -162,6 +266,13 @@ export default function PciDssHome() {
           </div>
         </div>
       </section>
+
+      {/* Persona Comparison */}
+      <PersonaComparison 
+        framework="pci-dss"
+        personas={personasWithDetails}
+        totalSteps={totalSteps}
+      />
 
       {/* Personalized Training Path */}
       <FrameworkPersonalizedPath 
