@@ -2,13 +2,24 @@ import { useNavigate } from "react-router-dom";
 import { AcademyHero } from "@/components/shared/AcademyHero";
 import { PersonaGrid } from "@/components/shared/PersonaGrid";
 import { AcademyLayout } from "@/components/shared/AcademyLayout";
+import { AcademyNav } from "@/components/shared/AcademyNav";
+import { PersonaProgressCard } from "@/components/shared/PersonaProgressCard";
 import { nistCsfPersonas } from "@/data/nistCsf/personas";
+import { nistCsfPractitionersSteps } from "@/data/nistCsf/practitionersSteps";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2, Network, BarChart3, Shield } from "lucide-react";
 import { PageIntro } from "@/components/PageIntro";
+import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 
 export default function NistCsfHome() {
   const navigate = useNavigate();
+  
+  const practitionerProgress = useFrameworkProgress("nist-csf", "practitioners");
+  const toolOwnerProgress = useFrameworkProgress("nist-csf", "tool-owners");
+  const leaderProgress = useFrameworkProgress("nist-csf", "leaders");
+  const auditorProgress = useFrameworkProgress("nist-csf", "auditors");
+  
+  const totalSteps = nistCsfPractitionersSteps.length;
 
   const handleSelectPersona = (personaId: string) => {
     const persona = nistCsfPersonas.find(p => p.id === personaId);
@@ -25,14 +36,13 @@ export default function NistCsfHome() {
         { label: "NIST CSF" }
       ]}
     >
+      <AcademyNav academyPath="/nist-csf" academyName="NIST CSF" />
+      
       <AcademyHero
         title="NIST Cybersecurity Framework Readiness Academy"
         subtitle="Use NIST CSF to align your cybersecurity activities with business risk and prepare for assessments and reviews."
-        primaryCta="Choose your learning path"
-        primaryAction={() => {
-          const element = document.getElementById('persona-selection');
-          element?.scrollIntoView({ behavior: 'smooth' });
-        }}
+        primaryCta="View my progress"
+        primaryAction={() => navigate('/progress')}
         secondaryCta="View Framework Guide"
         secondaryAction={() => navigate('/nist-csf/framework')}
       />
@@ -84,6 +94,37 @@ export default function NistCsfHome() {
         </div>
       </section>
 
+      {/* Progress Overview */}
+      <section className="py-16 bg-muted/30">
+        <div className="container max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Your Learning Progress</h2>
+            <p className="text-muted-foreground text-lg">
+              Track your progress across all persona learning paths
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {nistCsfPersonas.map((persona, index) => {
+              const progress = [practitionerProgress, toolOwnerProgress, leaderProgress, auditorProgress][index];
+              return (
+                <PersonaProgressCard
+                  key={persona.id}
+                  title={persona.title}
+                  description={persona.description}
+                  icon={persona.icon}
+                  path={persona.path}
+                  completionPercentage={progress.getCompletionPercentage(totalSteps)}
+                  completedSteps={progress.getCurrentProgress().stepsCompleted.length}
+                  totalSteps={totalSteps}
+                  isCompleted={progress.isPersonaComplete()}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Persona Selection */}
       <div id="persona-selection">
         <PersonaGrid
@@ -93,7 +134,7 @@ export default function NistCsfHome() {
       </div>
 
       {/* What You'll Learn */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-16 bg-background">
         <div className="container max-w-4xl">
           <h2 className="text-3xl font-bold text-navy text-center mb-8">
             What You'll Learn

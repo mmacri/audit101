@@ -2,13 +2,24 @@ import { useNavigate } from "react-router-dom";
 import { AcademyHero } from "@/components/shared/AcademyHero";
 import { PersonaGrid } from "@/components/shared/PersonaGrid";
 import { AcademyLayout } from "@/components/shared/AcademyLayout";
+import { AcademyNav } from "@/components/shared/AcademyNav";
+import { PersonaProgressCard } from "@/components/shared/PersonaProgressCard";
 import { personas } from "@/data/coso/personas";
+import { practitionersSteps } from "@/data/coso/practitionersSteps";
 import { Card, CardContent } from "@/components/ui/card";
 import { Building2, Target, AlertTriangle, MessageSquare, TrendingUp } from "lucide-react";
 import { PageIntro } from "@/components/PageIntro";
+import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 
 export default function CosoHome() {
   const navigate = useNavigate();
+  
+  const practitionerProgress = useFrameworkProgress("coso", "practitioners");
+  const toolOwnerProgress = useFrameworkProgress("coso", "tool-owners");
+  const leaderProgress = useFrameworkProgress("coso", "leaders");
+  const auditorProgress = useFrameworkProgress("coso", "auditors");
+  
+  const totalSteps = practitionersSteps.length;
 
   const handleSelectPersona = (personaId: string) => {
     const persona = personas.find(p => p.id === personaId);
@@ -53,14 +64,13 @@ export default function CosoHome() {
         { label: "COSO" }
       ]}
     >
+      <AcademyNav academyPath="/coso" academyName="COSO" />
+      
       <AcademyHero
         title="COSO Internal Control Framework Academy"
         subtitle="Build robust internal control and enterprise risk management programs with comprehensive role-based training."
-        primaryCta="Choose your learning path"
-        primaryAction={() => {
-          const element = document.getElementById('persona-selection');
-          element?.scrollIntoView({ behavior: 'smooth' });
-        }}
+        primaryCta="View my progress"
+        primaryAction={() => navigate('/progress')}
         secondaryCta="View resources"
         secondaryAction={() => navigate('/coso/resources')}
       />
@@ -83,6 +93,61 @@ export default function CosoHome() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Progress Overview */}
+      <section className="py-16 bg-muted/30">
+        <div className="container max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Your Learning Progress</h2>
+            <p className="text-muted-foreground text-lg">
+              Track your progress across all persona learning paths
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <PersonaProgressCard
+              title={personas[0].title}
+              description={personas[0].description}
+              icon={personas[0].icon}
+              path={personas[0].path}
+              completionPercentage={practitionerProgress.getCompletionPercentage(totalSteps)}
+              completedSteps={practitionerProgress.getCurrentProgress().stepsCompleted.length}
+              totalSteps={totalSteps}
+              isCompleted={practitionerProgress.isPersonaComplete()}
+            />
+            <PersonaProgressCard
+              title={personas[1].title}
+              description={personas[1].description}
+              icon={personas[1].icon}
+              path={personas[1].path}
+              completionPercentage={toolOwnerProgress.getCompletionPercentage(totalSteps)}
+              completedSteps={toolOwnerProgress.getCurrentProgress().stepsCompleted.length}
+              totalSteps={totalSteps}
+              isCompleted={toolOwnerProgress.isPersonaComplete()}
+            />
+            <PersonaProgressCard
+              title={personas[2].title}
+              description={personas[2].description}
+              icon={personas[2].icon}
+              path={personas[2].path}
+              completionPercentage={leaderProgress.getCompletionPercentage(totalSteps)}
+              completedSteps={leaderProgress.getCurrentProgress().stepsCompleted.length}
+              totalSteps={totalSteps}
+              isCompleted={leaderProgress.isPersonaComplete()}
+            />
+            <PersonaProgressCard
+              title={personas[3].title}
+              description={personas[3].description}
+              icon={personas[3].icon}
+              path={personas[3].path}
+              completionPercentage={auditorProgress.getCompletionPercentage(totalSteps)}
+              completedSteps={auditorProgress.getCurrentProgress().stepsCompleted.length}
+              totalSteps={totalSteps}
+              isCompleted={auditorProgress.isPersonaComplete()}
+            />
           </div>
         </div>
       </section>

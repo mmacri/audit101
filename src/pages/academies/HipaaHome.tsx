@@ -2,13 +2,24 @@ import { useNavigate } from "react-router-dom";
 import { AcademyHero } from "@/components/shared/AcademyHero";
 import { PersonaGrid } from "@/components/shared/PersonaGrid";
 import { AcademyLayout } from "@/components/shared/AcademyLayout";
+import { AcademyNav } from "@/components/shared/AcademyNav";
+import { PersonaProgressCard } from "@/components/shared/PersonaProgressCard";
 import { personas } from "@/data/hipaa/personas";
+import { practitionersSteps } from "@/data/hipaa/practitionersSteps";
 import { Card, CardContent } from "@/components/ui/card";
 import { Shield, FileText, Users, Scale } from "lucide-react";
 import { PageIntro } from "@/components/PageIntro";
+import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 
 export default function HipaaHome() {
   const navigate = useNavigate();
+
+  const practitionerProgress = useFrameworkProgress("hipaa", "practitioners");
+  const toolOwnerProgress = useFrameworkProgress("hipaa", "tool-owners");
+  const leaderProgress = useFrameworkProgress("hipaa", "leaders");
+  const auditorProgress = useFrameworkProgress("hipaa", "auditors");
+  
+  const totalSteps = practitionersSteps.length;
 
   const handleSelectPersona = (personaId: string) => {
     const persona = personas.find(p => p.id === personaId);
@@ -48,14 +59,13 @@ export default function HipaaHome() {
         { label: "HIPAA" }
       ]}
     >
+      <AcademyNav academyPath="/hipaa" academyName="HIPAA" />
+      
       <AcademyHero
         title="HIPAA Security & Privacy Readiness Academy"
         subtitle="Build comprehensive healthcare data protection and compliance programs with role-specific training paths."
-        primaryCta="Choose your learning path"
-        primaryAction={() => {
-          const element = document.getElementById('persona-selection');
-          element?.scrollIntoView({ behavior: 'smooth' });
-        }}
+        primaryCta="View my progress"
+        primaryAction={() => navigate('/progress')}
         secondaryCta="View resources"
         secondaryAction={() => navigate('/hipaa/resources')}
       />
@@ -78,6 +88,37 @@ export default function HipaaHome() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Progress Overview */}
+      <section className="py-16 bg-muted/30">
+        <div className="container max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Your Learning Progress</h2>
+            <p className="text-muted-foreground text-lg">
+              Track your progress across all persona learning paths
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {personas.map((persona, index) => {
+              const progress = [practitionerProgress, toolOwnerProgress, leaderProgress, auditorProgress][index];
+              return (
+                <PersonaProgressCard
+                  key={persona.id}
+                  title={persona.title}
+                  description={persona.description}
+                  icon={persona.icon}
+                  path={persona.path}
+                  completionPercentage={progress.getCompletionPercentage(totalSteps)}
+                  completedSteps={progress.getCurrentProgress().stepsCompleted.length}
+                  totalSteps={totalSteps}
+                  isCompleted={progress.isPersonaComplete()}
+                />
+              );
+            })}
           </div>
         </div>
       </section>

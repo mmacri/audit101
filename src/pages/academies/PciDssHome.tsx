@@ -2,11 +2,15 @@ import { useNavigate } from "react-router-dom";
 import { AcademyHero } from "@/components/shared/AcademyHero";
 import { PersonaGrid } from "@/components/shared/PersonaGrid";
 import { AcademyLayout } from "@/components/shared/AcademyLayout";
+import { AcademyNav } from "@/components/shared/AcademyNav";
+import { PersonaProgressCard } from "@/components/shared/PersonaProgressCard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2, CreditCard, Shield, Award } from "lucide-react";
 import { PageIntro } from "@/components/PageIntro";
 import { Wrench, Users as UsersIcon, ClipboardCheck } from "lucide-react";
 import { Persona } from "@/components/shared/PersonaGrid";
+import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
+import { pciDssPractitionersSteps } from "@/data/pciDss/practitionersSteps";
 
 const pciDssPersonas: Persona[] = [
   {
@@ -41,6 +45,13 @@ const pciDssPersonas: Persona[] = [
 
 export default function PciDssHome() {
   const navigate = useNavigate();
+  
+  const practitionerProgress = useFrameworkProgress("pci-dss", "practitioners");
+  const toolOwnerProgress = useFrameworkProgress("pci-dss", "tool-owners");
+  const leaderProgress = useFrameworkProgress("pci-dss", "leaders");
+  const auditorProgress = useFrameworkProgress("pci-dss", "auditors");
+  
+  const totalSteps = pciDssPractitionersSteps.length;
 
   const handleSelectPersona = (personaId: string) => {
     const persona = pciDssPersonas.find(p => p.id === personaId);
@@ -57,14 +68,13 @@ export default function PciDssHome() {
         { label: "PCI DSS" }
       ]}
     >
+      <AcademyNav academyPath="/pci-dss" academyName="PCI DSS" />
+      
       <AcademyHero
         title="PCI DSS Payment Card Data Security Academy"
         subtitle="Protect cardholder data and achieve PCI DSS compliance. Master all 12 requirements and prepare for validation through QSA assessments or SAQs."
-        primaryCta="Choose your learning path"
-        primaryAction={() => {
-          const element = document.getElementById('persona-selection');
-          element?.scrollIntoView({ behavior: 'smooth' });
-        }}
+        primaryCta="View my progress"
+        primaryAction={() => navigate('/progress')}
         secondaryCta="View Resources"
         secondaryAction={() => navigate('/pci-dss/resources')}
       />
@@ -121,6 +131,37 @@ export default function PciDssHome() {
         </div>
       </section>
 
+      {/* Progress Overview */}
+      <section className="py-16 bg-muted/30">
+        <div className="container max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Your Learning Progress</h2>
+            <p className="text-muted-foreground text-lg">
+              Track your progress across all persona learning paths
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {pciDssPersonas.map((persona, index) => {
+              const progress = [practitionerProgress, toolOwnerProgress, leaderProgress, auditorProgress][index];
+              return (
+                <PersonaProgressCard
+                  key={persona.id}
+                  title={persona.title}
+                  description={persona.description}
+                  icon={persona.icon}
+                  path={persona.path}
+                  completionPercentage={progress.getCompletionPercentage(totalSteps)}
+                  completedSteps={progress.getCurrentProgress().stepsCompleted.length}
+                  totalSteps={totalSteps}
+                  isCompleted={progress.isPersonaComplete()}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Persona Selection */}
       <div id="persona-selection">
         <PersonaGrid
@@ -130,7 +171,7 @@ export default function PciDssHome() {
       </div>
 
       {/* What You'll Learn */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-16 bg-background">
         <div className="container max-w-4xl">
           <h2 className="text-3xl font-bold text-navy text-center mb-8">
             What You'll Learn

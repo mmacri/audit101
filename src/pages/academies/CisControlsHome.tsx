@@ -2,13 +2,24 @@ import { useNavigate } from "react-router-dom";
 import { AcademyHero } from "@/components/shared/AcademyHero";
 import { PersonaGrid } from "@/components/shared/PersonaGrid";
 import { AcademyLayout } from "@/components/shared/AcademyLayout";
+import { AcademyNav } from "@/components/shared/AcademyNav";
+import { PersonaProgressCard } from "@/components/shared/PersonaProgressCard";
 import { cisControlsPersonas } from "@/data/cisControls/personas";
+import { cisControlsPractitionersSteps } from "@/data/cisControls/practitionersSteps";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2, Target, Layers, TrendingUp } from "lucide-react";
 import { PageIntro } from "@/components/PageIntro";
+import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 
 export default function CisControlsHome() {
   const navigate = useNavigate();
+  
+  const practitionerProgress = useFrameworkProgress("cis-controls", "practitioners");
+  const toolOwnerProgress = useFrameworkProgress("cis-controls", "tool-owners");
+  const leaderProgress = useFrameworkProgress("cis-controls", "leaders");
+  const auditorProgress = useFrameworkProgress("cis-controls", "auditors");
+  
+  const totalSteps = cisControlsPractitionersSteps.length;
 
   const handleSelectPersona = (personaId: string) => {
     const persona = cisControlsPersonas.find(p => p.id === personaId);
@@ -25,14 +36,13 @@ export default function CisControlsHome() {
         { label: "CIS Controls" }
       ]}
     >
+      <AcademyNav academyPath="/cis-controls" academyName="CIS Controls" />
+      
       <AcademyHero
         title="CIS Controls Readiness Academy"
         subtitle="Turn the 18 CIS Controls into a practical, role-based action plan for your cyber defense program."
-        primaryCta="Choose your learning path"
-        primaryAction={() => {
-          const element = document.getElementById('persona-selection');
-          element?.scrollIntoView({ behavior: 'smooth' });
-        }}
+        primaryCta="View my progress"
+        primaryAction={() => navigate('/progress')}
         secondaryCta="View all resources"
         secondaryAction={() => navigate('/cis-controls/resources')}
       />
@@ -84,6 +94,37 @@ export default function CisControlsHome() {
         </div>
       </section>
 
+      {/* Progress Overview */}
+      <section className="py-16 bg-muted/30">
+        <div className="container max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Your Learning Progress</h2>
+            <p className="text-muted-foreground text-lg">
+              Track your progress across all persona learning paths
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {cisControlsPersonas.map((persona, index) => {
+              const progress = [practitionerProgress, toolOwnerProgress, leaderProgress, auditorProgress][index];
+              return (
+                <PersonaProgressCard
+                  key={persona.id}
+                  title={persona.title}
+                  description={persona.description}
+                  icon={persona.icon}
+                  path={persona.path}
+                  completionPercentage={progress.getCompletionPercentage(totalSteps)}
+                  completedSteps={progress.getCurrentProgress().stepsCompleted.length}
+                  totalSteps={totalSteps}
+                  isCompleted={progress.isPersonaComplete()}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Persona Selection */}
       <div id="persona-selection">
         <PersonaGrid
@@ -93,7 +134,7 @@ export default function CisControlsHome() {
       </div>
 
       {/* What You'll Learn */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-16 bg-background">
         <div className="container max-w-4xl">
           <h2 className="text-3xl font-bold text-navy text-center mb-8">
             What You'll Learn

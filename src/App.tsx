@@ -196,6 +196,7 @@ const App = () => (
           <Route path="/coso/resources" element={<CosoResources />} />
           
           {/* NERC CIP */}
+          <Route path="/nerc-cip" element={<NercCipHome />} />
           <Route path="/nerc-cip/home" element={<NercCipHome />} />
           <Route path="/nerc-cip/practitioners" element={<NercCipPractitioners />} />
           <Route path="/nerc-cip/tool-owners" element={<NercCipToolOwners />} />
