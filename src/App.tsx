@@ -26,6 +26,10 @@ import SoftSkillsTraining from "./pages/SoftSkillsTraining";
 import ScopeMatrix from "./pages/ScopeMatrix";
 import RSAWTutorial from "./pages/RSAWTutorial";
 import NotFound from "./pages/NotFound";
+import AcademyPortfolio from "./pages/AcademyPortfolio";
+import Nist80053Home from "./pages/academies/Nist80053Home";
+import Nist80053Practitioners from "./pages/academies/Nist80053Practitioners";
+import CommonControlsHub from "./pages/CommonControlsHub";
 
 const queryClient = new QueryClient();
 
@@ -56,6 +60,12 @@ const App = () => (
           <Route path="/soft-skills" element={<SoftSkillsTraining />} />
           <Route path="/scope-matrix" element={<ScopeMatrix />} />
           <Route path="/rsaw-tutorial" element={<RSAWTutorial />} />
+          
+          {/* New Academy Routes */}
+          <Route path="/academies" element={<AcademyPortfolio />} />
+          <Route path="/nist-800-53" element={<Nist80053Home />} />
+          <Route path="/nist-800-53/practitioners" element={<Nist80053Practitioners />} />
+          <Route path="/common-controls" element={<CommonControlsHub />} />
           
           {/* Redirects for consolidated pages */}
           <Route path="/nerc-cip-101" element={<Navigate to="/modules#module-1" replace />} />
