@@ -12,7 +12,8 @@ import {
   ArrowRight,
   BookOpen,
   Target,
-  Layers
+  Layers,
+  CreditCard
 } from "lucide-react";
 
 export default function Audit101() {
