@@ -86,6 +86,27 @@ export function PersonaPageWrapper({
 
   return (
     <AcademyLayout academyName={title} breadcrumbs={breadcrumbs}>
+      {/* Breadcrumb navigation */}
+      <div className="bg-muted/30 py-3 border-b">
+        <div className="container max-w-4xl">
+          <nav className="flex items-center gap-2 text-sm text-muted-foreground">
+            <a href="/" className="hover:text-primary transition-colors">Home</a>
+            <span>/</span>
+            {breadcrumbs.slice(0, -1).map((crumb, i) => (
+              <span key={i} className="flex items-center gap-2">
+                {crumb.path ? (
+                  <a href={crumb.path} className="hover:text-primary transition-colors">{crumb.label}</a>
+                ) : (
+                  <span>{crumb.label}</span>
+                )}
+                <span>/</span>
+              </span>
+            ))}
+            <span className="text-foreground font-medium">{breadcrumbs[breadcrumbs.length - 1].label}</span>
+          </nav>
+        </div>
+      </div>
+      
       <section className="py-16 bg-background">
         <div className="container max-w-4xl">
           {/* Header */}

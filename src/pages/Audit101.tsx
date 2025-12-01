@@ -137,111 +137,154 @@ export default function Audit101() {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
         <div className="container max-w-6xl text-center">
-          <Badge className="mb-4 text-lg px-4 py-1">Multi-Framework Training Academy</Badge>
+          <Badge className="mb-4 text-lg px-4 py-1">Your Path to Audit Readiness</Badge>
           <h1 className="text-5xl font-bold text-navy mb-6">
-            Audit 101: Complete Compliance & Audit Training
+            Audit101 – Guided Training for Compliance Success
           </h1>
-          <p className="text-xl text-muted-foreground max-w-4xl mx-auto mb-4">
-            Master audit readiness across multiple frameworks with role-specific learning paths. 
-            Choose your framework, select your role, and follow our proven 7-step methodology.
-          </p>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            Whether you're preparing for NERC CIP, NIST CSF, ISO 27001, PCI DSS, HIPAA, COSO, or SOX ITGC compliance—we provide comprehensive training for practitioners, tool owners, leaders, and auditors.
+          <p className="text-xl text-muted-foreground max-w-4xl mx-auto mb-8">
+            Master compliance frameworks and audit readiness with structured, role-specific learning paths. 
+            Choose your framework or role, follow 7 proven steps, and build real-world expertise.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
-            <Button size="lg" onClick={() => navigate("/progress")}>
-              <TrendingUp className="mr-2 h-5 w-5" />
-              View My Progress
-            </Button>
-            <Button size="lg" variant="outline" onClick={() => {
-              const element = document.getElementById('academies');
+            <Button size="lg" onClick={() => {
+              const element = document.getElementById('start-here');
               element?.scrollIntoView({ behavior: 'smooth' });
             }}>
+              <Target className="mr-2 h-5 w-5" />
+              Start Here
+            </Button>
+            <Button size="lg" variant="outline" onClick={() => navigate("/how-it-works")}>
               <BookOpen className="mr-2 h-5 w-5" />
-              Browse Academies
+              How It Works
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Learning Approach */}
-      <section className="py-16 bg-background">
-        <div className="container max-w-5xl text-center">
-          <h2 className="text-3xl font-bold text-navy mb-4">
-            Two Ways to Learn
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-12">
-            Choose the path that best fits your learning goals
-          </p>
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="text-left hover:shadow-lg transition-all">
+      {/* Start Here Section */}
+      <section id="start-here" className="py-16 bg-background">
+        <div className="container max-w-5xl">
+          <div className="text-center mb-12">
+            <Badge className="mb-4">Start Here</Badge>
+            <h2 className="text-3xl font-bold text-navy mb-4">
+              How Audit101 Works
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              A simple 3-step process to master any compliance framework
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <Card className="text-center">
               <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-primary flex items-center justify-center mb-3">
-                  <TrendingUp className="h-6 w-6 text-white" />
+                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl font-bold text-primary">1</span>
                 </div>
-                <CardTitle className="text-2xl">Track Your Progress</CardTitle>
+                <CardTitle className="text-xl">Choose Your Path</CardTitle>
                 <CardDescription className="text-base">
-                  Monitor learning across all frameworks
+                  Select a framework (NERC CIP, ISO 27001, etc.) or choose your role (Auditor, Practitioner, etc.)
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <p className="mb-4 text-muted-foreground">
-                  View your completed paths, earned achievements, and personalized recommendations based on your learning activity.
-                </p>
-                <Button onClick={() => navigate("/progress")}>
-                  View Dashboard <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </CardContent>
             </Card>
 
-            <Card className="text-left hover:shadow-lg transition-all">
+            <Card className="text-center">
               <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-blue-500 flex items-center justify-center mb-3">
-                  <Shield className="h-6 w-6 text-white" />
+                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl font-bold text-primary">2</span>
                 </div>
-                <CardTitle className="text-2xl">Framework-Based Learning</CardTitle>
+                <CardTitle className="text-xl">Follow 7 Steps</CardTitle>
+                <CardDescription className="text-base">
+                  Complete structured learning steps with clear actions, outputs, and knowledge checks
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="text-center">
+              <CardHeader>
+                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl font-bold text-primary">3</span>
+                </div>
+                <CardTitle className="text-xl">Track & Certify</CardTitle>
+                <CardDescription className="text-base">
+                  Monitor progress, earn badges, and download completion certificates
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </div>
+
+          <div className="text-center">
+            <Button size="lg" onClick={() => navigate("/how-it-works")}>
+              Learn More About How It Works
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Two Learning Modes */}
+      <section className="py-16 bg-muted/30">
+        <div className="container max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-navy mb-4">
+              Choose Your Learning Approach
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Learn by framework for deep expertise, or by role for cross-framework skills
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <Card className="hover:shadow-xl transition-all border-2 border-primary/20">
+              <CardHeader>
+                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                  <Shield className="h-7 w-7 text-primary" />
+                </div>
+                <CardTitle className="text-2xl">Learn by Framework</CardTitle>
                 <CardDescription className="text-base">
                   Deep dive into a specific compliance framework
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="mb-4 text-muted-foreground">
-                  Perfect when you need comprehensive knowledge of NERC CIP, NIST CSF, ISO 27001, PCI DSS, HIPAA, COSO, or SOX ITGC.
+                  Perfect when you need comprehensive knowledge of NERC CIP, NIST CSF, ISO 27001, PCI DSS, HIPAA, COSO, or SOX ITGC. 
+                  Each framework offers 4 role-specific paths (Practitioners, Tool Owners, Leaders, Auditors).
                 </p>
                 <Button 
-                  variant="outline" 
+                  className="w-full"
                   onClick={() => {
                     const element = document.getElementById('academies');
                     element?.scrollIntoView({ behavior: 'smooth' });
                   }}
                 >
-                  View Frameworks <ArrowRight className="ml-2 h-4 w-4" />
+                  Browse Frameworks <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </CardContent>
             </Card>
 
-            <Card className="text-left hover:shadow-lg transition-all">
+            <Card className="hover:shadow-xl transition-all border-2 border-secondary/20">
               <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-purple-500 flex items-center justify-center mb-3">
-                  <Users className="h-6 w-6 text-white" />
+                <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center mb-4">
+                  <Users className="h-7 w-7 text-secondary" />
                 </div>
-                <CardTitle className="text-2xl">Role-Based Learning</CardTitle>
+                <CardTitle className="text-2xl">Learn by Role</CardTitle>
                 <CardDescription className="text-base">
-                  Learn skills specific to your job function
+                  Build expertise specific to your job function
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="mb-4 text-muted-foreground">
-                  Ideal for developing expertise as an internal auditor, IT/cyber auditor, compliance officer, or risk manager across all frameworks.
+                  Ideal for developing skills as an internal auditor, IT/cyber auditor, compliance officer, or risk manager 
+                  across all frameworks. Learn once, apply everywhere.
                 </p>
                 <Button 
                   variant="outline"
+                  className="w-full"
                   onClick={() => {
                     const element = document.getElementById('personas');
                     element?.scrollIntoView({ behavior: 'smooth' });
                   }}
                 >
-                  View Roles <ArrowRight className="ml-2 h-4 w-4" />
+                  View All Roles <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </CardContent>
             </Card>
