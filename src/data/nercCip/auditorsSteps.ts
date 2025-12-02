@@ -16,6 +16,18 @@ export const auditorsSteps: LearningStep[] = [
       "Internal audit methodology aligned with NERC approach",
       "Evidence requirement checklists",
     ],
+    contentTypes: ["reading", "documentation", "template"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Master NERC audit methodology and RSAWs",
+      "Understand evidence expectations per standard",
+      "Develop sampling and testing approaches"
+    ],
+    deliverables: [
+      "Annotated RSAWs with notes",
+      "Evidence requirement matrix",
+      "Internal audit methodology document"
+    ]
   },
   {
     number: 2,
@@ -32,6 +44,18 @@ export const auditorsSteps: LearningStep[] = [
       "Sampling plans and test procedures",
       "Testing documentation and results",
     ],
+    contentTypes: ["exercise", "template", "documentation"],
+    duration: "6-7 hours",
+    learningObjectives: [
+      "Audit asset categorization methodology",
+      "Evaluate policy frameworks and governance",
+      "Test personnel and training controls"
+    ],
+    deliverables: [
+      "Audit work programs for CIP-002 through CIP-004",
+      "Test procedures with sampling criteria",
+      "Audit findings and evidence documentation"
+    ]
   },
   {
     number: 3,
@@ -48,6 +72,18 @@ export const auditorsSteps: LearningStep[] = [
       "Technical testing procedures and checklists",
       "Network and system testing results",
     ],
+    contentTypes: ["exercise", "template", "documentation"],
+    duration: "7-8 hours",
+    learningObjectives: [
+      "Validate ESP/PSP boundaries and controls",
+      "Test technical security controls",
+      "Audit system hardening and logging"
+    ],
+    deliverables: [
+      "Technical audit work programs",
+      "Network testing results and diagrams",
+      "System security audit findings"
+    ]
   },
   {
     number: 4,
@@ -64,6 +100,18 @@ export const auditorsSteps: LearningStep[] = [
       "Plan review and testing procedures",
       "Change management audit results",
     ],
+    contentTypes: ["exercise", "template", "documentation"],
+    duration: "6-7 hours",
+    learningObjectives: [
+      "Audit incident response and recovery capabilities",
+      "Evaluate configuration management effectiveness",
+      "Test vulnerability management processes"
+    ],
+    deliverables: [
+      "Incident response audit procedures",
+      "Recovery plan test validation",
+      "Configuration management findings"
+    ]
   },
   {
     number: 5,
@@ -80,6 +128,18 @@ export const auditorsSteps: LearningStep[] = [
       "BCSI and vendor audit procedures",
       "Supply chain risk assessment documentation",
     ],
+    contentTypes: ["exercise", "template", "documentation"],
+    duration: "5-6 hours",
+    learningObjectives: [
+      "Audit BCSI protection controls",
+      "Evaluate supply chain risk management",
+      "Test vendor management processes"
+    ],
+    deliverables: [
+      "BCSI audit procedures and findings",
+      "Supply chain audit work program",
+      "Vendor risk assessment validation"
+    ]
   },
   {
     number: 6,
@@ -96,6 +156,18 @@ export const auditorsSteps: LearningStep[] = [
       "Organized audit work papers and references",
       "Interview notes and walkthrough documentation",
     ],
+    contentTypes: ["exercise", "template", "documentation"],
+    duration: "5-6 hours",
+    learningObjectives: [
+      "Collect comprehensive audit evidence",
+      "Organize evidence systematically",
+      "Document audit activities thoroughly"
+    ],
+    deliverables: [
+      "Complete evidence repository by standard",
+      "Audit work paper package",
+      "Interview and walkthrough documentation"
+    ]
   },
   {
     number: 7,
@@ -112,5 +184,17 @@ export const auditorsSteps: LearningStep[] = [
       "Remediation tracking and continuous monitoring plan",
       "Follow-up audit procedures",
     ],
+    contentTypes: ["template", "exercise", "documentation"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Document clear, actionable audit findings",
+      "Develop effective remediation plans",
+      "Establish continuous monitoring processes"
+    ],
+    deliverables: [
+      "Audit report with findings and recommendations",
+      "Remediation tracking system",
+      "Continuous monitoring procedures"
+    ]
   },
 ];

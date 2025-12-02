@@ -14,6 +14,10 @@ export interface LearningStep {
     url?: string;
     isTemplate?: boolean;
   }>;
+  contentTypes?: Array<'reading' | 'video' | 'exercise' | 'quiz' | 'documentation' | 'interactive' | 'template' | 'case-study'>;
+  duration?: string;
+  learningObjectives?: string[];
+  deliverables?: string[];
 }
 
 interface StepSectionProps {

@@ -16,6 +16,18 @@ export const leadersSteps: LearningStep[] = [
       "Approved cyber security policy suite",
       "Authority and responsibility documentation",
     ],
+    contentTypes: ["reading", "documentation", "template"],
+    duration: "2-3 hours",
+    learningObjectives: [
+      "Understand CIP Senior Manager legal and regulatory accountability",
+      "Establish authority framework for CIP program",
+      "Ensure compliance accountability structure"
+    ],
+    deliverables: [
+      "Signed CIP Senior Manager designation",
+      "Approved policy suite with executive signatures",
+      "Authority delegation documentation"
+    ]
   },
   {
     number: 2,
@@ -32,6 +44,18 @@ export const leadersSteps: LearningStep[] = [
       "Strategic compliance plan and risk register",
       "Compliance roadmap with milestones",
     ],
+    contentTypes: ["reading", "exercise", "template"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Design effective CIP governance structures",
+      "Develop risk-based compliance strategy",
+      "Create multi-year compliance roadmap"
+    ],
+    deliverables: [
+      "Governance charter with committee membership",
+      "Risk-prioritized compliance strategy",
+      "3-year compliance roadmap with milestones"
+    ]
   },
   {
     number: 3,
@@ -48,6 +72,18 @@ export const leadersSteps: LearningStep[] = [
       "Business cases for major initiatives",
       "Resource gap analysis",
     ],
+    contentTypes: ["reading", "template", "exercise"],
+    duration: "3-4 hours",
+    learningObjectives: [
+      "Develop ROI-focused business cases for CIP investments",
+      "Allocate resources across program priorities",
+      "Balance compliance and operational objectives"
+    ],
+    deliverables: [
+      "Annual CIP budget with justifications",
+      "Business cases for major technology investments",
+      "Resource allocation matrix by program area"
+    ]
   },
   {
     number: 4,
@@ -64,6 +100,18 @@ export const leadersSteps: LearningStep[] = [
       "Role descriptions and delegation documentation",
       "Competency framework for CIP roles",
     ],
+    contentTypes: ["reading", "template", "exercise"],
+    duration: "3-4 hours",
+    learningObjectives: [
+      "Design organizational structure for CIP success",
+      "Define clear accountability and ownership",
+      "Establish competency requirements for key roles"
+    ],
+    deliverables: [
+      "CIP organizational chart with reporting lines",
+      "RACI matrix for all CIP standards",
+      "Job descriptions for critical CIP roles"
+    ]
   },
   {
     number: 5,
@@ -80,6 +128,18 @@ export const leadersSteps: LearningStep[] = [
       "Executive dashboard and reporting templates",
       "Performance review documentation",
     ],
+    contentTypes: ["reading", "template", "interactive"],
+    duration: "3-4 hours",
+    learningObjectives: [
+      "Design meaningful CIP performance metrics",
+      "Build executive dashboards for oversight",
+      "Establish data-driven decision processes"
+    ],
+    deliverables: [
+      "CIP KPI framework with targets",
+      "Executive dashboard with key metrics",
+      "Monthly/quarterly reporting templates"
+    ]
   },
   {
     number: 6,
@@ -96,6 +156,18 @@ export const leadersSteps: LearningStep[] = [
       "Stakeholder communication strategy",
       "Mitigation plan tracking",
     ],
+    contentTypes: ["reading", "template", "case-study"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Prepare organization for NERC audits",
+      "Manage Regional Entity relationships effectively",
+      "Coordinate cross-functional audit response"
+    ],
+    deliverables: [
+      "Audit readiness plan with checklists",
+      "Stakeholder communication protocols",
+      "Finding mitigation tracking system"
+    ]
   },
   {
     number: 7,
@@ -112,5 +184,17 @@ export const leadersSteps: LearningStep[] = [
       "Security culture initiatives and recognition programs",
       "Lessons learned documentation",
     ],
+    contentTypes: ["reading", "case-study", "template"],
+    duration: "3-4 hours",
+    learningObjectives: [
+      "Build strong security culture across organization",
+      "Drive continuous program improvement",
+      "Foster accountability and ownership mindset"
+    ],
+    deliverables: [
+      "Security culture assessment and improvement plan",
+      "Recognition program for CIP excellence",
+      "Lessons learned knowledge base"
+    ]
   },
 ];

@@ -18,6 +18,18 @@ export const nist80053LeadersSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Executive NIST 800-53 Overview", isTemplate: true }
+    ],
+    contentTypes: ["reading", "video", "documentation"],
+    duration: "2-3 hours",
+    learningObjectives: [
+      "Understand NIST 800-53 and RMF framework structure",
+      "Define leadership accountability in compliance program",
+      "Align requirements with organizational risk tolerance"
+    ],
+    deliverables: [
+      "Executive summary with program scope",
+      "Leadership accountability matrix",
+      "Risk management approach document"
     ]
   },
   {
@@ -41,6 +53,18 @@ export const nist80053LeadersSteps: LearningStep[] = [
     resources: [
       { title: "Governance Charter Template", isTemplate: true },
       { title: "Control Ownership Matrix", isTemplate: true }
+    ],
+    contentTypes: ["reading", "template", "exercise"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Design effective governance structures",
+      "Assign control ownership with clear accountability",
+      "Establish decision-making and escalation processes"
+    ],
+    deliverables: [
+      "Governance charter with committee structure",
+      "Control ownership assignments",
+      "RACI matrices and approved policies"
     ]
   },
   {
@@ -62,6 +86,18 @@ export const nist80053LeadersSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Control Baseline Approval Template", isTemplate: true }
+    ],
+    contentTypes: ["reading", "template", "exercise"],
+    duration: "3-4 hours",
+    learningObjectives: [
+      "Select appropriate control baselines by system",
+      "Make risk-informed tailoring decisions",
+      "Optimize through common control designation"
+    ],
+    deliverables: [
+      "Control baseline approvals per system",
+      "Tailoring documentation with rationale",
+      "Common control library definition"
     ]
   },
   {
@@ -85,6 +121,18 @@ export const nist80053LeadersSteps: LearningStep[] = [
     resources: [
       { title: "Program Budget Template", isTemplate: true },
       { title: "Implementation Roadmap Template", isTemplate: true }
+    ],
+    contentTypes: ["reading", "template", "exercise"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Develop comprehensive program budget",
+      "Prioritize investments based on risk",
+      "Balance compliance with business objectives"
+    ],
+    deliverables: [
+      "Approved multi-year program budget",
+      "Resource allocation plan",
+      "Prioritized implementation roadmap"
     ]
   },
   {
@@ -108,6 +156,18 @@ export const nist80053LeadersSteps: LearningStep[] = [
     resources: [
       { title: "Executive Dashboard Template", isTemplate: true },
       { title: "Monthly Status Report Template", isTemplate: true }
+    ],
+    contentTypes: ["reading", "template", "interactive"],
+    duration: "3-4 hours",
+    learningObjectives: [
+      "Design meaningful program metrics",
+      "Establish executive oversight processes",
+      "Monitor program health and effectiveness"
+    ],
+    deliverables: [
+      "KPI dashboard with targets",
+      "Monthly/quarterly reporting templates",
+      "POA&M tracking system"
     ]
   },
   {
@@ -130,6 +190,18 @@ export const nist80053LeadersSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Risk Acceptance Template", isTemplate: true }
+    ],
+    contentTypes: ["reading", "template", "exercise"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Oversee assessment activities effectively",
+      "Make informed risk acceptance decisions",
+      "Ensure timely remediation of findings"
+    ],
+    deliverables: [
+      "Assessment approvals and coordination plans",
+      "Risk acceptance documentation",
+      "Approved POA&Ms with timelines"
     ]
   },
   {
@@ -153,6 +225,18 @@ export const nist80053LeadersSteps: LearningStep[] = [
     resources: [
       { title: "Program Maturity Assessment", isTemplate: true },
       { title: "Board Reporting Template", isTemplate: true }
+    ],
+    contentTypes: ["reading", "case-study", "template"],
+    duration: "3-4 hours",
+    learningObjectives: [
+      "Drive continuous program improvement",
+      "Advance program maturity over time",
+      "Champion security culture and awareness"
+    ],
+    deliverables: [
+      "Continuous improvement roadmap",
+      "Board-level reporting package",
+      "Program maturity advancement plan"
     ]
   }
 ];
