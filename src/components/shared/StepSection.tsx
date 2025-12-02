@@ -28,20 +28,38 @@ interface StepSectionProps {
 
 export function StepSection({ step, isCompleted, onMarkComplete }: StepSectionProps) {
   return (
-    <Card className="mb-6" id={`step-${step.number}`}>
+    <Card 
+      className={`mb-6 transition-all duration-300 ${
+        isCompleted ? 'border-primary/50 shadow-md bg-primary/5' : ''
+      }`} 
+      id={`step-${step.number}`}
+    >
+      {/* Completion indicator banner */}
+      {isCompleted && (
+        <div className="bg-gradient-to-r from-primary/10 to-success/10 border-b border-primary/20 px-6 py-2">
+          <div className="flex items-center gap-2 text-sm font-medium text-primary">
+            <CheckCircle2 className="h-4 w-4" />
+            <span>You've completed this step</span>
+          </div>
+        </div>
+      )}
+      
       <CardHeader>
         <div className="flex items-start gap-4">
-          <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold ${
-            isCompleted ? 'bg-success text-success-foreground' : 'bg-primary text-primary-foreground'
+          <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold transition-all duration-300 ${
+            isCompleted 
+              ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/20' 
+              : 'bg-primary/10 text-primary border-2 border-primary/20'
           }`}>
-            {isCompleted ? <CheckCircle2 className="h-6 w-6" /> : step.number}
+            {isCompleted ? <CheckCircle2 className="h-6 w-6 animate-in zoom-in duration-300" /> : step.number}
           </div>
           <div className="flex-1">
             <CardTitle className="text-2xl mb-2 flex items-center gap-2">
               {step.title}
               {isCompleted && (
-                <Badge variant="outline" className="bg-success/10 text-success border-success/20">
-                  Complete
+                <Badge className="bg-success/10 text-success border-success/20 hover:bg-success/20">
+                  <CheckCircle2 className="h-3 w-3 mr-1" />
+                  Completed
                 </Badge>
               )}
             </CardTitle>
@@ -106,13 +124,22 @@ export function StepSection({ step, isCompleted, onMarkComplete }: StepSectionPr
           </div>
         )}
 
-        {/* Mark Complete */}
-        {onMarkComplete && !isCompleted && (
+        {/* Mark Complete / Incomplete */}
+        {onMarkComplete && (
           <div className="pt-4 border-t">
-            <Button onClick={onMarkComplete} variant="outline" className="gap-2">
+            <Button 
+              onClick={onMarkComplete} 
+              variant={isCompleted ? "outline" : "default"}
+              className={`gap-2 ${isCompleted ? '' : 'bg-primary hover:bg-primary/90'}`}
+            >
               <CheckCircle2 className="h-4 w-4" />
-              Mark as Complete
+              {isCompleted ? 'Mark as Incomplete' : 'Mark as Complete'}
             </Button>
+            {!isCompleted && (
+              <p className="text-xs text-muted-foreground mt-2">
+                Click to track your progress through this step
+              </p>
+            )}
           </div>
         )}
       </CardContent>
