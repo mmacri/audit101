@@ -16,6 +16,18 @@ export const practitionersSteps: LearningStep[] = [
       "CIP-002 categorization documentation",
       "EACMS and PACS identification records",
     ],
+    contentTypes: ["reading", "video", "exercise"],
+    duration: "3-4 hours",
+    learningObjectives: [
+      "Master BES Cyber Asset definitions and impact categorization",
+      "Apply CIP-002 methodology to real-world asset inventories",
+      "Identify supporting systems (EACMS, PACS) accurately"
+    ],
+    deliverables: [
+      "Complete asset inventory with High/Medium/Low ratings",
+      "CIP-002 documentation package",
+      "Supporting system identification report"
+    ]
   },
   {
     number: 2,
@@ -32,6 +44,18 @@ export const practitionersSteps: LearningStep[] = [
       "Low-impact BES Cyber System plans",
       "CIP Senior Manager designation documentation",
     ],
+    contentTypes: ["reading", "template", "exercise"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Develop comprehensive CIP-003 security policies",
+      "Implement low-impact system protection plans",
+      "Establish accountability and governance structures"
+    ],
+    deliverables: [
+      "Complete cyber security policy suite",
+      "Low-impact BES protection plans",
+      "Senior manager accountability documentation"
+    ]
   },
   {
     number: 3,
@@ -48,6 +72,18 @@ export const practitionersSteps: LearningStep[] = [
       "Personnel risk assessment documentation",
       "Access revocation procedures and logs",
     ],
+    contentTypes: ["reading", "video", "exercise", "quiz"],
+    duration: "3-4 hours",
+    learningObjectives: [
+      "Conduct effective personnel risk assessments",
+      "Develop and deliver CIP training programs",
+      "Manage access lifecycle within compliance timelines"
+    ],
+    deliverables: [
+      "Personnel risk assessment reports",
+      "Training curriculum with completion tracking",
+      "Access management procedures with audit logs"
+    ]
   },
   {
     number: 4,
@@ -64,6 +100,18 @@ export const practitionersSteps: LearningStep[] = [
       "Access control procedures and logs",
       "Remote access configuration documentation",
     ],
+    contentTypes: ["reading", "exercise", "template"],
+    duration: "5-6 hours",
+    learningObjectives: [
+      "Design and document ESP boundaries and protections",
+      "Implement PSP controls with monitoring capabilities",
+      "Deploy secure remote access with MFA"
+    ],
+    deliverables: [
+      "ESP/PSP architecture diagrams and documentation",
+      "Access control implementation with logging",
+      "Remote access security configuration"
+    ]
   },
   {
     number: 5,
@@ -80,6 +128,18 @@ export const practitionersSteps: LearningStep[] = [
       "Patch management records and security event logs",
       "Malware protection configuration evidence",
     ],
+    contentTypes: ["reading", "exercise", "template"],
+    duration: "6-7 hours",
+    learningObjectives: [
+      "Establish secure system baselines and hardening",
+      "Implement compliant patch management processes",
+      "Deploy malware protection and security logging"
+    ],
+    deliverables: [
+      "System baseline documentation with ports/services inventory",
+      "Patch management tracking with 35-day compliance",
+      "Malware protection and logging configuration"
+    ]
   },
   {
     number: 6,
@@ -96,6 +156,18 @@ export const practitionersSteps: LearningStep[] = [
       "Test and drill documentation",
       "ES-ISAC reporting procedures",
     ],
+    contentTypes: ["reading", "exercise", "template"],
+    duration: "5-6 hours",
+    learningObjectives: [
+      "Develop CIP-compliant incident response plans",
+      "Execute and document incident response drills",
+      "Establish and test recovery capabilities"
+    ],
+    deliverables: [
+      "Incident response plan with ES-ISAC reporting",
+      "Annual drill documentation and lessons learned",
+      "Recovery plan with test results"
+    ]
   },
   {
     number: 7,
@@ -112,5 +184,17 @@ export const practitionersSteps: LearningStep[] = [
       "Vulnerability assessment reports",
       "BCSI protection procedures and supply chain plans",
     ],
+    contentTypes: ["reading", "exercise", "template", "quiz"],
+    duration: "6-8 hours",
+    learningObjectives: [
+      "Establish configuration management and change control",
+      "Conduct vulnerability assessments within compliance timelines",
+      "Protect BCSI and manage supply chain risks"
+    ],
+    deliverables: [
+      "Configuration baselines with change management process",
+      "15-month vulnerability assessment schedule and reports",
+      "BCSI classification and supply chain risk management plan"
+    ]
   },
 ];

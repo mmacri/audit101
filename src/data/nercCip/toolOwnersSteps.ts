@@ -16,6 +16,18 @@ export const toolOwnersSteps: LearningStep[] = [
       "System architecture diagrams",
       "Ownership and responsibility documentation",
     ],
+    contentTypes: ["reading", "exercise", "documentation"],
+    duration: "2-3 hours",
+    learningObjectives: [
+      "Identify and classify EACMS/PACS systems accurately",
+      "Understand CIP requirements specific to supporting systems",
+      "Document system architecture and boundaries"
+    ],
+    deliverables: [
+      "Complete EACMS/PACS system inventory",
+      "System architecture diagrams with dependencies",
+      "CIP applicability analysis for each system"
+    ]
   },
   {
     number: 2,
@@ -32,6 +44,18 @@ export const toolOwnersSteps: LearningStep[] = [
       "Authentication and logging setup records",
       "Role definitions and permission matrices",
     ],
+    contentTypes: ["exercise", "template", "documentation"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Configure secure access control for supporting systems",
+      "Implement MFA per CIP requirements",
+      "Establish comprehensive audit logging"
+    ],
+    deliverables: [
+      "Access control configuration with RBAC mappings",
+      "MFA implementation documentation",
+      "Logging configuration and retention settings"
+    ]
   },
   {
     number: 3,
@@ -48,6 +72,18 @@ export const toolOwnersSteps: LearningStep[] = [
       "Change management procedure for your systems",
       "Change approval and testing records",
     ],
+    contentTypes: ["exercise", "template", "documentation"],
+    duration: "3-4 hours",
+    learningObjectives: [
+      "Establish configuration baselines",
+      "Integrate with enterprise change management",
+      "Implement change testing and validation"
+    ],
+    deliverables: [
+      "Configuration baselines with version control",
+      "Change management procedures",
+      "Change ticket templates and workflows"
+    ]
   },
   {
     number: 4,
@@ -64,6 +100,18 @@ export const toolOwnersSteps: LearningStep[] = [
       "Security event alerting procedures",
       "Log retention and review documentation",
     ],
+    contentTypes: ["exercise", "template", "documentation"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Configure CIP-compliant security event logging",
+      "Establish log retention and protection",
+      "Integrate with centralized monitoring"
+    ],
+    deliverables: [
+      "Security event logging configuration",
+      "Log retention policy and implementation",
+      "SIEM integration documentation"
+    ]
   },
   {
     number: 5,
@@ -80,6 +128,18 @@ export const toolOwnersSteps: LearningStep[] = [
       "Vulnerability assessment and remediation documentation",
       "Compensating measures documentation",
     ],
+    contentTypes: ["exercise", "template", "documentation"],
+    duration: "3-4 hours",
+    learningObjectives: [
+      "Implement 35-day patch management process",
+      "Conduct vulnerability assessments",
+      "Document compensating measures when needed"
+    ],
+    deliverables: [
+      "Patch management tracking system",
+      "Vulnerability assessment reports",
+      "Compensating measures documentation"
+    ]
   },
   {
     number: 6,
@@ -96,6 +156,18 @@ export const toolOwnersSteps: LearningStep[] = [
       "Recovery and restoration documentation",
       "Drill participation records",
     ],
+    contentTypes: ["reading", "exercise", "template"],
+    duration: "3-4 hours",
+    learningObjectives: [
+      "Define tool owner role in incident response",
+      "Configure systems for incident detection",
+      "Develop system-specific recovery procedures"
+    ],
+    deliverables: [
+      "System incident response runbooks",
+      "Recovery procedures with RTOs",
+      "Drill execution documentation"
+    ]
   },
   {
     number: 7,
@@ -112,5 +184,17 @@ export const toolOwnersSteps: LearningStep[] = [
       "Audit preparation checklist for your systems",
       "Configuration and log exports",
     ],
+    contentTypes: ["exercise", "template", "documentation"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Organize system evidence for audit",
+      "Extract and package configuration data",
+      "Prepare effective auditor demonstrations"
+    ],
+    deliverables: [
+      "Evidence repository with organized artifacts",
+      "System-specific audit checklists",
+      "Configuration exports and screenshots"
+    ]
   },
 ];
