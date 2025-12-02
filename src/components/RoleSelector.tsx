@@ -1,22 +1,22 @@
-import { useUserPreferences, UserRole, roleLabels } from '@/hooks/useUserPreferences';
+import { Framework, Persona, personaLabels } from '@/types/frameworkTypes';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { User } from 'lucide-react';
+import { useUserPreferences } from '@/hooks/useUserPreferences';
 
 interface RoleSelectorProps {
+  framework: Framework;
   className?: string;
   showLabel?: boolean;
 }
 
-const roles: UserRole[] = ['compliance', 'it-ot', 'physical-security', 'hr-training', 'leadership', 'other'];
+const personas: Persona[] = ['practitioners', 'tool-owners', 'leaders', 'auditors'];
 
-export function RoleSelector({ className, showLabel = true }: RoleSelectorProps) {
-  const { preferences, savePreferences } = useUserPreferences();
+export function RoleSelector({ framework, className, showLabel = true }: RoleSelectorProps) {
+  const { getFrameworkRole, setFrameworkRole } = useUserPreferences();
+  const currentRole = getFrameworkRole(framework);
 
   const handleRoleChange = (value: string) => {
-    savePreferences({ 
-      role: value as UserRole, 
-      onboardingComplete: true 
-    });
+    setFrameworkRole(framework, value as Persona);
   };
 
   return (
@@ -27,14 +27,14 @@ export function RoleSelector({ className, showLabel = true }: RoleSelectorProps)
           Select Your Role
         </label>
       )}
-      <Select value={preferences.role || ''} onValueChange={handleRoleChange}>
+      <Select value={currentRole || ''} onValueChange={handleRoleChange}>
         <SelectTrigger className="w-full sm:w-[280px]">
           <SelectValue placeholder="Choose your role path" />
         </SelectTrigger>
         <SelectContent>
-          {roles.map((role) => (
-            <SelectItem key={role} value={role}>
-              {roleLabels[role]}
+          {personas.map((persona) => (
+            <SelectItem key={persona} value={persona}>
+              {personaLabels[persona]}
             </SelectItem>
           ))}
         </SelectContent>
