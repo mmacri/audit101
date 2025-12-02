@@ -20,6 +20,18 @@ export const cisControlsToolOwnersSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Tool Capability Mapping to CIS Controls", isTemplate: true }
+    ],
+    contentTypes: ["reading", "exercise", "documentation"],
+    duration: "3-4 hours",
+    learningObjectives: [
+      "Map tool capabilities to CIS Controls",
+      "Identify which safeguards tool enables",
+      "Understand tool's role in compliance program"
+    ],
+    deliverables: [
+      "Tool-to-control mapping matrix",
+      "Safeguard capability documentation",
+      "Role definition document"
     ]
   },
   {
@@ -40,6 +52,18 @@ export const cisControlsToolOwnersSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Tool Coverage Assessment Template", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "template", "documentation"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Assess current tool coverage",
+      "Identify deployment gaps",
+      "Document configuration needs"
+    ],
+    deliverables: [
+      "Coverage assessment report",
+      "Gap analysis with remediation plan",
+      "Integration architecture diagram"
     ]
   },
   {
@@ -61,6 +85,18 @@ export const cisControlsToolOwnersSteps: LearningStep[] = [
     ],
     resources: [
       { title: "CIS Controls Configuration Guide", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "template", "documentation"],
+    duration: "6-8 hours",
+    learningObjectives: [
+      "Configure tools to implement safeguards",
+      "Integrate with enterprise systems",
+      "Establish configuration baselines"
+    ],
+    deliverables: [
+      "Configuration documentation with CIS mappings",
+      "Integration and automation playbooks",
+      "Configuration baselines"
     ]
   },
   {
@@ -83,6 +119,18 @@ export const cisControlsToolOwnersSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Monitoring Dashboard Template", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "interactive", "documentation"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Build effective monitoring dashboards",
+      "Automate compliance reporting",
+      "Operationalize tool workflows"
+    ],
+    deliverables: [
+      "CIS Controls dashboards",
+      "Automated reporting workflows",
+      "Operational procedures"
     ]
   },
   {
@@ -103,6 +151,18 @@ export const cisControlsToolOwnersSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Evidence Collection Playbook", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "template", "documentation"],
+    duration: "3-4 hours",
+    learningObjectives: [
+      "Automate evidence collection",
+      "Organize evidence systematically",
+      "Establish retention procedures"
+    ],
+    deliverables: [
+      "Evidence collection automation",
+      "Organized evidence repository",
+      "Report generation documentation"
     ]
   },
   {
@@ -123,6 +183,18 @@ export const cisControlsToolOwnersSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Assessment Evidence Package Template", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "template", "documentation"],
+    duration: "3-4 hours",
+    learningObjectives: [
+      "Prepare assessment evidence packages",
+      "Demonstrate tool effectiveness",
+      "Support assessor activities"
+    ],
+    deliverables: [
+      "Assessment evidence packages",
+      "Demonstration materials",
+      "Assessor response documentation"
     ]
   },
   {
@@ -144,6 +216,18 @@ export const cisControlsToolOwnersSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Tool Optimization Roadmap Template", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "template", "interactive"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Optimize tool performance",
+      "Plan maturity advancement",
+      "Drive continuous improvement"
+    ],
+    deliverables: [
+      "Tool optimization plan",
+      "IG advancement roadmap",
+      "Performance metrics dashboards"
     ]
   }
 ];

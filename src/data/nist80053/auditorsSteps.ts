@@ -19,6 +19,18 @@ export const nist80053AuditorsSteps: LearningStep[] = [
     resources: [
       { title: "NIST SP 800-53A Rev. 5", url: "https://csrc.nist.gov/publications/detail/sp/800-53a/rev-5/final", isTemplate: false },
       { title: "Assessment Procedure Checklist", isTemplate: true }
+    ],
+    contentTypes: ["reading", "documentation", "video"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Master NIST 800-53A assessment methodology",
+      "Understand examine-interview-test approach",
+      "Apply appropriate assessment depth"
+    ],
+    deliverables: [
+      "Assessment methodology notes",
+      "Control family reference guide",
+      "Assessment depth decision matrix"
     ]
   },
   {
@@ -42,6 +54,18 @@ export const nist80053AuditorsSteps: LearningStep[] = [
     resources: [
       { title: "Assessment Plan Template", isTemplate: true },
       { title: "Control Sampling Worksheet", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "template", "documentation"],
+    duration: "5-6 hours",
+    learningObjectives: [
+      "Define appropriate assessment scope",
+      "Select controls based on risk",
+      "Plan efficient assessment activities"
+    ],
+    deliverables: [
+      "Complete assessment plan",
+      "Control selection matrix",
+      "Sampling methodology"
     ]
   },
   {
@@ -63,6 +87,18 @@ export const nist80053AuditorsSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Document Review Checklist", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "documentation", "template"],
+    duration: "6-7 hours",
+    learningObjectives: [
+      "Conduct thorough documentation review",
+      "Identify gaps and inconsistencies",
+      "Prepare focused interview questions"
+    ],
+    deliverables: [
+      "Documentation review findings",
+      "Gap analysis report",
+      "Information request list"
     ]
   },
   {
@@ -84,6 +120,18 @@ export const nist80053AuditorsSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Interview Guide Template", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "documentation", "template"],
+    duration: "5-6 hours",
+    learningObjectives: [
+      "Conduct effective control interviews",
+      "Validate documentation accuracy",
+      "Identify areas for technical testing"
+    ],
+    deliverables: [
+      "Interview summaries and notes",
+      "Control validation findings",
+      "Technical testing requirements"
     ]
   },
   {
@@ -105,6 +153,18 @@ export const nist80053AuditorsSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Technical Testing Checklist", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "documentation", "interactive"],
+    duration: "7-8 hours",
+    learningObjectives: [
+      "Execute hands-on technical testing",
+      "Validate control effectiveness",
+      "Document technical findings"
+    ],
+    deliverables: [
+      "Technical testing results",
+      "Evidence validation documentation",
+      "Control effectiveness ratings"
     ]
   },
   {
@@ -126,6 +186,18 @@ export const nist80053AuditorsSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Security Assessment Report Template", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "template", "documentation"],
+    duration: "5-6 hours",
+    learningObjectives: [
+      "Document clear, actionable findings",
+      "Assign appropriate risk ratings",
+      "Identify root causes"
+    ],
+    deliverables: [
+      "Draft Security Assessment Report",
+      "Risk-rated findings list",
+      "Root cause analysis"
     ]
   },
   {
@@ -148,6 +220,18 @@ export const nist80053AuditorsSteps: LearningStep[] = [
     resources: [
       { title: "POA&M Validation Checklist", isTemplate: true },
       { title: "Continuous Monitoring Plan Template", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "template", "documentation"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Validate remediation plans",
+      "Establish continuous monitoring",
+      "Track POA&M completion"
+    ],
+    deliverables: [
+      "Validated POA&Ms",
+      "Continuous monitoring plan",
+      "Final Security Assessment Report"
     ]
   }
 ];

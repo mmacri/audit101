@@ -17,6 +17,18 @@ export const nist80053ToolOwnersSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Tool Capability Mapping Template", isTemplate: true }
+    ],
+    contentTypes: ["reading", "documentation", "exercise"],
+    duration: "3-4 hours",
+    learningObjectives: [
+      "Map tool capabilities to NIST 800-53 controls",
+      "Understand tool role in control implementation",
+      "Identify evidence collection responsibilities"
+    ],
+    deliverables: [
+      "Tool-to-control mapping matrix",
+      "Control support documentation",
+      "Evidence collection inventory"
     ]
   },
   {
@@ -36,6 +48,18 @@ export const nist80053ToolOwnersSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Tool Coverage Matrix", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "documentation", "template"],
+    duration: "3-4 hours",
+    learningObjectives: [
+      "Document complete tool coverage",
+      "Identify and remediate coverage gaps",
+      "Align with system boundary definitions"
+    ],
+    deliverables: [
+      "Complete coverage inventory",
+      "Gap analysis with remediation plan",
+      "Integration architecture documentation"
     ]
   },
   {
@@ -57,6 +81,18 @@ export const nist80053ToolOwnersSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Tool-to-Control Detailed Mapping", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "documentation", "template"],
+    duration: "5-6 hours",
+    learningObjectives: [
+      "Create detailed control mappings",
+      "Document configuration-to-control relationships",
+      "Identify control gaps and compensating measures"
+    ],
+    deliverables: [
+      "Detailed control mapping matrix",
+      "Configuration documentation with control references",
+      "Gap analysis with recommendations"
     ]
   },
   {
@@ -80,6 +116,18 @@ export const nist80053ToolOwnersSteps: LearningStep[] = [
     resources: [
       { title: "Tool Configuration Checklist", isTemplate: true },
       { title: "Integration Documentation Template", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "documentation", "template"],
+    duration: "6-8 hours",
+    learningObjectives: [
+      "Configure tools to meet control requirements",
+      "Integrate with enterprise systems",
+      "Establish operational procedures"
+    ],
+    deliverables: [
+      "Complete configuration documentation",
+      "Integration architecture diagrams",
+      "Operational runbooks and procedures"
     ]
   },
   {
@@ -101,6 +149,18 @@ export const nist80053ToolOwnersSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Evidence Collection Automation Guide", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "documentation", "template"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Automate evidence collection",
+      "Organize evidence by control family",
+      "Establish retention procedures"
+    ],
+    deliverables: [
+      "Automated evidence workflows",
+      "Organized evidence repository",
+      "Evidence retention schedule"
     ]
   },
   {
@@ -123,6 +183,18 @@ export const nist80053ToolOwnersSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Assessor Evidence Package Template", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "documentation", "template"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Prepare for assessor interactions",
+      "Create effective evidence packages",
+      "Document compensating controls"
+    ],
+    deliverables: [
+      "Assessor evidence packages",
+      "Demonstration materials",
+      "Compensating control documentation"
     ]
   },
   {
@@ -145,6 +217,18 @@ export const nist80053ToolOwnersSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Tool Performance Metrics Template", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "documentation", "interactive"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Monitor tool health and effectiveness",
+      "Optimize tool performance",
+      "Plan strategic enhancements"
+    ],
+    deliverables: [
+      "Tool health monitoring dashboards",
+      "Optimization and tuning documentation",
+      "Strategic enhancement roadmap"
     ]
   }
 ];
