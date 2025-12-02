@@ -1,22 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
+import { Framework, Persona } from '@/types/frameworkTypes';
 
-const PREFS_KEY = 'cip-academy-preferences';
+const PREFS_KEY = 'audit101-user-preferences';
 
+// Legacy NERC CIP role types (kept for backward compatibility)
 export type UserRole = 'compliance' | 'it-ot' | 'physical-security' | 'hr-training' | 'leadership' | 'other';
 export type ExperienceLevel = 'new' | 'some' | 'experienced';
-
-export interface UserPreferences {
-  role: UserRole | null;
-  experience: ExperienceLevel | null;
-  onboardingComplete: boolean;
-  firstName?: string;
-}
-
-const defaultPreferences: UserPreferences = {
-  role: null,
-  experience: null,
-  onboardingComplete: false,
-};
 
 export const roleLabels: Record<UserRole, string> = {
   'compliance': 'Compliance / Risk Manager',
@@ -42,6 +31,29 @@ export const roleModules: Record<UserRole, number[]> = {
   'other': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
 };
 
+// Framework-specific persona/role selection (new system)
+export interface FrameworkRoles {
+  [framework: string]: Persona | null;
+}
+
+export interface UserPreferences {
+  // Legacy NERC CIP fields
+  role?: UserRole | null;
+  experience?: ExperienceLevel | null;
+  onboardingComplete?: boolean;
+  
+  // New framework-specific roles
+  frameworkRoles: FrameworkRoles;
+  firstName?: string;
+}
+
+const defaultPreferences: UserPreferences = {
+  role: null,
+  experience: null,
+  onboardingComplete: false,
+  frameworkRoles: {},
+};
+
 export function useUserPreferences() {
   const [preferences, setPreferences] = useState<UserPreferences>(defaultPreferences);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -50,7 +62,12 @@ export function useUserPreferences() {
     try {
       const stored = localStorage.getItem(PREFS_KEY);
       if (stored) {
-        setPreferences(JSON.parse(stored));
+        const parsed = JSON.parse(stored);
+        // Migrate old data if needed
+        if (!parsed.frameworkRoles) {
+          parsed.frameworkRoles = {};
+        }
+        setPreferences(parsed);
       }
     } catch (error) {
       console.error('Failed to load preferences:', error);
@@ -68,17 +85,13 @@ export function useUserPreferences() {
     }
   }, [preferences]);
 
+  // Legacy NERC CIP methods
   const completeOnboarding = useCallback((role: UserRole, experience: ExperienceLevel) => {
     savePreferences({ role, experience, onboardingComplete: true });
   }, [savePreferences]);
 
-  const resetPreferences = useCallback(() => {
-    localStorage.removeItem(PREFS_KEY);
-    setPreferences(defaultPreferences);
-  }, []);
-
   const getRecommendedModules = useCallback(() => {
-    if (!preferences.role) return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    if (!preferences.role) return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     return roleModules[preferences.role];
   }, [preferences.role]);
 
@@ -86,13 +99,41 @@ export function useUserPreferences() {
     return getRecommendedModules().includes(moduleId);
   }, [getRecommendedModules]);
 
+  // New framework-specific methods
+  const setFrameworkRole = useCallback((framework: Framework, persona: Persona | null) => {
+    const updated = {
+      ...preferences,
+      frameworkRoles: {
+        ...preferences.frameworkRoles,
+        [framework]: persona,
+      },
+    };
+    try {
+      localStorage.setItem(PREFS_KEY, JSON.stringify(updated));
+      setPreferences(updated);
+    } catch (error) {
+      console.error('Failed to save framework role:', error);
+    }
+  }, [preferences]);
+
+  const getFrameworkRole = useCallback((framework: Framework): Persona | null => {
+    return preferences.frameworkRoles?.[framework] || null;
+  }, [preferences]);
+
+  const resetPreferences = useCallback(() => {
+    localStorage.removeItem(PREFS_KEY);
+    setPreferences(defaultPreferences);
+  }, []);
+
   return {
     preferences,
     isLoaded,
     savePreferences,
     completeOnboarding,
-    resetPreferences,
     getRecommendedModules,
     isModuleRecommended,
+    setFrameworkRole,
+    getFrameworkRole,
+    resetPreferences,
   };
 }

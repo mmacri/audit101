@@ -15,6 +15,7 @@ import {
   CheckCircle2,
   User
 } from "lucide-react";
+import { Persona } from "@/types/frameworkTypes";
 
 // Map UserRole to URL slugs
 const roleToSlug: Record<UserRole, string> = {
@@ -65,10 +66,10 @@ export default function Home() {
     }
   }, [isLoaded, preferences.onboardingComplete]);
 
-  const handleOnboardingComplete = (selectedRole?: UserRole) => {
+  const handleOnboardingComplete = (selectedRole?: Persona) => {
     setShowOnboarding(false);
     if (selectedRole) {
-      navigate(`/role-training/${roleToSlug[selectedRole]}`);
+      navigate(`/nerc-cip/${selectedRole}`);
     } else {
       // Skip tour: navigate to home and scroll to overview section
       navigate('/');
@@ -93,6 +94,7 @@ export default function Home() {
     <Layout>
       {/* Onboarding Modal */}
       <OnboardingModal 
+        framework="nerc-cip"
         open={showOnboarding} 
         onComplete={handleOnboardingComplete} 
       />
