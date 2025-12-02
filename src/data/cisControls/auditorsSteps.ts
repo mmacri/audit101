@@ -19,6 +19,18 @@ export const cisControlsAuditorsSteps: LearningStep[] = [
     resources: [
       { title: "CIS Controls Assessment Specification", url: "https://www.cisecurity.org/controls/cis-controls-assessment-specification", isTemplate: false },
       { title: "Assessment Planning Checklist", isTemplate: true }
+    ],
+    contentTypes: ["reading", "documentation", "video"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Master CIS Controls assessment methodology",
+      "Understand Implementation Group scoping",
+      "Learn manual and automated assessment approaches"
+    ],
+    deliverables: [
+      "Assessment methodology notes",
+      "IG-specific assessment framework",
+      "Technical testing approach"
     ]
   },
   {
@@ -39,6 +51,18 @@ export const cisControlsAuditorsSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Scope and Sampling Worksheet", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "template", "documentation"],
+    duration: "5-6 hours",
+    learningObjectives: [
+      "Define appropriate assessment scope",
+      "Select Implementation Group target",
+      "Plan effective sampling approach"
+    ],
+    deliverables: [
+      "Assessment scope document",
+      "Sampling methodology",
+      "Assessment schedule"
     ]
   },
   {
@@ -60,6 +84,18 @@ export const cisControlsAuditorsSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Documentation Review Checklist", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "documentation", "template"],
+    duration: "6-7 hours",
+    learningObjectives: [
+      "Review documentation comprehensively",
+      "Identify documentation gaps",
+      "Prepare for technical validation"
+    ],
+    deliverables: [
+      "Documentation review findings",
+      "Gap analysis by control",
+      "Information request list"
     ]
   },
   {
@@ -81,6 +117,18 @@ export const cisControlsAuditorsSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Interview Guide per CIS Control", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "documentation", "template"],
+    duration: "5-6 hours",
+    learningObjectives: [
+      "Conduct effective control interviews",
+      "Validate implementation claims",
+      "Identify technical testing needs"
+    ],
+    deliverables: [
+      "Interview summaries",
+      "Control validation findings",
+      "Technical testing requirements"
     ]
   },
   {
@@ -103,6 +151,18 @@ export const cisControlsAuditorsSteps: LearningStep[] = [
     resources: [
       { title: "Technical Testing Checklist", isTemplate: true },
       { title: "CIS-CAT Pro", url: "https://www.cisecurity.org/cybersecurity-tools/cis-cat-pro", isTemplate: false }
+    ],
+    contentTypes: ["exercise", "interactive", "documentation"],
+    duration: "7-8 hours",
+    learningObjectives: [
+      "Execute automated and manual testing",
+      "Validate control effectiveness",
+      "Document technical findings"
+    ],
+    deliverables: [
+      "CIS-CAT Pro results",
+      "Technical testing documentation",
+      "Control effectiveness evidence"
     ]
   },
   {
@@ -125,6 +185,18 @@ export const cisControlsAuditorsSteps: LearningStep[] = [
     resources: [
       { title: "Assessment Report Template", isTemplate: true },
       { title: "Maturity Rating Guide", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "template", "documentation"],
+    duration: "5-6 hours",
+    learningObjectives: [
+      "Assign appropriate maturity ratings",
+      "Calculate IG achievement scores",
+      "Draft comprehensive assessment report"
+    ],
+    deliverables: [
+      "Assessment report with maturity ratings",
+      "IG achievement scorecard",
+      "Prioritized recommendations"
     ]
   },
   {
@@ -146,6 +218,18 @@ export const cisControlsAuditorsSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Remediation Tracking Template", isTemplate: true }
+    ],
+    contentTypes: ["exercise", "template", "documentation"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Validate remediation approaches",
+      "Establish continuous monitoring",
+      "Plan maturity advancement"
+    ],
+    deliverables: [
+      "Validated remediation plans",
+      "Continuous monitoring procedures",
+      "IG advancement roadmap"
     ]
   }
 ];

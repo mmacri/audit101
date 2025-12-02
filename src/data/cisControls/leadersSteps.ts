@@ -17,6 +17,18 @@ export const cisControlsLeadersSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Executive CIS Controls Overview", isTemplate: true }
+    ],
+    contentTypes: ["reading", "video", "documentation"],
+    duration: "2-3 hours",
+    learningObjectives: [
+      "Understand CIS Controls framework and Implementation Groups",
+      "Align controls with organizational risk profile",
+      "Articulate business value of CIS Controls program"
+    ],
+    deliverables: [
+      "Executive CIS Controls overview document",
+      "Implementation Group assessment",
+      "Business value summary"
     ]
   },
   {
@@ -39,6 +51,18 @@ export const cisControlsLeadersSteps: LearningStep[] = [
     resources: [
       { title: "CIS Controls Self-Assessment Tool", url: "https://www.cisecurity.org/controls/cis-controls-assessment-tool", isTemplate: false },
       { title: "Implementation Roadmap Template", isTemplate: true }
+    ],
+    contentTypes: ["reading", "exercise", "template"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Assess current CIS Controls posture",
+      "Define appropriate Implementation Group target",
+      "Develop prioritized implementation roadmap"
+    ],
+    deliverables: [
+      "Current state assessment report",
+      "Implementation Group designation",
+      "3-year implementation roadmap"
     ]
   },
   {
@@ -60,6 +84,18 @@ export const cisControlsLeadersSteps: LearningStep[] = [
     resources: [
       { title: "CIS Controls Governance Charter", isTemplate: true },
       { title: "Control Ownership Matrix", isTemplate: true }
+    ],
+    contentTypes: ["reading", "template", "exercise"],
+    duration: "3-4 hours",
+    learningObjectives: [
+      "Design effective governance structure",
+      "Assign clear control ownership",
+      "Establish accountability mechanisms"
+    ],
+    deliverables: [
+      "Governance charter with committee structure",
+      "18-control ownership matrix",
+      "KPI framework and reporting schedule"
     ]
   },
   {
@@ -80,6 +116,18 @@ export const cisControlsLeadersSteps: LearningStep[] = [
     ],
     resources: [
       { title: "CIS Controls Budget Template", isTemplate: true }
+    ],
+    contentTypes: ["reading", "template", "exercise"],
+    duration: "4-5 hours",
+    learningObjectives: [
+      "Develop comprehensive program budget",
+      "Allocate resources aligned to roadmap",
+      "Prioritize investments by risk and IG target"
+    ],
+    deliverables: [
+      "Approved multi-year budget",
+      "Resource allocation plan",
+      "Tool procurement schedule"
     ]
   },
   {
@@ -100,6 +148,18 @@ export const cisControlsLeadersSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Executive CIS Dashboard Template", isTemplate: true }
+    ],
+    contentTypes: ["reading", "interactive", "template"],
+    duration: "3-4 hours",
+    learningObjectives: [
+      "Design effective executive dashboards",
+      "Track Implementation Group progress",
+      "Monitor program effectiveness"
+    ],
+    deliverables: [
+      "Executive dashboard with KPIs",
+      "Monthly/quarterly reports",
+      "Maturity tracking system"
     ]
   },
   {
@@ -120,6 +180,18 @@ export const cisControlsLeadersSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Assessment Review Template", isTemplate: true }
+    ],
+    contentTypes: ["reading", "template", "case-study"],
+    duration: "3-4 hours",
+    learningObjectives: [
+      "Oversee assessment activities",
+      "Drive continuous improvement",
+      "Foster culture of security excellence"
+    ],
+    deliverables: [
+      "Assessment review and approvals",
+      "Remediation commitments",
+      "Recognition program"
     ]
   },
   {
@@ -140,6 +212,18 @@ export const cisControlsLeadersSteps: LearningStep[] = [
     ],
     resources: [
       { title: "Board Reporting Template", isTemplate: true }
+    ],
+    contentTypes: ["reading", "template", "case-study"],
+    duration: "3-4 hours",
+    learningObjectives: [
+      "Communicate program value to leadership",
+      "Plan maturity advancement",
+      "Integrate with enterprise risk programs"
+    ],
+    deliverables: [
+      "Board reporting package",
+      "Maturity advancement plan",
+      "Integration strategy"
     ]
   }
 ];
