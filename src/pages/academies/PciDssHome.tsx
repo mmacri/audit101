@@ -13,6 +13,8 @@ import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 import { pciDssPractitionersSteps } from "@/data/pciDss/practitionersSteps";
 import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
 import { PersonaComparison } from "@/components/PersonaComparison";
+import { FrameworkRoleSelector } from "@/components/FrameworkRoleSelector";
+import { useUserPreferences } from "@/hooks/useUserPreferences";
 
 const pciDssPersonas: Persona[] = [
   {
@@ -47,6 +49,8 @@ const pciDssPersonas: Persona[] = [
 
 export default function PciDssHome() {
   const navigate = useNavigate();
+  const { getFrameworkRole } = useUserPreferences();
+  const selectedRole = getFrameworkRole("pci-dss");
   
   const practitionerProgress = useFrameworkProgress("pci-dss", "practitioners");
   const toolOwnerProgress = useFrameworkProgress("pci-dss", "tool-owners");
@@ -59,6 +63,13 @@ export default function PciDssHome() {
     const persona = pciDssPersonas.find(p => p.id === personaId);
     if (persona) {
       navigate(persona.path);
+    }
+  };
+
+  const handleRoleSelected = (persona: string) => {
+    const personaData = pciDssPersonas.find(p => p.id === persona);
+    if (personaData) {
+      navigate(personaData.path);
     }
   };
 
@@ -235,6 +246,19 @@ export default function PciDssHome() {
           </div>
         </div>
       </section>
+
+      {/* Role Selection */}
+      {!selectedRole && (
+        <section className="py-12 bg-muted/30">
+          <div className="container max-w-4xl">
+            <FrameworkRoleSelector 
+              framework="pci-dss"
+              frameworkLabel="PCI DSS"
+              onRoleSelected={handleRoleSelected}
+            />
+          </div>
+        </section>
+      )}
 
       {/* Progress Overview */}
       <section className="py-16 bg-muted/30">

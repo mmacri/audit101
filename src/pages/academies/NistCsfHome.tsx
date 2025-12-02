@@ -12,9 +12,13 @@ import { PageIntro } from "@/components/PageIntro";
 import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
 import { PersonaComparison } from "@/components/PersonaComparison";
+import { FrameworkRoleSelector } from "@/components/FrameworkRoleSelector";
+import { useUserPreferences } from "@/hooks/useUserPreferences";
 
 export default function NistCsfHome() {
   const navigate = useNavigate();
+  const { getFrameworkRole } = useUserPreferences();
+  const selectedRole = getFrameworkRole("nist-csf");
   
   const practitionerProgress = useFrameworkProgress("nist-csf", "practitioners");
   const toolOwnerProgress = useFrameworkProgress("nist-csf", "tool-owners");
@@ -27,6 +31,13 @@ export default function NistCsfHome() {
     const persona = nistCsfPersonas.find(p => p.id === personaId);
     if (persona) {
       navigate(persona.path);
+    }
+  };
+
+  const handleRoleSelected = (persona: string) => {
+    const personaData = nistCsfPersonas.find(p => p.id === persona);
+    if (personaData) {
+      navigate(personaData.path);
     }
   };
 
@@ -198,6 +209,19 @@ export default function NistCsfHome() {
           </div>
         </div>
       </section>
+
+      {/* Role Selection */}
+      {!selectedRole && (
+        <section className="py-12 bg-muted/30">
+          <div className="container max-w-4xl">
+            <FrameworkRoleSelector 
+              framework="nist-csf"
+              frameworkLabel="NIST CSF"
+              onRoleSelected={handleRoleSelected}
+            />
+          </div>
+        </section>
+      )}
 
       {/* Progress Overview */}
       <section className="py-16 bg-muted/30">

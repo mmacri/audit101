@@ -13,9 +13,13 @@ import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
 import { PersonaComparison } from "@/components/PersonaComparison";
 import { Wrench, Shield, Users as UsersIcon, ClipboardCheck } from "lucide-react";
+import { FrameworkRoleSelector } from "@/components/FrameworkRoleSelector";
+import { useUserPreferences } from "@/hooks/useUserPreferences";
 
 export default function SoxItgcHome() {
   const navigate = useNavigate();
+  const { getFrameworkRole } = useUserPreferences();
+  const selectedRole = getFrameworkRole("sox-itgc");
   
   const practitionerProgress = useFrameworkProgress("sox-itgc", "practitioners");
   const toolOwnerProgress = useFrameworkProgress("sox-itgc", "tool-owners");
@@ -28,6 +32,13 @@ export default function SoxItgcHome() {
     const persona = soxItgcPersonas.find(p => p.id === personaId);
     if (persona) {
       navigate(persona.path);
+    }
+  };
+
+  const handleRoleSelected = (persona: string) => {
+    const personaData = soxItgcPersonas.find(p => p.id === persona);
+    if (personaData) {
+      navigate(personaData.path);
     }
   };
 
@@ -199,6 +210,19 @@ export default function SoxItgcHome() {
           </div>
         </div>
       </section>
+
+      {/* Role Selection */}
+      {!selectedRole && (
+        <section className="py-12 bg-muted/30">
+          <div className="container max-w-4xl">
+            <FrameworkRoleSelector 
+              framework="sox-itgc"
+              frameworkLabel="SOX ITGC"
+              onRoleSelected={handleRoleSelected}
+            />
+          </div>
+        </section>
+      )}
 
       {/* Progress Overview */}
       <section className="py-16 bg-muted/30">

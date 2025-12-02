@@ -13,9 +13,13 @@ import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
 import { PersonaComparison } from "@/components/PersonaComparison";
 import { Wrench, Shield, Users as UsersIcon, ClipboardCheck } from "lucide-react";
+import { FrameworkRoleSelector } from "@/components/FrameworkRoleSelector";
+import { useUserPreferences } from "@/hooks/useUserPreferences";
 
 export default function Nist80053Home() {
   const navigate = useNavigate();
+  const { getFrameworkRole } = useUserPreferences();
+  const selectedRole = getFrameworkRole("nist-800-53");
   
   const practitionerProgress = useFrameworkProgress("nist-800-53", "practitioners");
   const toolOwnerProgress = useFrameworkProgress("nist-800-53", "tool-owners");
@@ -28,6 +32,13 @@ export default function Nist80053Home() {
     const persona = nist80053Personas.find(p => p.id === personaId);
     if (persona) {
       navigate(persona.path);
+    }
+  };
+
+  const handleRoleSelected = (persona: string) => {
+    const personaData = nist80053Personas.find(p => p.id === persona);
+    if (personaData) {
+      navigate(personaData.path);
     }
   };
 
@@ -199,6 +210,19 @@ export default function Nist80053Home() {
           </div>
         </div>
       </section>
+
+      {/* Role Selection */}
+      {!selectedRole && (
+        <section className="py-12 bg-muted/30">
+          <div className="container max-w-4xl">
+            <FrameworkRoleSelector 
+              framework="nist-800-53"
+              frameworkLabel="NIST 800-53"
+              onRoleSelected={handleRoleSelected}
+            />
+          </div>
+        </section>
+      )}
 
       {/* Progress Overview */}
       <section className="py-16 bg-muted/30">
