@@ -49,14 +49,35 @@ export function InteractiveLearningPath({ steps, completedSteps }: InteractiveLe
     'case-study': { icon: Lightbulb, label: 'Case Study', color: 'text-amber-600', bgColor: 'bg-amber-500/10' }
   };
 
+  const completedCount = completedSteps.length;
+  const totalSteps = steps.length;
+  const completionPercentage = totalSteps > 0 ? (completedCount / totalSteps) * 100 : 0;
+
   return (
     <section className="py-16 bg-background">
       <div className="container max-w-6xl">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h2 className="text-3xl font-bold mb-4">Your Interactive Learning Journey</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-6">
             Explore each step to see the learning materials, exercises, and assessments you'll complete
           </p>
+          
+          {/* Quick Progress Summary */}
+          <div className="inline-flex items-center gap-4 px-6 py-3 bg-muted/50 rounded-full border border-border">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="h-5 w-5 text-primary" />
+              <span className="font-semibold">{completedCount}/{totalSteps} Steps</span>
+            </div>
+            <div className="w-32 h-2 bg-muted rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-primary transition-all duration-500"
+                style={{ width: `${completionPercentage}%` }}
+              />
+            </div>
+            <span className="text-sm font-medium text-muted-foreground">
+              {Math.round(completionPercentage)}% Complete
+            </span>
+          </div>
         </div>
 
         <Tabs defaultValue="timeline" className="w-full">
@@ -83,21 +104,31 @@ export function InteractiveLearningPath({ steps, completedSteps }: InteractiveLe
                     )}
                     
                     <Card 
-                      className={`transition-all duration-300 cursor-pointer hover:shadow-lg ${
+                      className={`transition-all duration-300 cursor-pointer hover:shadow-lg relative overflow-hidden ${
                         isSelected ? 'ring-2 ring-primary shadow-lg' : ''
-                      } ${isCompleted ? 'border-primary/50' : ''}`}
+                      } ${isCompleted ? 'border-primary/50 bg-primary/5' : ''}`}
                       onClick={() => setSelectedStep(isSelected ? null : step.stepNumber)}
                     >
+                      {/* Completion overlay indicator */}
+                      {isCompleted && (
+                        <div className="absolute top-0 right-0">
+                          <div className="bg-primary text-primary-foreground px-3 py-1 text-xs font-semibold rounded-bl-lg flex items-center gap-1">
+                            <CheckCircle2 className="h-3 w-3" />
+                            Completed
+                          </div>
+                        </div>
+                      )}
+                      
                       <CardHeader>
                         <div className="flex items-start gap-4">
-                          {/* Step number badge */}
-                          <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 border-2 ${
+                          {/* Step number badge with enhanced styling */}
+                          <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 border-2 transition-all duration-300 ${
                             isCompleted 
-                              ? 'bg-primary border-primary' 
+                              ? 'bg-primary border-primary shadow-lg shadow-primary/20' 
                               : 'bg-muted border-border'
                           }`}>
                             {isCompleted ? (
-                              <CheckCircle2 className="h-6 w-6 text-primary-foreground" />
+                              <CheckCircle2 className="h-6 w-6 text-primary-foreground animate-in zoom-in duration-300" />
                             ) : (
                               <span className={`text-lg font-bold ${isCompleted ? 'text-primary-foreground' : 'text-muted-foreground'}`}>
                                 {step.stepNumber}
