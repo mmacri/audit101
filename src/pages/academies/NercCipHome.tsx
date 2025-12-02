@@ -13,9 +13,13 @@ import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
 import { PersonaComparison } from "@/components/PersonaComparison";
 import { Wrench, Users as UsersIcon, ClipboardCheck } from "lucide-react";
+import { FrameworkRoleSelector } from "@/components/FrameworkRoleSelector";
+import { useUserPreferences } from "@/hooks/useUserPreferences";
 
 export default function NercCipHome() {
   const navigate = useNavigate();
+  const { getFrameworkRole } = useUserPreferences();
+  const selectedRole = getFrameworkRole("nerc-cip");
   
   // Get progress for all personas
   const practitionerProgress = useFrameworkProgress("nerc-cip", "practitioners");
@@ -29,6 +33,13 @@ export default function NercCipHome() {
     const persona = personas.find(p => p.id === personaId);
     if (persona) {
       navigate(persona.path);
+    }
+  };
+
+  const handleRoleSelected = (persona: string) => {
+    const personaData = personas.find(p => p.id === persona);
+    if (personaData) {
+      navigate(personaData.path);
     }
   };
 
@@ -199,6 +210,19 @@ export default function NercCipHome() {
           </div>
         </div>
       </section>
+
+      {/* Role Selection */}
+      {!selectedRole && (
+        <section className="py-12 bg-muted/30">
+          <div className="container max-w-4xl">
+            <FrameworkRoleSelector 
+              framework="nerc-cip"
+              frameworkLabel="NERC CIP"
+              onRoleSelected={handleRoleSelected}
+            />
+          </div>
+        </section>
+      )}
 
       {/* Progress Overview Section */}
       <section className="py-16 bg-muted/30">

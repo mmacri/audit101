@@ -13,6 +13,8 @@ import { useFrameworkProgress } from "@/hooks/useFrameworkProgress";
 import { iso27001PractitionersSteps } from "@/data/iso27001/practitionersSteps";
 import { FrameworkPersonalizedPath } from "@/components/FrameworkPersonalizedPath";
 import { PersonaComparison } from "@/components/PersonaComparison";
+import { FrameworkRoleSelector } from "@/components/FrameworkRoleSelector";
+import { useUserPreferences } from "@/hooks/useUserPreferences";
 
 const iso27001Personas: Persona[] = [
   {
@@ -47,6 +49,8 @@ const iso27001Personas: Persona[] = [
 
 export default function Iso27001Home() {
   const navigate = useNavigate();
+  const { getFrameworkRole } = useUserPreferences();
+  const selectedRole = getFrameworkRole("iso-27001");
   
   const practitionerProgress = useFrameworkProgress("iso-27001", "practitioners");
   const toolOwnerProgress = useFrameworkProgress("iso-27001", "tool-owners");
@@ -59,6 +63,13 @@ export default function Iso27001Home() {
     const persona = iso27001Personas.find(p => p.id === personaId);
     if (persona) {
       navigate(persona.path);
+    }
+  };
+
+  const handleRoleSelected = (persona: string) => {
+    const personaData = iso27001Personas.find(p => p.id === persona);
+    if (personaData) {
+      navigate(personaData.path);
     }
   };
 
@@ -235,6 +246,19 @@ export default function Iso27001Home() {
           </div>
         </div>
       </section>
+
+      {/* Role Selection */}
+      {!selectedRole && (
+        <section className="py-12 bg-muted/30">
+          <div className="container max-w-4xl">
+            <FrameworkRoleSelector 
+              framework="iso-27001"
+              frameworkLabel="ISO 27001"
+              onRoleSelected={handleRoleSelected}
+            />
+          </div>
+        </section>
+      )}
 
       {/* Progress Overview */}
       <section className="py-16 bg-muted/30">
